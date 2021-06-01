@@ -8,8 +8,8 @@ BEGIN
            ('toc', '__Data Dictionary__'),
            ('toc', '## Table of Contents'),
            ('toc', '### Tables'),
-           ('toc', '| Name | Comment | Row Count |'),
-           ('toc', '| ---- | ------- | --------- |');
+           ('toc', '| Name | Comment | Row Count|'),
+           ('toc', '| ---- | ------- | ---------: |');
 
 
     INSERT INTO tmp_docs (doc, line)
