@@ -1,52 +1,74 @@
-DROP PROCEDURE IF EXISTS `sqldoc_tables`;
-DELIMITER $$
-CREATE PROCEDURE sqldoc_tables()
-BEGIN
+drop procedure if exists `sqldoc_tables`;
+delimiter $$
+create procedure sqldoc_tables()
+begin
 
-    DECLARE table_cursor_finished int DEFAULT 0;
-    DECLARE tname varchar(64);
-    DECLARE tcomment varchar(2048);
+    declare table_cursor_finished int default 0;
+    declare tname varchar(64);
+    declare tcomment varchar(2048);
+    declare keycount int;
 
-    DECLARE table_cursor CURSOR FOR SELECT table_name, table_comment
-                                      FROM information_schema.tables
-                                     WHERE table_schema = DATABASE()
-                                       AND table_type = 'BASE TABLE'
-                                       AND table_name <> 'tmp_docs';
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET table_cursor_finished = 1;
+    declare table_cursor cursor for select table_name, table_comment
+                                    from information_schema.tables
+                                    where table_schema = database()
+                                      and table_type = 'BASE TABLE'
+                                      and table_name <> 'tmp_docs';
+    declare continue handler for not found set table_cursor_finished = 1;
 
-    INSERT INTO tmp_docs (doc, line) VALUES ('toc', '### Tables');
-    INSERT INTO tmp_docs (doc, line) VALUES ('toc', '&#128273; = primary key');
-    INSERT INTO tmp_docs (doc, line) VALUES ('toc', '&#128477; = foreign key');
+    insert into tmp_docs (doc, line) values ('toc', '### Tables');
+    insert into tmp_docs (doc, line) values ('toc', '&#128273; = primary key');
+    insert into tmp_docs (doc, line) values ('toc', '&#128477; = foreign key');
 
-    OPEN table_cursor;
+    open table_cursor;
 
     tableloop:
-    LOOP
-        FETCH table_cursor INTO tname, tcomment;
-        IF table_cursor_finished = 1 THEN LEAVE tableloop; END IF;
+    loop
+        fetch table_cursor into tname, tcomment;
+        if table_cursor_finished = 1 then leave tableloop; end if;
 
-        INSERT INTO tmp_docs (doc, line) VALUES (CONCAT('table_', tname), CONCAT('#### ', tname));
-        IF tcomment <> '' THEN INSERT INTO tmp_docs (doc, line) VALUES (CONCAT('table_', tname), tcomment); END IF;
+        insert into tmp_docs (doc, line) values (concat('table_', tname), '[index.md](index.md)');
+        insert into tmp_docs (doc, line) values (concat('table_', tname), concat('# Table: ', tname));
+        if tcomment <> '' then insert into tmp_docs (doc, line) values (concat('table_', tname), tcomment); end if;
 
-        INSERT INTO tmp_docs (doc, line)
-        VALUES (CONCAT('table_', tname), '| Key  | Column | Type        | Default | Nullable | Comment |'),
-               (CONCAT('table_', tname), '| ---- | ------ | ----------- | ------- | -------- | ------- |');
+        -- mermaid diagram
+        set keycount = ( select count(*)
+                         from information_schema.KEY_COLUMN_USAGE
+                         where table_schema = 'sqldoc' and TABLE_NAME = tname and REFERENCED_TABLE_NAME is not null and
+                               table_name = tname
+                            or REFERENCED_TABLE_NAME = tname );
 
-        INSERT INTO tmp_docs (doc, line)
-        SELECT CONCAT('table_', tname),
-               CONCAT('| ', CASE WHEN column_key LIKE '%PRI%' THEN '&#128273;'
-                                 WHEN column_key LIKE '%MUL%' THEN '&#128477;'
-                                 ELSE '' END, ' | ', column_name, ' | ', column_type, ' | ',
-                      IF(column_default = '', 'empty string', IFNULL(column_default, '')), ' | ',
-                      IF(is_nullable = 'NO', '&#128683;', '&#9989;'), ' | ', column_comment, ' |')
-          FROM information_schema.columns
-         WHERE table_schema = DATABASE()
-           AND table_name = tname
-         ORDER BY ordinal_position;
+        if keycount > 0 then
+            insert into tmp_docs (doc, line) values (concat('table_', tname), '```mermaid');
+            insert into tmp_docs (doc, line) values (concat('table_', tname), 'erDiagram');
+
+            insert into tmp_docs (doc, line)
+            select concat('table_', tname), concat(table_name, ' ||--|{ ', REFERENCED_TABLE_NAME, ' : ""')
+            from information_schema.KEY_COLUMN_USAGE
+            where table_schema = database() and REFERENCED_TABLE_NAME is not null and table_name = tname
+               or REFERENCED_TABLE_NAME = tname;
+            insert into tmp_docs (doc, line) values (concat('table_', tname), '```');
+        end if;
+
+        -- columns
+        insert into tmp_docs (doc, line)
+        values (concat('table_', tname), '| Key  | Column | Type        | Default | Nullable | Comment |'),
+               (concat('table_', tname), '| ---- | ------ | ----------- | ------- | -------- | ------- |');
+
+        insert into tmp_docs (doc, line)
+        select concat('table_', tname),
+               concat('| ', case when column_key like '%PRI%' then '&#128273;'
+                                 when column_key like '%MUL%' then '&#128477;'
+                                 else '' end, ' | ', column_name, ' | ', column_type, ' | ',
+                      if(column_default = '', 'empty string', ifnull(column_default, '')), ' | ',
+                      if(is_nullable = 'NO', '&#128683;', '&#9989;'), ' | ', column_comment, ' |')
+        from information_schema.columns
+        where table_schema = database()
+          and table_name = tname
+        order by ordinal_position;
 
 
-    END LOOP tableloop;
+    end loop tableloop;
 
-END$$
+end$$
 
-DELIMITER ;
+delimiter ;

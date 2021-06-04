@@ -19,15 +19,12 @@ begin
     order by id
     into outfile '/var/lib/mysql-files/index.md' lines terminated by '\n';
 
-    -- SELECT line FROM tmp_docs ORDER BY id INTO OUTFILE '/var/lib/mysql-files/dbdocs.md' LINES TERMINATED BY '\n';
     open table_cursor;
 
     tableloop:
     loop
         fetch table_cursor into tname;
         if table_cursor_finished = 1 then leave tableloop; end if;
-
-        -- set @tname = 'tname';
 
         set @out_text = concat(
             'select line from tmp_docs where doc = \'table_',
@@ -36,8 +33,6 @@ begin
             tname,
             '.md\'',
             ' lines terminated by \'\n\'');
-
---        select @out_text;
 
         prepare s1 from @out_text;
         execute s1;

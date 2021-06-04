@@ -8380,6 +8380,17 @@ VALUES ('S10_1678', '1969 Harley Davidson Ultimate Chopper', 'Motorcycles', '1:1
         'Measures 38 inches Long x 33 3/4 inches High. Includes a stand.\r\nMany extras including rigging, long boats, pilot house, anchors, etc. Comes with 2 masts, all square-rigged',
         414, '33.30', '54.60');
 
+DROP TABLE IF EXISTS `suppliers`;
+
+CREATE TABLE suppliers (
+    supplier_id INT AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    phone VARCHAR(15) NOT NULL UNIQUE,
+    address VARCHAR(255) NOT NULL,
+    PRIMARY KEY (supplier_id),
+    CONSTRAINT uc_name_address UNIQUE (name , address)
+);
+
 /* customer payments view */
 CREATE OR REPLACE VIEW customer_payments
 AS
