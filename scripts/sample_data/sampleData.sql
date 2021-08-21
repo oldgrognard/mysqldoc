@@ -13,37 +13,6 @@ Sample data
 /*!40014 SET @old_foreign_key_checks = @@foreign_key_checks, FOREIGN_KEY_CHECKS = 0 */;
 /*!40101 SET @old_sql_mode = @@sql_mode, SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @old_sql_notes = @@sql_notes, SQL_NOTES = 0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS */`sqldoc` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `sqldoc`;
-
-/*Table structure for table `customer` */
-
-DROP TABLE IF EXISTS `customer`;
-
-CREATE TABLE `customer`
-    (
-        `customer_number` int(11) NOT NULL COMMENT 'Our assigned customer number',
-        `customer_name` varchar(50) NOT NULL COMMENT 'Company or individual name',
-        `contact_last_name` varchar(50) NOT NULL COMMENT 'Company contact\'s last name',
-        `contact_first_name` varchar(50) NOT NULL COMMENT 'Company contact\'s first name',
-        `phone` varchar(50) NOT NULL,
-        `address_line_1` varchar(50) NOT NULL,
-        `address_line_2` varchar(50) NOT NULL DEFAULT '',
-        `city` varchar(50) NOT NULL DEFAULT '',
-        `state` varchar(50) NOT NULL DEFAULT '',
-        `postal_code` varchar(15) NOT NULL DEFAULT '',
-        `country` varchar(50) NOT NULL DEFAULT '',
-        `sales_rep_employee_number` int(11) NOT NULL DEFAULT 0,
-        `credit_limit` decimal(10, 2) NOT NULL DEFAULT 0,
-        CONSTRAINT `pk_customer_number`
-            PRIMARY KEY (`customer_number`),
-        KEY `ix_sales_rep_employee_number` (`sales_rep_employee_number`),
-        CONSTRAINT `fk_customer__employee`
-            FOREIGN KEY (`sales_rep_employee_number`) REFERENCES `employee` (`employee_number`)
-    )
-ENGINE = InnoDB
-DEFAULT CHARSET = latin1 COMMENT ='Collection of existing customers';
 
 /*Data for the table `customer` */
 
@@ -416,31 +385,6 @@ VALUES (103, 'Atelier graphique', 'Schmitt', 'Carine ', '40.32.2555', '54, rue R
        (496, 'Kelly\'s Gift Shop', 'Snowden', 'Tony', '+64 9 5555500', 'Arenales 1938 3\'A\'', '', 'Auckland  ', '', '',
         'New Zealand', 1612, '110000.00');
 
-/*Table structure for table `employee` */
-
-DROP TABLE IF EXISTS `employee`;
-
-CREATE TABLE `employee`
-    (
-        `employee_number` int(11) NOT NULL,
-        `last_name` varchar(50) NOT NULL DEFAULT '',
-        `first_name` varchar(50) NOT NULL DEFAULT '',
-        `extension` varchar(10) NOT NULL DEFAULT '',
-        `email` varchar(100) NOT NULL DEFAULT '',
-        `office_code` varchar(10) NOT NULL DEFAULT '',
-        `reports_to` int(11) NOT NULL DEFAULT 0,
-        `job_title` varchar(50) NOT NULL DEFAULT '',
-        CONSTRAINT `pk_employee`
-            PRIMARY KEY (`employee_number`),
-        KEY `ix_reports_to` (`reports_to`),
-        KEY `ix_office_code` (`office_code`),
-        CONSTRAINT `fk_employee__employee`
-            FOREIGN KEY (`reports_to`) REFERENCES `employee` (`employee_number`),
-        CONSTRAINT `fk_employee__office`
-            FOREIGN KEY (`office_code`) REFERENCES `office` (`office_code`)
-    )
-ENGINE = InnoDB
-DEFAULT CHARSET = latin1;
 
 /*Data for the table `employee` */
 
@@ -494,26 +438,6 @@ VALUES (0, 'assigned', 'un', '', '', '', 0, 'unassigned'),
 
        (1702, 'Gerard', 'Martin', 'x2312', 'mgerard@classicmodelcars.com', '4', 1102, 'Sales Rep');
 
-/*Table structure for table `office` */
-
-DROP TABLE IF EXISTS `office`;
-
-CREATE TABLE `office`
-    (
-        `office_code` varchar(10) NOT NULL,
-        `city` varchar(50) NOT NULL DEFAULT '',
-        `phone` varchar(50) NOT NULL DEFAULT '',
-        `address_line_1` varchar(50) NOT NULL DEFAULT '',
-        `address_line_2` varchar(50) NOT NULL DEFAULT '',
-        `state` varchar(50) NOT NULL DEFAULT '',
-        `country` varchar(50) NOT NULL DEFAULT '',
-        `postal_code` varchar(15) NOT NULL DEFAULT '',
-        `territory` varchar(10) NOT NULL DEFAULT '',
-        CONSTRAINT `pk_office`
-            PRIMARY KEY (`office_code`)
-    )
-ENGINE = InnoDB
-DEFAULT CHARSET = latin1;
 
 /*Data for the table `office` */
 
@@ -533,27 +457,6 @@ VALUES ('1', 'San Francisco', '+1 650 219 4782', '100 Market Street', 'Suite 300
 
        ('7', 'London', '+44 20 7877 2041', '25 Old Broad Street', 'Level 7', '', 'UK', 'EC2N 1HN', 'EMEA');
 
-/*Table structure for table `order_detail` */
-
-DROP TABLE IF EXISTS `order_detail`;
-
-CREATE TABLE `order_detail`
-    (
-        `order_number` int(11) NOT NULL,
-        `product_code` varchar(15) NOT NULL,
-        `quantity_ordered` int(11) NOT NULL,
-        `price_each` decimal(10, 2) NOT NULL,
-        `order_line_number` smallint(6) NOT NULL,
-        CONSTRAINT `pk_order_detail`
-            PRIMARY KEY (`order_number`, `product_code`),
-        KEY `ix_product_code` (`product_code`),
-        CONSTRAINT `fk_orderdetail__order`
-            FOREIGN KEY (`order_number`) REFERENCES `order` (`order_number`),
-        CONSTRAINT `fk_orderdetail__product`
-            FOREIGN KEY (`product_code`) REFERENCES `product` (`product_code`)
-    )
-ENGINE = InnoDB
-DEFAULT CHARSET = latin1;
 
 /*Data for the table `order_detail` */
 
@@ -6550,27 +6453,6 @@ VALUES (10100, 'S18_1749', 30, '136.00', 3),
 
        (10425, 'S50_1392', 18, '94.92', 2);
 
-/*Table structure for table `order` */
-
-DROP TABLE IF EXISTS `order`;
-
-CREATE TABLE `order`
-    (
-        `order_number` int(11) NOT NULL,
-        `order_date` date NOT NULL,
-        `required_date` date NOT NULL,
-        `shipped_date` date NOT NULL DEFAULT '0000-00-00',
-        `status` varchar(15) NOT NULL,
-        `comment` text DEFAULT NULL,
-        `customer_number` int(11) NOT NULL,
-        CONSTRAINT `pk_order`
-            PRIMARY KEY (`order_number`),
-        KEY `ix_customer_number` (`customer_number`),
-        CONSTRAINT `fk_order__customer`
-            FOREIGN KEY (`customer_number`) REFERENCES `customer` (`customer_number`)
-    )
-ENGINE = InnoDB
-DEFAULT CHARSET = latin1;
 
 /*Data for the table `order` */
 
@@ -7322,23 +7204,6 @@ VALUES (10100, '2003-01-06', '2003-01-13', '2003-01-10', 'Shipped', NULL, 363),
 
        (10425, '2005-05-31', '2005-06-07', '0000-00-00', 'In Process', '', 119);
 
-/*Table structure for table `payment` */
-
-DROP TABLE IF EXISTS `payment`;
-
-CREATE TABLE `payment`
-    (
-        `customer_number` int(11) NOT NULL,
-        `check_number` varchar(50) NOT NULL,
-        `payment_date` date NOT NULL,
-        `amount` decimal(10, 2) NOT NULL,
-        CONSTRAINT `pk_payment`
-            PRIMARY KEY (`customer_number`, `check_number`),
-        CONSTRAINT `fk_payment__customer`
-            FOREIGN KEY (`customer_number`) REFERENCES `customer` (`customer_number`)
-    )
-ENGINE = InnoDB
-DEFAULT CHARSET = latin1;
 
 /*Data for the table `payment` */
 
@@ -7889,21 +7754,6 @@ VALUES (103, 'HQ336336', '2004-10-19', '6066.78'),
 
        (496, 'MN89921', '2004-12-31', '52166.00');
 
-/*Table structure for table `product_line` */
-
-DROP TABLE IF EXISTS `product_line`;
-
-CREATE TABLE `product_line`
-    (
-        `product_line` varchar(50) NOT NULL,
-        `text_description` varchar(4000) NOT NULL DEFAULT '',
-        `html_description` mediumtext NOT NULL DEFAULT '',
-        `image` mediumblob NOT NULL DEFAULT '',
-        CONSTRAINT `pk_product_line`
-            PRIMARY KEY (`product_line`)
-    )
-ENGINE = InnoDB
-DEFAULT CHARSET = latin1;
 
 /*Data for the table `product_lines` */
 
@@ -7936,34 +7786,10 @@ VALUES ('Classic Cars',
         'Our Vintage Car models realistically portray automobiles produced from the early 1900s through the 1940s. Materials used include Bakelite, diecast, plastic and wood. Most of the replicas are in the 1:18 and 1:24 scale sizes, which provide the optimum in detail and accuracy. Prices range from $30.00 up to $180.00 for some special limited edition replicas. All models include a certificate of authenticity from their manufacturers and come fully assembled and ready for display in the home or office.',
         '', '0');
 
-/*Table structure for table `product` */
-
-DROP TABLE IF EXISTS `product`;
-
-CREATE TABLE `product`
-    (
-        `product_code` varchar(15) NOT NULL,
-        `product_name` varchar(70) NOT NULL,
-        `product_line` varchar(50) NOT NULL,
-        `product_scale` varchar(10) NOT NULL,
-        `product_vendor` varchar(50) NOT NULL,
-        `product_description` text NOT NULL,
-        `quantity_in_stock` smallint(6) NOT NULL,
-        `buy_price` decimal(10, 2) NOT NULL,
-        `msrp` decimal(10, 2) NOT NULL,
-        CONSTRAINT `pk_product`
-            PRIMARY KEY (`product_code`),
-        KEY `ix_product_line` (`product_line`),
-        CONSTRAINT `fk_product__product_line`
-            FOREIGN KEY (`product_line`) REFERENCES `product_line` (`product_line`)
-    )
-ENGINE = InnoDB
-DEFAULT CHARSET = latin1;
-
 /*Data for the table `product` */
 
-INSERT INTO `product`(`product_code`, `product_name`, `product_line`, `product_scale`, `product_vendor`,
-                      `product_description`, `quantity_in_stock`, `buy_price`, `msrp`)
+INSERT INTO `product`(`code`, `name`, `product_line`, `scale`, `vendor`,
+                      `description`, `quantity_in_stock`, `buy_price`, `msrp`)
 VALUES ('S10_1678', '1969 Harley Davidson Ultimate Chopper', 'Motorcycles', '1:10', 'Min Lin Diecast',
         'This replica features working kickstand, front suspension, gear-shift lever, footbrake lever, drive chain, wheels and steering. All parts are particularly delicate due to their precise scale and require special care and attention.',
         7933, '48.81', '95.70'),
@@ -8380,31 +8206,6 @@ VALUES ('S10_1678', '1969 Harley Davidson Ultimate Chopper', 'Motorcycles', '1:1
         'Measures 38 inches Long x 33 3/4 inches High. Includes a stand.\r\nMany extras including rigging, long boats, pilot house, anchors, etc. Comes with 2 masts, all square-rigged',
         414, '33.30', '54.60');
 
-DROP TABLE IF EXISTS `suppliers`;
-
-CREATE TABLE suppliers (
-    supplier_id INT AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    phone VARCHAR(15) NOT NULL UNIQUE,
-    address VARCHAR(255) NOT NULL,
-    PRIMARY KEY (supplier_id),
-    CONSTRAINT uc_name_address UNIQUE (name , address)
-);
-
-/* customer payments view */
-CREATE OR REPLACE VIEW customer_payments
-AS
-SELECT customer_name, check_number, payment_date, amount
-  FROM customer
-           INNER JOIN payment
-           USING (customer_number);
-
-CREATE OR REPLACE VIEW product_product_line
-AS
-SELECT product_code, product_description, pl.product_line, text_description
-  FROM product p
-           INNER JOIN product_line pl
-           ON p.product_line = pl.product_line;
 
 /*!40101 SET SQL_MODE = @old_sql_mode */;
 /*!40014 SET FOREIGN_KEY_CHECKS = @old_foreign_key_checks */;

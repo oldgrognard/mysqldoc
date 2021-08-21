@@ -24,5 +24,3 @@ END;
 $$
 
 DELIMITER ;
-
-CALL sqldoc_main(TRUE);
