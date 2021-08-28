@@ -15,8 +15,7 @@ begin
 
     select line
     from tmp_docs
-    where type = 'toc'
-    and name = 'toc'
+    where doc = 'toc'
     order by id
     into outfile '/var/lib/mysql-files/index.md' lines terminated by '\n';
 

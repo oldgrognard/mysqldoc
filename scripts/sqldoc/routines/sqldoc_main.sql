@@ -1,26 +1,38 @@
-DROP PROCEDURE IF EXISTS `sqldoc_main`;
-DELIMITER $$
-CREATE PROCEDURE sqldoc_main(
-    IN export boolean
+drop procedure if exists `sqldoc_main`;
+delimiter $$
+create procedure sqldoc_main(
+    in export boolean,
+    in diagrams boolean
 )
-BEGIN
+begin
 
-    DROP TABLE IF EXISTS tmp_docs;
+    drop table if exists tmp_docs;
 
-    CREATE TABLE tmp_docs
-        (
-            id int AUTO_INCREMENT,
-            doc varchar(200) NOT NULL DEFAULT 'toc',
-            line varchar(4000) CHARSET utf8mb4 DEFAULT '' NULL,
-            CONSTRAINT tmp_docs_pk
-                PRIMARY KEY (id)
-        );
+    create table tmp_docs
+    (
+        id   int auto_increment,
+        type varchar(100) not null         default 'toc',
+        name varchar(200) not null         default 'toc',
+        line varchar(4000) charset utf8mb4 default '' null,
+        constraint tmp_docs_pk primary key (id)
+    );
 
-    CALL sqldoc_toc();
-    CALL sqldoc_tables();
+    drop table if exists tmp_table;
 
-    IF (export = TRUE) THEN CALL sqldoc_export(); END IF;
-END;
+    create table tmp_table
+    (
+        id         int         not null default 1,
+        table_name varchar(64) not null default ''
+    );
+
+    call sqldoc_toc();
+    call sqldoc_tables(diagrams);
+
+    if (export = true) then call sqldoc_export(); end if;
+
+    drop table if exists tmp_docs;
+    drop table if exists tmp_table;
+end;
 $$
 
-DELIMITER ;
+delimiter ;
