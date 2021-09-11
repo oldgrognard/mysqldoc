@@ -30,7 +30,7 @@ begin
 
         if diagrams = 1 then
             delete from tmp_table;
-            insert into tmp_table (id,table_name) values (1, tname);
+            insert into tmp_table (id, table_name) values (1, tname);
             -- diagram
             call sqldoc_mermaid(tname);
         end if;
@@ -44,18 +44,41 @@ begin
         call sqldoc_line('table', tname, '| Key  | Column | Type        | Default | Nullable | Comment |');
         call sqldoc_line('table', tname, '| ---- | ------ | ----------- | ------- | -------- | ------- |');
 
+        #         insert into tmp_docs (type, name, line)
+#         select 'table',
+#                tname,
+#                concat('| ', case when column_key like '%PRI%' then '&#128273;'
+#                                  when column_key like '%MUL%' then '&#128477;'
+#                                  else '' end, ' | ', column_name, ' | ', column_type, ' | ',
+#                       if(column_default = '', 'empty string', ifnull(column_default, '')), ' | ',
+#                       if(is_nullable = 'NO', '&#128683;', '&#9989;'), ' | ', column_comment, ' |')
+#         from information_schema.columns
+#         where table_schema = database()
+#           and table_name = tname
+#         order by ordinal_position;
+
         insert into tmp_docs (type, name, line)
-        select 'table',
-               tname,
-               concat('| ', case when column_key like '%PRI%' then '&#128273;'
-                                 when column_key like '%MUL%' then '&#128477;'
-                                 else '' end, ' | ', column_name, ' | ', column_type, ' | ',
-                      if(column_default = '', 'empty string', ifnull(column_default, '')), ' | ',
-                      if(is_nullable = 'NO', '&#128683;', '&#9989;'), ' | ', column_comment, ' |')
-        from information_schema.columns
-        where table_schema = database()
-          and table_name = tname
-        order by ordinal_position;
+        select 'table'                                                                                 as type,
+               tname                                                                                   as name,
+               concat('| ', ifnull(( select if(kc.ORDINAL_POSITION is null, '', '&#128273;')
+                                     from information_schema.KEY_COLUMN_USAGE kc
+                                     where c.TABLE_SCHEMA = kc.TABLE_SCHEMA
+                                       and c.TABLE_NAME = kc.TABLE_NAME
+                                       and c.COLUMN_NAME = kc.COLUMN_NAME
+                                       and kc.CONSTRAINT_NAME = 'PRIMARY' ), ''), ' ',
+                      ifnull(( select distinct if(kc.COLUMN_NAME is null, '', '&#128477;')
+                               from information_schema.KEY_COLUMN_USAGE kc
+                               where c.TABLE_SCHEMA = kc.TABLE_SCHEMA
+                                 and c.TABLE_NAME = kc.TABLE_NAME
+                                 and c.COLUMN_NAME = kc.COLUMN_NAME
+                                 and kc.referenced_table_schema <> 'null'
+                                 and kc.CONSTRAINT_NAME <> 'PRIMARY' ), ''), ' | ', c.column_name, ' | ', c.column_type,
+                      ' | ', if(c.column_default = '', 'empty string', ifnull(c.column_default, '')), ' | ',
+                      if(c.is_nullable = 'NO', '&#128683;', '&#9989;'), ' | ', c.column_comment, ' |') as line
+        from information_schema.COLUMNS c
+        where c.TABLE_SCHEMA = database()
+          and c.TABLE_NAME = tname
+        order by c.ORDINAL_POSITION;
 
         call sqldoc_line('table', tname, '');
 
