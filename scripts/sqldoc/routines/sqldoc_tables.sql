@@ -44,19 +44,6 @@ begin
         call sqldoc_line('table', tname, '| Key  | Column | Type        | Default | Nullable | Comment |');
         call sqldoc_line('table', tname, '| ---- | ------ | ----------- | ------- | -------- | ------- |');
 
-        #         insert into tmp_docs (type, name, line)
-#         select 'table',
-#                tname,
-#                concat('| ', case when column_key like '%PRI%' then '&#128273;'
-#                                  when column_key like '%MUL%' then '&#128477;'
-#                                  else '' end, ' | ', column_name, ' | ', column_type, ' | ',
-#                       if(column_default = '', 'empty string', ifnull(column_default, '')), ' | ',
-#                       if(is_nullable = 'NO', '&#128683;', '&#9989;'), ' | ', column_comment, ' |')
-#         from information_schema.columns
-#         where table_schema = database()
-#           and table_name = tname
-#         order by ordinal_position;
-
         insert into tmp_docs (type, name, line)
         select 'table'                                                                                 as type,
                tname                                                                                   as name,
@@ -84,19 +71,20 @@ begin
 
 
         -- indexes
-        call sqldoc_line('table', tname, '## Indexes');
-        call sqldoc_line('table', tname, '| Name | Columns | Unique | Comment |');
-        call sqldoc_line('table', tname, '| ---- | ------- | ------ | ------- |');
-
-        insert into tmp_docs (type, name, line)
-        select 'table'                                                                        as type,
-               tname                                                                          as name,
-               concat('| ', index_name, ' | ', group_concat(column_name order by SEQ_IN_INDEX separator ', '), ' | ',
-                      if(NON_UNIQUE = 1, '&#128683;', '&#9989;'), ' | ', index_comment, ' |') as line
-        from information_schema.STATISTICS
-        where table_name = tname
-          and index_name <> 'PRIMARY'
-        group by index_name, index_comment, NON_UNIQUE;
+        call sqldoc_indexes(tname);
+#         call sqldoc_line('table', tname, '## Indexes');
+#         call sqldoc_line('table', tname, '| Name | Columns | Unique | Comment |');
+#         call sqldoc_line('table', tname, '| ---- | ------- | ------ | ------- |');
+#
+#         insert into tmp_docs (type, name, line)
+#         select 'table'                                                                        as type,
+#                tname                                                                          as name,
+#                concat('| ', index_name, ' | ', group_concat(column_name order by SEQ_IN_INDEX separator ', '), ' | ',
+#                       if(NON_UNIQUE = 1, '&#128683;', '&#9989;'), ' | ', index_comment, ' |') as line
+#         from information_schema.STATISTICS
+#         where table_name = tname
+#           and index_name <> 'PRIMARY'
+#         group by index_name, index_comment, NON_UNIQUE;
 
     end loop tableloop;
     close table_cursor;

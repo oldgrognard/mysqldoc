@@ -15,7 +15,7 @@ BEGIN
       FROM information_schema.tables
      WHERE table_schema = DATABASE()
        AND table_type = 'BASE TABLE'
-       AND table_name <> 'tmp_docs';
+       AND table_name not in ('tmp_docs', 'tmp_table');
 
 END$$
 
