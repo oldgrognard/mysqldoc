@@ -10,7 +10,7 @@ begin
                                     from information_schema.tables
                                     where table_schema = database()
                                       and table_type = 'BASE TABLE'
-                                      and table_name <> 'tmp_docs';
+                                      and table_name not in ('tmp_docs', 'tmp_table');
     declare continue handler for not found set table_cursor_finished = 1;
 
     select line

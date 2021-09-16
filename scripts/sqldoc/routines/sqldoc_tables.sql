@@ -9,11 +9,6 @@ begin
     declare tname varchar(64);
     declare tcomment varchar(2048);
 
-    declare table_cursor cursor for select table_name, table_comment
-                                    from information_schema.tables
-                                    where table_schema = database()
-                                      and table_type = 'BASE TABLE'
-                                      and table_name not in ('tmp_docs', 'tmp_table');
     declare continue handler for not found set table_cursor_finished = 1;
 
     open table_cursor;
@@ -67,24 +62,12 @@ begin
           and c.TABLE_NAME = tname
         order by c.ORDINAL_POSITION;
 
-        call sqldoc_line('table', tname, '');
-
+        -- foreign keys
+        call sqldoc_foreign_keys(tname);
 
         -- indexes
         call sqldoc_indexes(tname);
-#         call sqldoc_line('table', tname, '## Indexes');
-#         call sqldoc_line('table', tname, '| Name | Columns | Unique | Comment |');
-#         call sqldoc_line('table', tname, '| ---- | ------- | ------ | ------- |');
-#
-#         insert into tmp_docs (type, name, line)
-#         select 'table'                                                                        as type,
-#                tname                                                                          as name,
-#                concat('| ', index_name, ' | ', group_concat(column_name order by SEQ_IN_INDEX separator ', '), ' | ',
-#                       if(NON_UNIQUE = 1, '&#128683;', '&#9989;'), ' | ', index_comment, ' |') as line
-#         from information_schema.STATISTICS
-#         where table_name = tname
-#           and index_name <> 'PRIMARY'
-#         group by index_name, index_comment, NON_UNIQUE;
+
 
     end loop tableloop;
     close table_cursor;
