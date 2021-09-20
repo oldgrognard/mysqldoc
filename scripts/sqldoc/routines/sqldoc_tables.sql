@@ -9,6 +9,12 @@ begin
     declare tname varchar(64);
     declare tcomment varchar(2048);
 
+    declare table_cursor cursor for select table_name, table_comment
+                                    from information_schema.tables
+                                    where table_schema = database()
+                                      and table_type = 'BASE TABLE'
+                                      and table_name not in ('tmp_docs', 'tmp_table');
+
     declare continue handler for not found set table_cursor_finished = 1;
 
     open table_cursor;
@@ -31,6 +37,9 @@ begin
         end if;
 
         call sqldoc_line('table', tname, '');
+
+        -- properties
+        call sqldoc_properties(tname);
 
         -- columns
         call sqldoc_line('table', tname, '## Columns');
@@ -67,6 +76,9 @@ begin
 
         -- indexes
         call sqldoc_indexes(tname);
+
+        -- triggers
+        call sqldoc_triggers(tname);
 
 
     end loop tableloop;

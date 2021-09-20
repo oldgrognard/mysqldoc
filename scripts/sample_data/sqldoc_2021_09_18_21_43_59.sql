@@ -366,7 +366,7 @@ CREATE TABLE `employee_audit` (
   `operation` enum('INSERT','UPDATE','DELETE') NOT NULL,
   `event_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`employee_number`,`operation`,`event_timestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -473,6 +473,143 @@ INSERT INTO `employee_office` VALUES (1165,'7');
 INSERT INTO `employee_office` VALUES (1370,'7');
 INSERT INTO `employee_office` VALUES (1621,'7');
 /*!40000 ALTER TABLE `employee_office` ENABLE KEYS */;
+
+--
+-- Table structure for table `inventory`
+--
+
+DROP TABLE IF EXISTS `inventory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `inventory` (
+  `sku` varchar(15) NOT NULL,
+  `warehouse_id` int(11) NOT NULL,
+  `bin_id` varchar(10) NOT NULL,
+  `quantity_in_stock` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`sku`,`warehouse_id`,`bin_id`),
+  KEY `inventory_warehouse_bin_warehouse_id_bin_id_fk` (`warehouse_id`,`bin_id`),
+  CONSTRAINT `inventory_product_sku_fk` FOREIGN KEY (`sku`) REFERENCES `product` (`sku`),
+  CONSTRAINT `inventory_warehouse_bin_warehouse_id_bin_id_fk` FOREIGN KEY (`warehouse_id`, `bin_id`) REFERENCES `warehouse_bin` (`warehouse_id`, `bin_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Quantity on hand and location';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `inventory`
+--
+
+/*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
+INSERT INTO `inventory` VALUES ('S10_1678',1,'1',7933);
+INSERT INTO `inventory` VALUES ('S10_1949',1,'1',7305);
+INSERT INTO `inventory` VALUES ('S10_2016',1,'1',6625);
+INSERT INTO `inventory` VALUES ('S10_4698',1,'1',5582);
+INSERT INTO `inventory` VALUES ('S10_4757',1,'1',3252);
+INSERT INTO `inventory` VALUES ('S10_4962',1,'1',6791);
+INSERT INTO `inventory` VALUES ('S12_1099',1,'1',68);
+INSERT INTO `inventory` VALUES ('S12_1108',1,'1',3619);
+INSERT INTO `inventory` VALUES ('S12_1666',1,'1',1579);
+INSERT INTO `inventory` VALUES ('S12_2823',1,'1',9997);
+INSERT INTO `inventory` VALUES ('S12_3148',1,'1',6906);
+INSERT INTO `inventory` VALUES ('S12_3380',1,'1',9123);
+INSERT INTO `inventory` VALUES ('S12_3891',1,'1',1049);
+INSERT INTO `inventory` VALUES ('S12_3990',1,'1',5663);
+INSERT INTO `inventory` VALUES ('S12_4473',1,'1',6125);
+INSERT INTO `inventory` VALUES ('S12_4675',1,'1',7323);
+INSERT INTO `inventory` VALUES ('S18_1097',1,'1',2613);
+INSERT INTO `inventory` VALUES ('S18_1129',1,'1',3975);
+INSERT INTO `inventory` VALUES ('S18_1342',1,'1',8693);
+INSERT INTO `inventory` VALUES ('S18_1367',1,'1',8635);
+INSERT INTO `inventory` VALUES ('S18_1589',1,'1',9042);
+INSERT INTO `inventory` VALUES ('S18_1662',1,'1',5330);
+INSERT INTO `inventory` VALUES ('S18_1749',1,'1',2724);
+INSERT INTO `inventory` VALUES ('S18_1889',1,'1',8826);
+INSERT INTO `inventory` VALUES ('S18_1984',1,'1',9772);
+INSERT INTO `inventory` VALUES ('S18_2238',1,'1',4724);
+INSERT INTO `inventory` VALUES ('S18_2248',1,'1',540);
+INSERT INTO `inventory` VALUES ('S18_2319',1,'1',8258);
+INSERT INTO `inventory` VALUES ('S18_2325',1,'1',9354);
+INSERT INTO `inventory` VALUES ('S18_2432',1,'1',2018);
+INSERT INTO `inventory` VALUES ('S18_2581',1,'1',992);
+INSERT INTO `inventory` VALUES ('S18_2625',1,'1',4357);
+INSERT INTO `inventory` VALUES ('S18_2795',1,'1',548);
+INSERT INTO `inventory` VALUES ('S18_2870',1,'1',8164);
+INSERT INTO `inventory` VALUES ('S18_2949',1,'1',4189);
+INSERT INTO `inventory` VALUES ('S18_2957',1,'1',5649);
+INSERT INTO `inventory` VALUES ('S18_3029',1,'1',4259);
+INSERT INTO `inventory` VALUES ('S18_3136',1,'1',5992);
+INSERT INTO `inventory` VALUES ('S18_3140',1,'1',3913);
+INSERT INTO `inventory` VALUES ('S18_3232',1,'1',8347);
+INSERT INTO `inventory` VALUES ('S18_3233',1,'1',7733);
+INSERT INTO `inventory` VALUES ('S18_3259',1,'1',6450);
+INSERT INTO `inventory` VALUES ('S18_3278',1,'1',1917);
+INSERT INTO `inventory` VALUES ('S18_3320',1,'1',7913);
+INSERT INTO `inventory` VALUES ('S18_3482',1,'1',9127);
+INSERT INTO `inventory` VALUES ('S18_3685',1,'1',8990);
+INSERT INTO `inventory` VALUES ('S18_3782',1,'1',7689);
+INSERT INTO `inventory` VALUES ('S18_3856',1,'1',2378);
+INSERT INTO `inventory` VALUES ('S18_4027',1,'1',5545);
+INSERT INTO `inventory` VALUES ('S18_4409',1,'1',6553);
+INSERT INTO `inventory` VALUES ('S18_4522',1,'1',8290);
+INSERT INTO `inventory` VALUES ('S18_4600',1,'1',3128);
+INSERT INTO `inventory` VALUES ('S18_4668',1,'1',6645);
+INSERT INTO `inventory` VALUES ('S18_4721',1,'1',1249);
+INSERT INTO `inventory` VALUES ('S18_4933',1,'1',3209);
+INSERT INTO `inventory` VALUES ('S24_1046',1,'1',1005);
+INSERT INTO `inventory` VALUES ('S24_1444',1,'1',4074);
+INSERT INTO `inventory` VALUES ('S24_1578',1,'1',7003);
+INSERT INTO `inventory` VALUES ('S24_1628',1,'1',8197);
+INSERT INTO `inventory` VALUES ('S24_1785',1,'1',3627);
+INSERT INTO `inventory` VALUES ('S24_1937',1,'1',7332);
+INSERT INTO `inventory` VALUES ('S24_2000',1,'1',15);
+INSERT INTO `inventory` VALUES ('S24_2011',1,'1',1898);
+INSERT INTO `inventory` VALUES ('S24_2022',1,'1',2847);
+INSERT INTO `inventory` VALUES ('S24_2300',1,'1',2327);
+INSERT INTO `inventory` VALUES ('S24_2360',1,'1',6840);
+INSERT INTO `inventory` VALUES ('S24_2766',1,'1',2350);
+INSERT INTO `inventory` VALUES ('S24_2840',1,'1',2542);
+INSERT INTO `inventory` VALUES ('S24_2841',1,'1',5942);
+INSERT INTO `inventory` VALUES ('S24_2887',1,'1',1452);
+INSERT INTO `inventory` VALUES ('S24_2972',1,'1',7723);
+INSERT INTO `inventory` VALUES ('S24_3151',1,'1',9173);
+INSERT INTO `inventory` VALUES ('S24_3191',1,'1',4695);
+INSERT INTO `inventory` VALUES ('S24_3371',1,'1',7995);
+INSERT INTO `inventory` VALUES ('S24_3420',1,'1',2902);
+INSERT INTO `inventory` VALUES ('S24_3432',1,'1',9446);
+INSERT INTO `inventory` VALUES ('S24_3816',1,'1',6621);
+INSERT INTO `inventory` VALUES ('S24_3856',1,'1',6600);
+INSERT INTO `inventory` VALUES ('S24_3949',1,'1',6812);
+INSERT INTO `inventory` VALUES ('S24_3969',1,'1',2081);
+INSERT INTO `inventory` VALUES ('S24_4048',1,'1',6582);
+INSERT INTO `inventory` VALUES ('S24_4258',1,'1',4710);
+INSERT INTO `inventory` VALUES ('S24_4278',1,'1',2756);
+INSERT INTO `inventory` VALUES ('S24_4620',1,'1',7869);
+INSERT INTO `inventory` VALUES ('S32_1268',1,'1',5099);
+INSERT INTO `inventory` VALUES ('S32_1374',1,'1',178);
+INSERT INTO `inventory` VALUES ('S32_2206',1,'1',9241);
+INSERT INTO `inventory` VALUES ('S32_2509',1,'1',2874);
+INSERT INTO `inventory` VALUES ('S32_3207',1,'1',8601);
+INSERT INTO `inventory` VALUES ('S32_3522',1,'1',814);
+INSERT INTO `inventory` VALUES ('S32_4289',1,'1',136);
+INSERT INTO `inventory` VALUES ('S32_4485',1,'1',3341);
+INSERT INTO `inventory` VALUES ('S50_1341',1,'1',7062);
+INSERT INTO `inventory` VALUES ('S50_1392',1,'1',1016);
+INSERT INTO `inventory` VALUES ('S50_1514',1,'1',1645);
+INSERT INTO `inventory` VALUES ('S50_4713',1,'1',600);
+INSERT INTO `inventory` VALUES ('S700_1138',1,'1',1897);
+INSERT INTO `inventory` VALUES ('S700_1691',1,'1',5841);
+INSERT INTO `inventory` VALUES ('S700_1938',1,'1',737);
+INSERT INTO `inventory` VALUES ('S700_2047',1,'1',3501);
+INSERT INTO `inventory` VALUES ('S700_2466',1,'1',9653);
+INSERT INTO `inventory` VALUES ('S700_2610',1,'1',7083);
+INSERT INTO `inventory` VALUES ('S700_2824',1,'1',6934);
+INSERT INTO `inventory` VALUES ('S700_2834',1,'1',7106);
+INSERT INTO `inventory` VALUES ('S700_3167',1,'1',551);
+INSERT INTO `inventory` VALUES ('S700_3505',1,'1',1956);
+INSERT INTO `inventory` VALUES ('S700_3962',1,'1',5088);
+INSERT INTO `inventory` VALUES ('S700_4002',1,'1',8820);
+INSERT INTO `inventory` VALUES ('S72_1253',1,'1',4857);
+INSERT INTO `inventory` VALUES ('S72_3212',1,'1',414);
+INSERT INTO `inventory` VALUES ('S72_3212',2,'2a',300);
+/*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 
 --
 -- Table structure for table `office`
@@ -4378,8 +4515,9 @@ CREATE TABLE `product_supplier` (
   `sku` varchar(15) NOT NULL,
   `supplier_code` varchar(15) NOT NULL,
   PRIMARY KEY (`sku`,`supplier_code`),
-  KEY `product_supplier_supplier_supplier_id_fk` (`supplier_code`),
-  CONSTRAINT `product_supplier_product_code_fk` FOREIGN KEY (`sku`) REFERENCES `product` (`sku`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `product_supplier_supplier_supplier_code_fk` (`supplier_code`),
+  CONSTRAINT `product_supplier_product_code_fk` FOREIGN KEY (`sku`) REFERENCES `product` (`sku`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `product_supplier_supplier_supplier_code_fk` FOREIGN KEY (`supplier_code`) REFERENCES `supplier` (`supplier_code`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -4536,8 +4674,95 @@ INSERT INTO `supplier` VALUES ('WELLY','Welly Diecast Productions','');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 
 --
+-- Table structure for table `warehouse`
+--
+
+DROP TABLE IF EXISTS `warehouse`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `warehouse` (
+  `warehouse_id` int(11) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`warehouse_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `warehouse`
+--
+
+/*!40000 ALTER TABLE `warehouse` DISABLE KEYS */;
+INSERT INTO `warehouse` VALUES (1,'Warehouse 1');
+INSERT INTO `warehouse` VALUES (2,'East End Warehouse');
+INSERT INTO `warehouse` VALUES (3,'22nd Street Warehouse');
+/*!40000 ALTER TABLE `warehouse` ENABLE KEYS */;
+
+--
+-- Table structure for table `warehouse_bin`
+--
+
+DROP TABLE IF EXISTS `warehouse_bin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `warehouse_bin` (
+  `warehouse_id` int(11) NOT NULL,
+  `bin_id` varchar(10) NOT NULL,
+  `size` varchar(10) NOT NULL DEFAULT '',
+  PRIMARY KEY (`warehouse_id`,`bin_id`),
+  CONSTRAINT `warehouse_bin_warehouse_warehouse_id_fk` FOREIGN KEY (`warehouse_id`) REFERENCES `warehouse` (`warehouse_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `warehouse_bin`
+--
+
+/*!40000 ALTER TABLE `warehouse_bin` DISABLE KEYS */;
+INSERT INTO `warehouse_bin` VALUES (1,'1','small');
+INSERT INTO `warehouse_bin` VALUES (1,'2','small');
+INSERT INTO `warehouse_bin` VALUES (1,'3','large');
+INSERT INTO `warehouse_bin` VALUES (2,'1','medium');
+INSERT INTO `warehouse_bin` VALUES (2,'2a','small');
+INSERT INTO `warehouse_bin` VALUES (2,'2b','small');
+INSERT INTO `warehouse_bin` VALUES (2,'c','large');
+INSERT INTO `warehouse_bin` VALUES (3,'1','large');
+INSERT INTO `warehouse_bin` VALUES (3,'2','large');
+INSERT INTO `warehouse_bin` VALUES (3,'3','large');
+/*!40000 ALTER TABLE `warehouse_bin` ENABLE KEYS */;
+
+--
 -- Dumping routines for database 'sqldoc'
 --
+/*!50003 DROP FUNCTION IF EXISTS `CustomerLevel` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` FUNCTION `CustomerLevel`(credit decimal(10, 2)) RETURNS varchar(20) CHARSET latin1
+    DETERMINISTIC
+begin
+    declare customerLevel VARCHAR(20);
+
+    if credit > 50000 then
+        set customerLevel = 'PLATINUM';
+    elseif (credit >= 10000 and credit <= 50000) then
+        set customerLevel = 'GOLD';
+    elseif credit < 10000 then
+        set customerLevel = 'SILVER';
+    end if;
+    -- return the customer level
+    return (customerLevel);
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sqldoc_export` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -4622,7 +4847,32 @@ begin
     call sqldoc_line('table', tname, '');
 
     call sqldoc_line('table', tname, '## Foreign Keys');
-    call sqldoc_line('table', tname, '| Name | Columns | Description |');
+    call sqldoc_line('table', tname, '| Name | Columns | Update Rule | Delete Rule |');
+    call sqldoc_line('table', tname, '| ---- | ------- | ----------- | ----------- |');
+
+    insert into tmp_docs (type, name, line)
+    select 'table', tname,
+           concat(
+               '| ',
+               tc.constraint_name,
+               ' | ',
+                group_concat(concat(k.column_name, ' --> ', k.REFERENCED_TABLE_NAME, '.', k.REFERENCED_COLUMN_NAME) separator ', '),
+               ' | ',
+               rc.update_rule,
+               ' | ',
+               rc.delete_rule,
+               ' |'
+               )
+    from information_schema.TABLE_CONSTRAINTS tc
+             join information_schema.KEY_COLUMN_USAGE k on tc.CONSTRAINT_NAME = k.CONSTRAINT_NAME
+             join information_schema.REFERENTIAL_CONSTRAINTS rc
+                  on tc.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA and tc.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+    where tc.TABLE_SCHEMA = database()
+      and tc.TABLE_NAME = tname
+      and CONSTRAINT_TYPE = 'FOREIGN KEY'
+    group by tc.constraint_name, k.TABLE_NAME, rc.UPDATE_RULE, rc.DELETE_RULE;
+
+
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4841,6 +5091,69 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sqldoc_properties` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `sqldoc_properties`(
+    in tname varchar(200)
+)
+begin
+
+    call sqldoc_line('table', tname, '');
+
+    call sqldoc_line('table', tname, '## Properties');
+    call sqldoc_line('table', tname, '| Property | Value |');
+    call sqldoc_line('table', tname, '| ---- | ------- |');
+
+    insert into tmp_docs (type, name, line)
+    select 'table', tname, concat('| Engine | ', engine, ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname
+    union
+    select 'table', tname, concat('| Collation | ', TABLE_COLLATION, ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname
+    union
+    select 'table', tname, concat('| Row Count | ', table_rows, ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname
+    union
+    select 'table', tname, concat('| Average Row Length | ', AVG_ROW_LENGTH, ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname
+    union
+    select 'table', tname, concat('| Index Length | ', INDEX_LENGTH, ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname
+    union
+    select 'table', tname, concat('| Created | ', CREATE_TIME, ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname
+    union
+    select 'table', tname, concat('| Updated | ', ifnull(UPDATE_TIME,'-'), ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname;
+
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sqldoc_tables` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -4865,6 +5178,7 @@ begin
                                     where table_schema = database()
                                       and table_type = 'BASE TABLE'
                                       and table_name not in ('tmp_docs', 'tmp_table');
+
     declare continue handler for not found set table_cursor_finished = 1;
 
     open table_cursor;
@@ -4887,6 +5201,9 @@ begin
         end if;
 
         call sqldoc_line('table', tname, '');
+
+        -- properties
+        call sqldoc_properties(tname);
 
         -- columns
         call sqldoc_line('table', tname, '## Columns');
@@ -5013,4 +5330,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-15 20:27:18
+-- Dump completed on 2021-09-18 21:44:00
