@@ -284,7 +284,7 @@ begin
     values (NEW.employee_number,
             null,
             json_object("last_name", NEW.last_name, "first_name", NEW.first_name, "extension", NEW.extension, "email",
-                        NEW.email, "office_code", NEW.office_code, "reports_to", NEW.reports_to, "job_title",
+                        NEW.email, "reports_to", NEW.reports_to, "job_title",
                         NEW.job_title),
             'INSERT');
 end */;;
@@ -311,10 +311,10 @@ begin
     insert into employee_audit (employee_number, old_row_data, new_row_data, operation)
     values (NEW.employee_number,
             json_object("last_name", OLD.last_name, "first_name", OLD.first_name, "extension", OLD.extension, "email",
-                        OLD.email, "office_code", OLD.office_code, "reports_to", OLD.reports_to, "job_title",
+                        OLD.email, "reports_to", OLD.reports_to, "job_title",
                         OLD.job_title),
             json_object("last_name", NEW.last_name, "first_name", NEW.first_name, "extension", NEW.extension, "email",
-                        NEW.email, "office_code", NEW.office_code, "reports_to", NEW.reports_to, "job_title",
+                        NEW.email, "reports_to", NEW.reports_to, "job_title",
                         NEW.job_title),
             'UPDATE');
 end */;;
@@ -341,7 +341,7 @@ begin
     insert into employee_audit (employee_number, old_row_data, new_row_data, operation)
     values (OLD.employee_number,
             json_object("last_name", OLD.last_name, "first_name", OLD.first_name, "extension", OLD.extension, "email",
-                        OLD.email, "office_code", OLD.office_code, "reports_to", OLD.reports_to, "job_title",
+                        OLD.email, "reports_to", OLD.reports_to, "job_title",
                         OLD.job_title),
             null,
             'DELETE');
