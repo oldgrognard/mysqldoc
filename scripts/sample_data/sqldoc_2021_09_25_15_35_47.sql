@@ -366,7 +366,7 @@ CREATE TABLE `employee_audit` (
   `operation` enum('INSERT','UPDATE','DELETE') NOT NULL,
   `event_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`employee_number`,`operation`,`event_timestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -498,6 +498,117 @@ CREATE TABLE `inventory` (
 --
 
 /*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
+INSERT INTO `inventory` VALUES ('S10_1678',1,'1',7933);
+INSERT INTO `inventory` VALUES ('S10_1949',1,'1',7305);
+INSERT INTO `inventory` VALUES ('S10_2016',1,'1',6625);
+INSERT INTO `inventory` VALUES ('S10_4698',1,'1',5582);
+INSERT INTO `inventory` VALUES ('S10_4757',1,'1',3252);
+INSERT INTO `inventory` VALUES ('S10_4962',1,'1',6791);
+INSERT INTO `inventory` VALUES ('S12_1099',1,'1',68);
+INSERT INTO `inventory` VALUES ('S12_1108',1,'1',3619);
+INSERT INTO `inventory` VALUES ('S12_1666',1,'1',1579);
+INSERT INTO `inventory` VALUES ('S12_2823',1,'1',9997);
+INSERT INTO `inventory` VALUES ('S12_3148',1,'1',6906);
+INSERT INTO `inventory` VALUES ('S12_3380',1,'1',9123);
+INSERT INTO `inventory` VALUES ('S12_3891',1,'1',1049);
+INSERT INTO `inventory` VALUES ('S12_3990',1,'1',5663);
+INSERT INTO `inventory` VALUES ('S12_4473',1,'1',6125);
+INSERT INTO `inventory` VALUES ('S12_4675',1,'1',7323);
+INSERT INTO `inventory` VALUES ('S18_1097',1,'1',2613);
+INSERT INTO `inventory` VALUES ('S18_1129',1,'1',3975);
+INSERT INTO `inventory` VALUES ('S18_1342',1,'1',8693);
+INSERT INTO `inventory` VALUES ('S18_1367',1,'1',8635);
+INSERT INTO `inventory` VALUES ('S18_1589',1,'1',9042);
+INSERT INTO `inventory` VALUES ('S18_1662',1,'1',5330);
+INSERT INTO `inventory` VALUES ('S18_1749',1,'1',2724);
+INSERT INTO `inventory` VALUES ('S18_1889',1,'1',8826);
+INSERT INTO `inventory` VALUES ('S18_1984',1,'1',9772);
+INSERT INTO `inventory` VALUES ('S18_2238',1,'1',4724);
+INSERT INTO `inventory` VALUES ('S18_2248',1,'1',540);
+INSERT INTO `inventory` VALUES ('S18_2319',1,'1',8258);
+INSERT INTO `inventory` VALUES ('S18_2325',1,'1',9354);
+INSERT INTO `inventory` VALUES ('S18_2432',1,'1',2018);
+INSERT INTO `inventory` VALUES ('S18_2581',1,'1',992);
+INSERT INTO `inventory` VALUES ('S18_2625',1,'1',4357);
+INSERT INTO `inventory` VALUES ('S18_2795',1,'1',548);
+INSERT INTO `inventory` VALUES ('S18_2870',1,'1',8164);
+INSERT INTO `inventory` VALUES ('S18_2949',1,'1',4189);
+INSERT INTO `inventory` VALUES ('S18_2957',1,'1',5649);
+INSERT INTO `inventory` VALUES ('S18_3029',1,'1',4259);
+INSERT INTO `inventory` VALUES ('S18_3136',1,'1',5992);
+INSERT INTO `inventory` VALUES ('S18_3140',1,'1',3913);
+INSERT INTO `inventory` VALUES ('S18_3232',1,'1',8347);
+INSERT INTO `inventory` VALUES ('S18_3233',1,'1',7733);
+INSERT INTO `inventory` VALUES ('S18_3259',1,'1',6450);
+INSERT INTO `inventory` VALUES ('S18_3278',1,'1',1917);
+INSERT INTO `inventory` VALUES ('S18_3320',1,'1',7913);
+INSERT INTO `inventory` VALUES ('S18_3482',1,'1',9127);
+INSERT INTO `inventory` VALUES ('S18_3685',1,'1',8990);
+INSERT INTO `inventory` VALUES ('S18_3782',1,'1',7689);
+INSERT INTO `inventory` VALUES ('S18_3856',1,'1',2378);
+INSERT INTO `inventory` VALUES ('S18_4027',1,'1',5545);
+INSERT INTO `inventory` VALUES ('S18_4409',1,'1',6553);
+INSERT INTO `inventory` VALUES ('S18_4522',1,'1',8290);
+INSERT INTO `inventory` VALUES ('S18_4600',1,'1',3128);
+INSERT INTO `inventory` VALUES ('S18_4668',1,'1',6645);
+INSERT INTO `inventory` VALUES ('S18_4721',1,'1',1249);
+INSERT INTO `inventory` VALUES ('S18_4933',1,'1',3209);
+INSERT INTO `inventory` VALUES ('S24_1046',1,'1',1005);
+INSERT INTO `inventory` VALUES ('S24_1444',1,'1',4074);
+INSERT INTO `inventory` VALUES ('S24_1578',1,'1',7003);
+INSERT INTO `inventory` VALUES ('S24_1628',1,'1',8197);
+INSERT INTO `inventory` VALUES ('S24_1785',1,'1',3627);
+INSERT INTO `inventory` VALUES ('S24_1937',1,'1',7332);
+INSERT INTO `inventory` VALUES ('S24_2000',1,'1',15);
+INSERT INTO `inventory` VALUES ('S24_2011',1,'1',1898);
+INSERT INTO `inventory` VALUES ('S24_2022',1,'1',2847);
+INSERT INTO `inventory` VALUES ('S24_2300',1,'1',2327);
+INSERT INTO `inventory` VALUES ('S24_2360',1,'1',6840);
+INSERT INTO `inventory` VALUES ('S24_2766',1,'1',2350);
+INSERT INTO `inventory` VALUES ('S24_2840',1,'1',2542);
+INSERT INTO `inventory` VALUES ('S24_2841',1,'1',5942);
+INSERT INTO `inventory` VALUES ('S24_2887',1,'1',1452);
+INSERT INTO `inventory` VALUES ('S24_2972',1,'1',7723);
+INSERT INTO `inventory` VALUES ('S24_3151',1,'1',9173);
+INSERT INTO `inventory` VALUES ('S24_3191',1,'1',4695);
+INSERT INTO `inventory` VALUES ('S24_3371',1,'1',7995);
+INSERT INTO `inventory` VALUES ('S24_3420',1,'1',2902);
+INSERT INTO `inventory` VALUES ('S24_3432',1,'1',9446);
+INSERT INTO `inventory` VALUES ('S24_3816',1,'1',6621);
+INSERT INTO `inventory` VALUES ('S24_3856',1,'1',6600);
+INSERT INTO `inventory` VALUES ('S24_3949',1,'1',6812);
+INSERT INTO `inventory` VALUES ('S24_3969',1,'1',2081);
+INSERT INTO `inventory` VALUES ('S24_4048',1,'1',6582);
+INSERT INTO `inventory` VALUES ('S24_4258',1,'1',4710);
+INSERT INTO `inventory` VALUES ('S24_4278',1,'1',2756);
+INSERT INTO `inventory` VALUES ('S24_4620',1,'1',7869);
+INSERT INTO `inventory` VALUES ('S32_1268',1,'1',5099);
+INSERT INTO `inventory` VALUES ('S32_1374',1,'1',178);
+INSERT INTO `inventory` VALUES ('S32_2206',1,'1',9241);
+INSERT INTO `inventory` VALUES ('S32_2509',1,'1',2874);
+INSERT INTO `inventory` VALUES ('S32_3207',1,'1',8601);
+INSERT INTO `inventory` VALUES ('S32_3522',1,'1',814);
+INSERT INTO `inventory` VALUES ('S32_4289',1,'1',136);
+INSERT INTO `inventory` VALUES ('S32_4485',1,'1',3341);
+INSERT INTO `inventory` VALUES ('S50_1341',1,'1',7062);
+INSERT INTO `inventory` VALUES ('S50_1392',1,'1',1016);
+INSERT INTO `inventory` VALUES ('S50_1514',1,'1',1645);
+INSERT INTO `inventory` VALUES ('S50_4713',1,'1',600);
+INSERT INTO `inventory` VALUES ('S700_1138',1,'1',1897);
+INSERT INTO `inventory` VALUES ('S700_1691',1,'1',5841);
+INSERT INTO `inventory` VALUES ('S700_1938',1,'1',737);
+INSERT INTO `inventory` VALUES ('S700_2047',1,'1',3501);
+INSERT INTO `inventory` VALUES ('S700_2466',1,'1',9653);
+INSERT INTO `inventory` VALUES ('S700_2610',1,'1',7083);
+INSERT INTO `inventory` VALUES ('S700_2824',1,'1',6934);
+INSERT INTO `inventory` VALUES ('S700_2834',1,'1',7106);
+INSERT INTO `inventory` VALUES ('S700_3167',1,'1',551);
+INSERT INTO `inventory` VALUES ('S700_3505',1,'1',1956);
+INSERT INTO `inventory` VALUES ('S700_3962',1,'1',5088);
+INSERT INTO `inventory` VALUES ('S700_4002',1,'1',8820);
+INSERT INTO `inventory` VALUES ('S72_1253',1,'1',4857);
+INSERT INTO `inventory` VALUES ('S72_3212',1,'1',414);
+INSERT INTO `inventory` VALUES ('S72_3212',2,'2a',300);
 /*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
 
 --
@@ -4563,6 +4674,655 @@ INSERT INTO `supplier` VALUES ('WELLY','Welly Diecast Productions','');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 
 --
+-- Table structure for table `tmp_docs`
+--
+
+DROP TABLE IF EXISTS `tmp_docs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tmp_docs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(100) NOT NULL DEFAULT 'toc',
+  `name` varchar(200) NOT NULL DEFAULT 'toc',
+  `line` varchar(4000) CHARACTER SET utf8mb4 DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=699 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tmp_docs`
+--
+
+/*!40000 ALTER TABLE `tmp_docs` DISABLE KEYS */;
+INSERT INTO `tmp_docs` VALUES (1,'toc','toc','# DATABASEsqldoc');
+INSERT INTO `tmp_docs` VALUES (2,'toc','toc','__Data Dictionary__');
+INSERT INTO `tmp_docs` VALUES (3,'toc','toc','## Table of Contents');
+INSERT INTO `tmp_docs` VALUES (4,'toc','toc','### Tables');
+INSERT INTO `tmp_docs` VALUES (5,'toc','toc','| Name | Comment | Row Count|');
+INSERT INTO `tmp_docs` VALUES (6,'toc','toc','| ---- | ------- | ---------: |');
+INSERT INTO `tmp_docs` VALUES (7,'toc','toc','| [customer](table_customer.md) | Collection of existing customers | 122 |');
+INSERT INTO `tmp_docs` VALUES (8,'toc','toc','| [customer_extension](table_customer_extension.md) | example of a 1 to 1 relationship | 0 |');
+INSERT INTO `tmp_docs` VALUES (9,'toc','toc','| [employee](table_employee.md) |  | 24 |');
+INSERT INTO `tmp_docs` VALUES (10,'toc','toc','| [employee_audit](table_employee_audit.md) |  | 48 |');
+INSERT INTO `tmp_docs` VALUES (11,'toc','toc','| [employee_office](table_employee_office.md) | employee/office junction table | 26 |');
+INSERT INTO `tmp_docs` VALUES (12,'toc','toc','| [inventory](table_inventory.md) | Quantity on hand and location | 110 |');
+INSERT INTO `tmp_docs` VALUES (13,'toc','toc','| [office](table_office.md) |  | 7 |');
+INSERT INTO `tmp_docs` VALUES (14,'toc','toc','| [order](table_order.md) |  | 326 |');
+INSERT INTO `tmp_docs` VALUES (15,'toc','toc','| [order_detail](table_order_detail.md) |  | 2996 |');
+INSERT INTO `tmp_docs` VALUES (16,'toc','toc','| [payment](table_payment.md) |  | 273 |');
+INSERT INTO `tmp_docs` VALUES (17,'toc','toc','| [product](table_product.md) |  | 110 |');
+INSERT INTO `tmp_docs` VALUES (18,'toc','toc','| [product_line](table_product_line.md) |  | 7 |');
+INSERT INTO `tmp_docs` VALUES (19,'toc','toc','| [product_supplier](table_product_supplier.md) |  | 110 |');
+INSERT INTO `tmp_docs` VALUES (20,'toc','toc','| [supplier](table_supplier.md) |  | 13 |');
+INSERT INTO `tmp_docs` VALUES (21,'toc','toc','| [warehouse](table_warehouse.md) |  | 2 |');
+INSERT INTO `tmp_docs` VALUES (22,'toc','toc','| [warehouse_bin](table_warehouse_bin.md) |  | 10 |');
+INSERT INTO `tmp_docs` VALUES (38,'toc','toc','### Views ');
+INSERT INTO `tmp_docs` VALUES (39,'toc','toc','| Name | Updatable | Definer |');
+INSERT INTO `tmp_docs` VALUES (40,'toc','toc','| ---- |:---------:| ------- |');
+INSERT INTO `tmp_docs` VALUES (41,'toc','toc','| [customer_payments](view_customer_payments.md) | &#9989; | root@% |');
+INSERT INTO `tmp_docs` VALUES (42,'toc','toc','| [product_product_line](view_product_product_line.md) | &#9989; | root@% |');
+INSERT INTO `tmp_docs` VALUES (44,'table','customer','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (45,'table','customer','# Table: customer');
+INSERT INTO `tmp_docs` VALUES (46,'table','customer','Collection of existing customers');
+INSERT INTO `tmp_docs` VALUES (47,'table','customer','');
+INSERT INTO `tmp_docs` VALUES (48,'table','customer','');
+INSERT INTO `tmp_docs` VALUES (49,'table','customer','## Properties');
+INSERT INTO `tmp_docs` VALUES (50,'table','customer','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (51,'table','customer','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (52,'table','customer','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (53,'table','customer','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (54,'table','customer','| Row Count | 122 |');
+INSERT INTO `tmp_docs` VALUES (55,'table','customer','| Average Row Length | 402 |');
+INSERT INTO `tmp_docs` VALUES (56,'table','customer','| Index Length | 49152 |');
+INSERT INTO `tmp_docs` VALUES (57,'table','customer','| Created | 2021-09-15 20:27:55 |');
+INSERT INTO `tmp_docs` VALUES (58,'table','customer','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (59,'table','customer','## Columns');
+INSERT INTO `tmp_docs` VALUES (60,'table','customer','');
+INSERT INTO `tmp_docs` VALUES (61,'table','customer','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (62,'table','customer','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (63,'table','customer','| &#128273;  | customer_number | int(11) |  | &#128683; | Our assigned customer number |');
+INSERT INTO `tmp_docs` VALUES (64,'table','customer','|   | customer_name | varchar(50) |  | &#128683; | Company or individual name |');
+INSERT INTO `tmp_docs` VALUES (65,'table','customer','|   | contact_last_name | varchar(50) |  | &#128683; | Company contact\'s last name |');
+INSERT INTO `tmp_docs` VALUES (66,'table','customer','|   | contact_first_name | varchar(50) |  | &#128683; | Company contact\'s first name |');
+INSERT INTO `tmp_docs` VALUES (67,'table','customer','|   | email | varchar(254) |  | &#9989; | Customer\'s email if available. |');
+INSERT INTO `tmp_docs` VALUES (68,'table','customer','|   | phone | varchar(50) |  | &#128683; | Company phone |');
+INSERT INTO `tmp_docs` VALUES (69,'table','customer','|   | address_line_1 | varchar(50) |  | &#128683; | First line of Company address |');
+INSERT INTO `tmp_docs` VALUES (70,'table','customer','|   | address_line_2 | varchar(50) | empty string | &#128683; | Second line of Company address |');
+INSERT INTO `tmp_docs` VALUES (71,'table','customer','|   | city | varchar(50) | empty string | &#128683; | Company city |');
+INSERT INTO `tmp_docs` VALUES (72,'table','customer','|   | state | varchar(50) | empty string | &#128683; | Company state |');
+INSERT INTO `tmp_docs` VALUES (73,'table','customer','|   | postal_code | varchar(15) | empty string | &#128683; | Company zip or postal code |');
+INSERT INTO `tmp_docs` VALUES (74,'table','customer','|   | country | varchar(50) | empty string | &#128683; | Company country |');
+INSERT INTO `tmp_docs` VALUES (75,'table','customer','|  &#128477; | sales_rep_employee_number | int(11) | 0 | &#128683; | Employee number of associated sales rep |');
+INSERT INTO `tmp_docs` VALUES (76,'table','customer','|   | credit_limit | decimal(10,2) | 0.00 | &#128683; | Amout of credit we are willing to extend to this customer |');
+INSERT INTO `tmp_docs` VALUES (78,'table','customer','');
+INSERT INTO `tmp_docs` VALUES (79,'table','customer','## Foreign Keys');
+INSERT INTO `tmp_docs` VALUES (80,'table','customer','| Name | Columns | Update Rule | Delete Rule |');
+INSERT INTO `tmp_docs` VALUES (81,'table','customer','| ---- | ------- | ----------- | ----------- |');
+INSERT INTO `tmp_docs` VALUES (82,'table','customer','| customer_employee_employee_number_fk | sales_rep_employee_number --> employee.employee_number | RESTRICT | RESTRICT |');
+INSERT INTO `tmp_docs` VALUES (83,'table','customer','');
+INSERT INTO `tmp_docs` VALUES (84,'table','customer','## Indexes');
+INSERT INTO `tmp_docs` VALUES (85,'table','customer','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (86,'table','customer','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (87,'table','customer','| customer_email_uindex | email | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (88,'table','customer','| PRIMARY | customer_number | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (89,'table','customer','| customer_contact_last_name_contact_first_name_index | contact_last_name, contact_first_name | &#128683; | &#128683; | Speed up search by last name, first name |');
+INSERT INTO `tmp_docs` VALUES (90,'table','customer','| customer_sales_rep_employee_number_index | sales_rep_employee_number | &#128683; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (94,'table','customer_extension','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (95,'table','customer_extension','# Table: customer_extension');
+INSERT INTO `tmp_docs` VALUES (96,'table','customer_extension','example of a 1 to 1 relationship');
+INSERT INTO `tmp_docs` VALUES (97,'table','customer_extension','');
+INSERT INTO `tmp_docs` VALUES (98,'table','customer_extension','');
+INSERT INTO `tmp_docs` VALUES (99,'table','customer_extension','## Properties');
+INSERT INTO `tmp_docs` VALUES (100,'table','customer_extension','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (101,'table','customer_extension','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (102,'table','customer_extension','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (103,'table','customer_extension','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (104,'table','customer_extension','| Row Count | 0 |');
+INSERT INTO `tmp_docs` VALUES (105,'table','customer_extension','| Average Row Length | 0 |');
+INSERT INTO `tmp_docs` VALUES (106,'table','customer_extension','| Index Length | 0 |');
+INSERT INTO `tmp_docs` VALUES (107,'table','customer_extension','| Created | 2021-09-15 19:12:18 |');
+INSERT INTO `tmp_docs` VALUES (108,'table','customer_extension','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (109,'table','customer_extension','## Columns');
+INSERT INTO `tmp_docs` VALUES (110,'table','customer_extension','');
+INSERT INTO `tmp_docs` VALUES (111,'table','customer_extension','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (112,'table','customer_extension','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (113,'table','customer_extension','| &#128273; &#128477; | customer_number | int(11) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (114,'table','customer_extension','|   | favorite_pet | varchar(50) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (115,'table','customer_extension','|   | favorite_color | varchar(50) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (116,'table','customer_extension','|   | favorite_movie | varchar(200) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (120,'table','customer_extension','');
+INSERT INTO `tmp_docs` VALUES (121,'table','customer_extension','## Foreign Keys');
+INSERT INTO `tmp_docs` VALUES (122,'table','customer_extension','| Name | Columns | Update Rule | Delete Rule |');
+INSERT INTO `tmp_docs` VALUES (123,'table','customer_extension','| ---- | ------- | ----------- | ----------- |');
+INSERT INTO `tmp_docs` VALUES (124,'table','customer_extension','| customer_extension_customer_customer_number_fk | customer_number --> customer.customer_number | CASCADE | CASCADE |');
+INSERT INTO `tmp_docs` VALUES (125,'table','customer_extension','');
+INSERT INTO `tmp_docs` VALUES (126,'table','customer_extension','## Indexes');
+INSERT INTO `tmp_docs` VALUES (127,'table','customer_extension','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (128,'table','customer_extension','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (129,'table','customer_extension','| PRIMARY | customer_number | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (130,'table','employee','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (131,'table','employee','# Table: employee');
+INSERT INTO `tmp_docs` VALUES (132,'table','employee','');
+INSERT INTO `tmp_docs` VALUES (133,'table','employee','');
+INSERT INTO `tmp_docs` VALUES (134,'table','employee','## Properties');
+INSERT INTO `tmp_docs` VALUES (135,'table','employee','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (136,'table','employee','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (137,'table','employee','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (138,'table','employee','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (139,'table','employee','| Row Count | 24 |');
+INSERT INTO `tmp_docs` VALUES (140,'table','employee','| Average Row Length | 682 |');
+INSERT INTO `tmp_docs` VALUES (141,'table','employee','| Index Length | 32768 |');
+INSERT INTO `tmp_docs` VALUES (142,'table','employee','| Created | 2021-09-15 19:14:58 |');
+INSERT INTO `tmp_docs` VALUES (143,'table','employee','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (144,'table','employee','## Columns');
+INSERT INTO `tmp_docs` VALUES (145,'table','employee','');
+INSERT INTO `tmp_docs` VALUES (146,'table','employee','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (147,'table','employee','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (148,'table','employee','| &#128273;  | employee_number | int(11) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (149,'table','employee','|   | last_name | varchar(50) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (150,'table','employee','|   | first_name | varchar(50) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (151,'table','employee','|   | extension | varchar(10) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (152,'table','employee','|   | email | varchar(254) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (153,'table','employee','|  &#128477; | reports_to | int(11) | 0 | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (154,'table','employee','|   | job_title | varchar(50) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (155,'table','employee','');
+INSERT INTO `tmp_docs` VALUES (156,'table','employee','## Foreign Keys');
+INSERT INTO `tmp_docs` VALUES (157,'table','employee','| Name | Columns | Update Rule | Delete Rule |');
+INSERT INTO `tmp_docs` VALUES (158,'table','employee','| ---- | ------- | ----------- | ----------- |');
+INSERT INTO `tmp_docs` VALUES (159,'table','employee','| employee_employee_employee_number_fk | reports_to --> employee.employee_number | RESTRICT | RESTRICT |');
+INSERT INTO `tmp_docs` VALUES (160,'table','employee','');
+INSERT INTO `tmp_docs` VALUES (161,'table','employee','## Indexes');
+INSERT INTO `tmp_docs` VALUES (162,'table','employee','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (163,'table','employee','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (164,'table','employee','| PRIMARY | employee_number | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (165,'table','employee','| employee_last_name_first_name_email_index | last_name, first_name, email | &#128683; | &#128683; | Fast search on last name, first name, email |');
+INSERT INTO `tmp_docs` VALUES (166,'table','employee','| employee_reports_to_index | reports_to | &#128683; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (167,'table','employee','');
+INSERT INTO `tmp_docs` VALUES (168,'table','employee','## Triggers');
+INSERT INTO `tmp_docs` VALUES (169,'table','employee','### employee_ins');
+INSERT INTO `tmp_docs` VALUES (170,'table','employee','| Timing | Event | Definer | Character Set | Collation | Created |');
+INSERT INTO `tmp_docs` VALUES (171,'table','employee','| ------ | ----- | ------- | ------------- | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (172,'table','employee','| AFTER | INSERT | root@% | utf8mb4 | utf8mb4_general_ci | 2021-09-15 18:19:58.35 |');
+INSERT INTO `tmp_docs` VALUES (173,'table','employee','');
+INSERT INTO `tmp_docs` VALUES (174,'table','employee','```sql');
+INSERT INTO `tmp_docs` VALUES (175,'table','employee','begin\r    insert into employee_audit (employee_number, old_row_data, new_row_data, operation)\r    values (NEW.employee_number,\r            null,\r            json_object(\"last_name\", NEW.last_name, \"first_name\", NEW.first_name, \"extension\", NEW.extension, \"email\",\r                        NEW.email, \"office_code\", NEW.office_code, \"reports_to\", NEW.reports_to, \"job_title\",\r                        NEW.job_title),\r            \'INSERT\');\rend');
+INSERT INTO `tmp_docs` VALUES (176,'table','employee','```');
+INSERT INTO `tmp_docs` VALUES (177,'table','employee','### employee_upd');
+INSERT INTO `tmp_docs` VALUES (178,'table','employee','| Timing | Event | Definer | Character Set | Collation | Created |');
+INSERT INTO `tmp_docs` VALUES (179,'table','employee','| ------ | ----- | ------- | ------------- | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (180,'table','employee','| AFTER | UPDATE | root@% | utf8mb4 | utf8mb4_general_ci | 2021-09-15 18:19:58.37 |');
+INSERT INTO `tmp_docs` VALUES (181,'table','employee','');
+INSERT INTO `tmp_docs` VALUES (182,'table','employee','```sql');
+INSERT INTO `tmp_docs` VALUES (183,'table','employee','begin\r    insert into employee_audit (employee_number, old_row_data, new_row_data, operation)\r    values (NEW.employee_number,\r            json_object(\"last_name\", OLD.last_name, \"first_name\", OLD.first_name, \"extension\", OLD.extension, \"email\",\r                        OLD.email, \"office_code\", OLD.office_code, \"reports_to\", OLD.reports_to, \"job_title\",\r                        OLD.job_title),\r            json_object(\"last_name\", NEW.last_name, \"first_name\", NEW.first_name, \"extension\", NEW.extension, \"email\",\r                        NEW.email, \"office_code\", NEW.office_code, \"reports_to\", NEW.reports_to, \"job_title\",\r                        NEW.job_title),\r            \'UPDATE\');\rend');
+INSERT INTO `tmp_docs` VALUES (184,'table','employee','```');
+INSERT INTO `tmp_docs` VALUES (185,'table','employee','### employee_del');
+INSERT INTO `tmp_docs` VALUES (186,'table','employee','| Timing | Event | Definer | Character Set | Collation | Created |');
+INSERT INTO `tmp_docs` VALUES (187,'table','employee','| ------ | ----- | ------- | ------------- | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (188,'table','employee','| AFTER | DELETE | root@% | utf8mb4 | utf8mb4_general_ci | 2021-09-15 18:19:58.38 |');
+INSERT INTO `tmp_docs` VALUES (189,'table','employee','');
+INSERT INTO `tmp_docs` VALUES (190,'table','employee','```sql');
+INSERT INTO `tmp_docs` VALUES (191,'table','employee','begin\r    insert into employee_audit (employee_number, old_row_data, new_row_data, operation)\r    values (OLD.employee_number,\r            json_object(\"last_name\", OLD.last_name, \"first_name\", OLD.first_name, \"extension\", OLD.extension, \"email\",\r                        OLD.email, \"office_code\", OLD.office_code, \"reports_to\", OLD.reports_to, \"job_title\",\r                        OLD.job_title),\r            null,\r            \'DELETE\');\rend');
+INSERT INTO `tmp_docs` VALUES (192,'table','employee','```');
+INSERT INTO `tmp_docs` VALUES (193,'table','employee_audit','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (194,'table','employee_audit','# Table: employee_audit');
+INSERT INTO `tmp_docs` VALUES (195,'table','employee_audit','');
+INSERT INTO `tmp_docs` VALUES (196,'table','employee_audit','');
+INSERT INTO `tmp_docs` VALUES (197,'table','employee_audit','## Properties');
+INSERT INTO `tmp_docs` VALUES (198,'table','employee_audit','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (199,'table','employee_audit','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (200,'table','employee_audit','| Engine | MyISAM |');
+INSERT INTO `tmp_docs` VALUES (201,'table','employee_audit','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (202,'table','employee_audit','| Row Count | 48 |');
+INSERT INTO `tmp_docs` VALUES (203,'table','employee_audit','| Average Row Length | 196 |');
+INSERT INTO `tmp_docs` VALUES (204,'table','employee_audit','| Index Length | 2048 |');
+INSERT INTO `tmp_docs` VALUES (205,'table','employee_audit','| Created | 2021-09-18 17:28:28 |');
+INSERT INTO `tmp_docs` VALUES (206,'table','employee_audit','| Updated | 2021-09-18 17:28:28 |');
+INSERT INTO `tmp_docs` VALUES (207,'table','employee_audit','## Columns');
+INSERT INTO `tmp_docs` VALUES (208,'table','employee_audit','');
+INSERT INTO `tmp_docs` VALUES (209,'table','employee_audit','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (210,'table','employee_audit','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (211,'table','employee_audit','| &#128273;  | employee_number | int(11) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (212,'table','employee_audit','|   | old_row_data | json |  | &#9989; |  |');
+INSERT INTO `tmp_docs` VALUES (213,'table','employee_audit','|   | new_row_data | json |  | &#9989; |  |');
+INSERT INTO `tmp_docs` VALUES (214,'table','employee_audit','| &#128273;  | operation | enum(\'INSERT\',\'UPDATE\',\'DELETE\') |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (215,'table','employee_audit','| &#128273;  | event_timestamp | timestamp | CURRENT_TIMESTAMP | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (218,'table','employee_audit','');
+INSERT INTO `tmp_docs` VALUES (219,'table','employee_audit','## Indexes');
+INSERT INTO `tmp_docs` VALUES (220,'table','employee_audit','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (221,'table','employee_audit','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (222,'table','employee_audit','| PRIMARY | employee_number, operation, event_timestamp | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (223,'table','employee_office','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (224,'table','employee_office','# Table: employee_office');
+INSERT INTO `tmp_docs` VALUES (225,'table','employee_office','employee/office junction table');
+INSERT INTO `tmp_docs` VALUES (226,'table','employee_office','');
+INSERT INTO `tmp_docs` VALUES (227,'table','employee_office','');
+INSERT INTO `tmp_docs` VALUES (228,'table','employee_office','## Properties');
+INSERT INTO `tmp_docs` VALUES (229,'table','employee_office','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (230,'table','employee_office','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (231,'table','employee_office','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (232,'table','employee_office','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (233,'table','employee_office','| Row Count | 26 |');
+INSERT INTO `tmp_docs` VALUES (234,'table','employee_office','| Average Row Length | 630 |');
+INSERT INTO `tmp_docs` VALUES (235,'table','employee_office','| Index Length | 16384 |');
+INSERT INTO `tmp_docs` VALUES (236,'table','employee_office','| Created | 2021-09-15 19:15:46 |');
+INSERT INTO `tmp_docs` VALUES (237,'table','employee_office','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (238,'table','employee_office','## Columns');
+INSERT INTO `tmp_docs` VALUES (239,'table','employee_office','');
+INSERT INTO `tmp_docs` VALUES (240,'table','employee_office','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (241,'table','employee_office','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (242,'table','employee_office','| &#128273; &#128477; | employee_number | int(11) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (243,'table','employee_office','| &#128273; &#128477; | office_code | varchar(10) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (245,'table','employee_office','');
+INSERT INTO `tmp_docs` VALUES (246,'table','employee_office','## Foreign Keys');
+INSERT INTO `tmp_docs` VALUES (247,'table','employee_office','| Name | Columns | Update Rule | Delete Rule |');
+INSERT INTO `tmp_docs` VALUES (248,'table','employee_office','| ---- | ------- | ----------- | ----------- |');
+INSERT INTO `tmp_docs` VALUES (249,'table','employee_office','| employee_office_employee_employee_number_fk | employee_number --> employee.employee_number | CASCADE | CASCADE |');
+INSERT INTO `tmp_docs` VALUES (250,'table','employee_office','| employee_office_office_office_code_fk | office_code --> office.office_code | CASCADE | CASCADE |');
+INSERT INTO `tmp_docs` VALUES (252,'table','employee_office','');
+INSERT INTO `tmp_docs` VALUES (253,'table','employee_office','## Indexes');
+INSERT INTO `tmp_docs` VALUES (254,'table','employee_office','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (255,'table','employee_office','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (256,'table','employee_office','| PRIMARY | employee_number, office_code | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (257,'table','employee_office','| employee_office_office_code_index | office_code | &#128683; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (259,'table','inventory','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (260,'table','inventory','# Table: inventory');
+INSERT INTO `tmp_docs` VALUES (261,'table','inventory','Quantity on hand and location');
+INSERT INTO `tmp_docs` VALUES (262,'table','inventory','');
+INSERT INTO `tmp_docs` VALUES (263,'table','inventory','');
+INSERT INTO `tmp_docs` VALUES (264,'table','inventory','## Properties');
+INSERT INTO `tmp_docs` VALUES (265,'table','inventory','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (266,'table','inventory','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (267,'table','inventory','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (268,'table','inventory','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (269,'table','inventory','| Row Count | 110 |');
+INSERT INTO `tmp_docs` VALUES (270,'table','inventory','| Average Row Length | 148 |');
+INSERT INTO `tmp_docs` VALUES (271,'table','inventory','| Index Length | 16384 |');
+INSERT INTO `tmp_docs` VALUES (272,'table','inventory','| Created | 2021-09-16 01:39:29 |');
+INSERT INTO `tmp_docs` VALUES (273,'table','inventory','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (274,'table','inventory','## Columns');
+INSERT INTO `tmp_docs` VALUES (275,'table','inventory','');
+INSERT INTO `tmp_docs` VALUES (276,'table','inventory','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (277,'table','inventory','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (278,'table','inventory','| &#128273; &#128477; | sku | varchar(15) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (279,'table','inventory','| &#128273; &#128477; | warehouse_id | int(11) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (280,'table','inventory','| &#128273; &#128477; | bin_id | varchar(10) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (281,'table','inventory','|   | quantity_in_stock | int(11) | 0 | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (285,'table','inventory','');
+INSERT INTO `tmp_docs` VALUES (286,'table','inventory','## Foreign Keys');
+INSERT INTO `tmp_docs` VALUES (287,'table','inventory','| Name | Columns | Update Rule | Delete Rule |');
+INSERT INTO `tmp_docs` VALUES (288,'table','inventory','| ---- | ------- | ----------- | ----------- |');
+INSERT INTO `tmp_docs` VALUES (289,'table','inventory','| inventory_product_sku_fk | sku --> product.sku | RESTRICT | RESTRICT |');
+INSERT INTO `tmp_docs` VALUES (290,'table','inventory','| inventory_warehouse_bin_warehouse_id_bin_id_fk | warehouse_id --> warehouse_bin.warehouse_id, bin_id --> warehouse_bin.bin_id | RESTRICT | RESTRICT |');
+INSERT INTO `tmp_docs` VALUES (292,'table','inventory','');
+INSERT INTO `tmp_docs` VALUES (293,'table','inventory','## Indexes');
+INSERT INTO `tmp_docs` VALUES (294,'table','inventory','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (295,'table','inventory','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (296,'table','inventory','| PRIMARY | sku, warehouse_id, bin_id | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (297,'table','inventory','| inventory_warehouse_bin_warehouse_id_bin_id_fk | warehouse_id, bin_id | &#128683; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (299,'table','office','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (300,'table','office','# Table: office');
+INSERT INTO `tmp_docs` VALUES (301,'table','office','');
+INSERT INTO `tmp_docs` VALUES (302,'table','office','');
+INSERT INTO `tmp_docs` VALUES (303,'table','office','## Properties');
+INSERT INTO `tmp_docs` VALUES (304,'table','office','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (305,'table','office','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (306,'table','office','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (307,'table','office','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (308,'table','office','| Row Count | 7 |');
+INSERT INTO `tmp_docs` VALUES (309,'table','office','| Average Row Length | 2340 |');
+INSERT INTO `tmp_docs` VALUES (310,'table','office','| Index Length | 0 |');
+INSERT INTO `tmp_docs` VALUES (311,'table','office','| Created | 2021-09-15 18:44:52 |');
+INSERT INTO `tmp_docs` VALUES (312,'table','office','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (313,'table','office','## Columns');
+INSERT INTO `tmp_docs` VALUES (314,'table','office','');
+INSERT INTO `tmp_docs` VALUES (315,'table','office','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (316,'table','office','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (317,'table','office','| &#128273;  | office_code | varchar(10) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (318,'table','office','|   | city | varchar(50) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (319,'table','office','|   | phone | varchar(50) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (320,'table','office','|   | address_line_1 | varchar(50) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (321,'table','office','|   | address_line_2 | varchar(50) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (322,'table','office','|   | state | varchar(50) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (323,'table','office','|   | country | varchar(50) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (324,'table','office','|   | postal_code | varchar(15) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (325,'table','office','|   | territory | varchar(10) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (332,'table','office','');
+INSERT INTO `tmp_docs` VALUES (333,'table','office','## Indexes');
+INSERT INTO `tmp_docs` VALUES (334,'table','office','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (335,'table','office','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (336,'table','office','| PRIMARY | office_code | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (337,'table','order','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (338,'table','order','# Table: order');
+INSERT INTO `tmp_docs` VALUES (339,'table','order','');
+INSERT INTO `tmp_docs` VALUES (340,'table','order','');
+INSERT INTO `tmp_docs` VALUES (341,'table','order','## Properties');
+INSERT INTO `tmp_docs` VALUES (342,'table','order','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (343,'table','order','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (344,'table','order','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (345,'table','order','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (346,'table','order','| Row Count | 326 |');
+INSERT INTO `tmp_docs` VALUES (347,'table','order','| Average Row Length | 150 |');
+INSERT INTO `tmp_docs` VALUES (348,'table','order','| Index Length | 16384 |');
+INSERT INTO `tmp_docs` VALUES (349,'table','order','| Created | 2021-09-15 19:16:28 |');
+INSERT INTO `tmp_docs` VALUES (350,'table','order','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (351,'table','order','## Columns');
+INSERT INTO `tmp_docs` VALUES (352,'table','order','');
+INSERT INTO `tmp_docs` VALUES (353,'table','order','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (354,'table','order','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (355,'table','order','| &#128273;  | order_number | int(11) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (356,'table','order','|   | order_date | date |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (357,'table','order','|   | required_date | date |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (358,'table','order','|   | shipped_date | date | 1900-01-01 | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (359,'table','order','|   | status | varchar(15) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (360,'table','order','|   | comment | text |  | &#9989; |  |');
+INSERT INTO `tmp_docs` VALUES (361,'table','order','|  &#128477; | customer_number | int(11) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (362,'table','order','');
+INSERT INTO `tmp_docs` VALUES (363,'table','order','## Foreign Keys');
+INSERT INTO `tmp_docs` VALUES (364,'table','order','| Name | Columns | Update Rule | Delete Rule |');
+INSERT INTO `tmp_docs` VALUES (365,'table','order','| ---- | ------- | ----------- | ----------- |');
+INSERT INTO `tmp_docs` VALUES (366,'table','order','| order_customer_customer_number_fk | customer_number --> customer.customer_number | CASCADE | RESTRICT |');
+INSERT INTO `tmp_docs` VALUES (367,'table','order','');
+INSERT INTO `tmp_docs` VALUES (368,'table','order','## Indexes');
+INSERT INTO `tmp_docs` VALUES (369,'table','order','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (370,'table','order','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (371,'table','order','| PRIMARY | order_number | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (372,'table','order','| order_customer_number_index | customer_number | &#128683; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (374,'table','order_detail','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (375,'table','order_detail','# Table: order_detail');
+INSERT INTO `tmp_docs` VALUES (376,'table','order_detail','');
+INSERT INTO `tmp_docs` VALUES (377,'table','order_detail','');
+INSERT INTO `tmp_docs` VALUES (378,'table','order_detail','## Properties');
+INSERT INTO `tmp_docs` VALUES (379,'table','order_detail','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (380,'table','order_detail','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (381,'table','order_detail','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (382,'table','order_detail','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (383,'table','order_detail','| Row Count | 2996 |');
+INSERT INTO `tmp_docs` VALUES (384,'table','order_detail','| Average Row Length | 54 |');
+INSERT INTO `tmp_docs` VALUES (385,'table','order_detail','| Index Length | 81920 |');
+INSERT INTO `tmp_docs` VALUES (386,'table','order_detail','| Created | 2021-09-15 19:16:59 |');
+INSERT INTO `tmp_docs` VALUES (387,'table','order_detail','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (388,'table','order_detail','## Columns');
+INSERT INTO `tmp_docs` VALUES (389,'table','order_detail','');
+INSERT INTO `tmp_docs` VALUES (390,'table','order_detail','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (391,'table','order_detail','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (392,'table','order_detail','| &#128273; &#128477; | order_number | int(11) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (393,'table','order_detail','| &#128273;  | product_code | varchar(15) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (394,'table','order_detail','|   | quantity_ordered | int(11) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (395,'table','order_detail','|   | price_each | decimal(10,2) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (396,'table','order_detail','|   | order_line_number | smallint(6) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (399,'table','order_detail','');
+INSERT INTO `tmp_docs` VALUES (400,'table','order_detail','## Foreign Keys');
+INSERT INTO `tmp_docs` VALUES (401,'table','order_detail','| Name | Columns | Update Rule | Delete Rule |');
+INSERT INTO `tmp_docs` VALUES (402,'table','order_detail','| ---- | ------- | ----------- | ----------- |');
+INSERT INTO `tmp_docs` VALUES (403,'table','order_detail','| order_detail_order_order_number_fk | order_number --> order.order_number | CASCADE | CASCADE |');
+INSERT INTO `tmp_docs` VALUES (404,'table','order_detail','');
+INSERT INTO `tmp_docs` VALUES (405,'table','order_detail','## Indexes');
+INSERT INTO `tmp_docs` VALUES (406,'table','order_detail','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (407,'table','order_detail','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (408,'table','order_detail','| PRIMARY | order_number, product_code | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (409,'table','order_detail','| order_detail_product_code_index | product_code | &#128683; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (411,'table','payment','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (412,'table','payment','# Table: payment');
+INSERT INTO `tmp_docs` VALUES (413,'table','payment','');
+INSERT INTO `tmp_docs` VALUES (414,'table','payment','');
+INSERT INTO `tmp_docs` VALUES (415,'table','payment','## Properties');
+INSERT INTO `tmp_docs` VALUES (416,'table','payment','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (417,'table','payment','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (418,'table','payment','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (419,'table','payment','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (420,'table','payment','| Row Count | 273 |');
+INSERT INTO `tmp_docs` VALUES (421,'table','payment','| Average Row Length | 60 |');
+INSERT INTO `tmp_docs` VALUES (422,'table','payment','| Index Length | 0 |');
+INSERT INTO `tmp_docs` VALUES (423,'table','payment','| Created | 2021-09-15 19:17:51 |');
+INSERT INTO `tmp_docs` VALUES (424,'table','payment','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (425,'table','payment','## Columns');
+INSERT INTO `tmp_docs` VALUES (426,'table','payment','');
+INSERT INTO `tmp_docs` VALUES (427,'table','payment','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (428,'table','payment','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (429,'table','payment','| &#128273; &#128477; | customer_number | int(11) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (430,'table','payment','| &#128273;  | check_number | varchar(50) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (431,'table','payment','|   | payment_date | date |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (432,'table','payment','|   | amount | decimal(10,2) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (436,'table','payment','');
+INSERT INTO `tmp_docs` VALUES (437,'table','payment','## Foreign Keys');
+INSERT INTO `tmp_docs` VALUES (438,'table','payment','| Name | Columns | Update Rule | Delete Rule |');
+INSERT INTO `tmp_docs` VALUES (439,'table','payment','| ---- | ------- | ----------- | ----------- |');
+INSERT INTO `tmp_docs` VALUES (440,'table','payment','| payment_customer_customer_number_fk | customer_number --> customer.customer_number | RESTRICT | RESTRICT |');
+INSERT INTO `tmp_docs` VALUES (441,'table','payment','');
+INSERT INTO `tmp_docs` VALUES (442,'table','payment','## Indexes');
+INSERT INTO `tmp_docs` VALUES (443,'table','payment','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (444,'table','payment','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (445,'table','payment','| PRIMARY | customer_number, check_number | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (446,'table','product','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (447,'table','product','# Table: product');
+INSERT INTO `tmp_docs` VALUES (448,'table','product','');
+INSERT INTO `tmp_docs` VALUES (449,'table','product','');
+INSERT INTO `tmp_docs` VALUES (450,'table','product','## Properties');
+INSERT INTO `tmp_docs` VALUES (451,'table','product','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (452,'table','product','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (453,'table','product','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (454,'table','product','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (455,'table','product','| Row Count | 110 |');
+INSERT INTO `tmp_docs` VALUES (456,'table','product','| Average Row Length | 446 |');
+INSERT INTO `tmp_docs` VALUES (457,'table','product','| Index Length | 32768 |');
+INSERT INTO `tmp_docs` VALUES (458,'table','product','| Created | 2021-09-15 19:43:24 |');
+INSERT INTO `tmp_docs` VALUES (459,'table','product','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (460,'table','product','## Columns');
+INSERT INTO `tmp_docs` VALUES (461,'table','product','');
+INSERT INTO `tmp_docs` VALUES (462,'table','product','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (463,'table','product','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (464,'table','product','| &#128273;  | sku | varchar(15) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (465,'table','product','|   | name | varchar(70) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (466,'table','product','|  &#128477; | product_line | varchar(50) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (467,'table','product','|   | scale | varchar(10) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (468,'table','product','|   | description | text |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (469,'table','product','|   | quantity_in_stock | smallint(6) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (470,'table','product','|   | buy_price | decimal(10,2) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (471,'table','product','|   | msrp | decimal(10,2) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (479,'table','product','');
+INSERT INTO `tmp_docs` VALUES (480,'table','product','## Foreign Keys');
+INSERT INTO `tmp_docs` VALUES (481,'table','product','| Name | Columns | Update Rule | Delete Rule |');
+INSERT INTO `tmp_docs` VALUES (482,'table','product','| ---- | ------- | ----------- | ----------- |');
+INSERT INTO `tmp_docs` VALUES (483,'table','product','| product_product_line_product_line_fk | product_line --> product_line.product_line | RESTRICT | RESTRICT |');
+INSERT INTO `tmp_docs` VALUES (484,'table','product','');
+INSERT INTO `tmp_docs` VALUES (485,'table','product','## Indexes');
+INSERT INTO `tmp_docs` VALUES (486,'table','product','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (487,'table','product','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (488,'table','product','| PRIMARY | sku | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (489,'table','product','| product_description_ft | sku, name, product_line, description | &#128683; | &#9989; |  |');
+INSERT INTO `tmp_docs` VALUES (490,'table','product','| product_product_line_index | product_line | &#128683; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (491,'table','product_line','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (492,'table','product_line','# Table: product_line');
+INSERT INTO `tmp_docs` VALUES (493,'table','product_line','');
+INSERT INTO `tmp_docs` VALUES (494,'table','product_line','');
+INSERT INTO `tmp_docs` VALUES (495,'table','product_line','## Properties');
+INSERT INTO `tmp_docs` VALUES (496,'table','product_line','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (497,'table','product_line','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (498,'table','product_line','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (499,'table','product_line','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (500,'table','product_line','| Row Count | 7 |');
+INSERT INTO `tmp_docs` VALUES (501,'table','product_line','| Average Row Length | 2340 |');
+INSERT INTO `tmp_docs` VALUES (502,'table','product_line','| Index Length | 0 |');
+INSERT INTO `tmp_docs` VALUES (503,'table','product_line','| Created | 2021-09-16 00:24:17 |');
+INSERT INTO `tmp_docs` VALUES (504,'table','product_line','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (505,'table','product_line','## Columns');
+INSERT INTO `tmp_docs` VALUES (506,'table','product_line','');
+INSERT INTO `tmp_docs` VALUES (507,'table','product_line','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (508,'table','product_line','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (509,'table','product_line','| &#128273;  | product_line | varchar(50) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (510,'table','product_line','|   | text_description | varchar(4000) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (511,'table','product_line','|   | html_description | mediumtext |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (512,'table','product_line','|   | image | mediumblob |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (516,'table','product_line','');
+INSERT INTO `tmp_docs` VALUES (517,'table','product_line','## Indexes');
+INSERT INTO `tmp_docs` VALUES (518,'table','product_line','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (519,'table','product_line','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (520,'table','product_line','| PRIMARY | product_line | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (521,'table','product_supplier','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (522,'table','product_supplier','# Table: product_supplier');
+INSERT INTO `tmp_docs` VALUES (523,'table','product_supplier','');
+INSERT INTO `tmp_docs` VALUES (524,'table','product_supplier','');
+INSERT INTO `tmp_docs` VALUES (525,'table','product_supplier','## Properties');
+INSERT INTO `tmp_docs` VALUES (526,'table','product_supplier','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (527,'table','product_supplier','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (528,'table','product_supplier','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (529,'table','product_supplier','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (530,'table','product_supplier','| Row Count | 110 |');
+INSERT INTO `tmp_docs` VALUES (531,'table','product_supplier','| Average Row Length | 148 |');
+INSERT INTO `tmp_docs` VALUES (532,'table','product_supplier','| Index Length | 16384 |');
+INSERT INTO `tmp_docs` VALUES (533,'table','product_supplier','| Created | 2021-09-16 00:30:25 |');
+INSERT INTO `tmp_docs` VALUES (534,'table','product_supplier','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (535,'table','product_supplier','## Columns');
+INSERT INTO `tmp_docs` VALUES (536,'table','product_supplier','');
+INSERT INTO `tmp_docs` VALUES (537,'table','product_supplier','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (538,'table','product_supplier','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (539,'table','product_supplier','| &#128273; &#128477; | sku | varchar(15) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (540,'table','product_supplier','| &#128273; &#128477; | supplier_code | varchar(15) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (542,'table','product_supplier','');
+INSERT INTO `tmp_docs` VALUES (543,'table','product_supplier','## Foreign Keys');
+INSERT INTO `tmp_docs` VALUES (544,'table','product_supplier','| Name | Columns | Update Rule | Delete Rule |');
+INSERT INTO `tmp_docs` VALUES (545,'table','product_supplier','| ---- | ------- | ----------- | ----------- |');
+INSERT INTO `tmp_docs` VALUES (546,'table','product_supplier','| product_supplier_product_code_fk | sku --> product.sku | CASCADE | CASCADE |');
+INSERT INTO `tmp_docs` VALUES (547,'table','product_supplier','| product_supplier_supplier_supplier_code_fk | supplier_code --> supplier.supplier_code | CASCADE | CASCADE |');
+INSERT INTO `tmp_docs` VALUES (549,'table','product_supplier','');
+INSERT INTO `tmp_docs` VALUES (550,'table','product_supplier','## Indexes');
+INSERT INTO `tmp_docs` VALUES (551,'table','product_supplier','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (552,'table','product_supplier','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (553,'table','product_supplier','| PRIMARY | sku, supplier_code | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (554,'table','product_supplier','| product_supplier_supplier_supplier_code_fk | supplier_code | &#128683; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (556,'table','supplier','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (557,'table','supplier','# Table: supplier');
+INSERT INTO `tmp_docs` VALUES (558,'table','supplier','');
+INSERT INTO `tmp_docs` VALUES (559,'table','supplier','');
+INSERT INTO `tmp_docs` VALUES (560,'table','supplier','## Properties');
+INSERT INTO `tmp_docs` VALUES (561,'table','supplier','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (562,'table','supplier','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (563,'table','supplier','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (564,'table','supplier','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (565,'table','supplier','| Row Count | 13 |');
+INSERT INTO `tmp_docs` VALUES (566,'table','supplier','| Average Row Length | 1260 |');
+INSERT INTO `tmp_docs` VALUES (567,'table','supplier','| Index Length | 0 |');
+INSERT INTO `tmp_docs` VALUES (568,'table','supplier','| Created | 2021-09-15 19:28:01 |');
+INSERT INTO `tmp_docs` VALUES (569,'table','supplier','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (570,'table','supplier','## Columns');
+INSERT INTO `tmp_docs` VALUES (571,'table','supplier','');
+INSERT INTO `tmp_docs` VALUES (572,'table','supplier','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (573,'table','supplier','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (574,'table','supplier','| &#128273;  | supplier_code | varchar(15) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (575,'table','supplier','|   | name | varchar(255) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (576,'table','supplier','|   | phone | varchar(15) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (577,'table','supplier','');
+INSERT INTO `tmp_docs` VALUES (578,'table','supplier','## Indexes');
+INSERT INTO `tmp_docs` VALUES (579,'table','supplier','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (580,'table','supplier','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (581,'table','supplier','| PRIMARY | supplier_code | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (582,'table','warehouse','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (583,'table','warehouse','# Table: warehouse');
+INSERT INTO `tmp_docs` VALUES (584,'table','warehouse','');
+INSERT INTO `tmp_docs` VALUES (585,'table','warehouse','');
+INSERT INTO `tmp_docs` VALUES (586,'table','warehouse','## Properties');
+INSERT INTO `tmp_docs` VALUES (587,'table','warehouse','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (588,'table','warehouse','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (589,'table','warehouse','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (590,'table','warehouse','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (591,'table','warehouse','| Row Count | 2 |');
+INSERT INTO `tmp_docs` VALUES (592,'table','warehouse','| Average Row Length | 8192 |');
+INSERT INTO `tmp_docs` VALUES (593,'table','warehouse','| Index Length | 0 |');
+INSERT INTO `tmp_docs` VALUES (594,'table','warehouse','| Created | 2021-09-16 00:45:03 |');
+INSERT INTO `tmp_docs` VALUES (595,'table','warehouse','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (596,'table','warehouse','## Columns');
+INSERT INTO `tmp_docs` VALUES (597,'table','warehouse','');
+INSERT INTO `tmp_docs` VALUES (598,'table','warehouse','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (599,'table','warehouse','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (600,'table','warehouse','| &#128273;  | warehouse_id | int(11) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (601,'table','warehouse','|   | name | varchar(50) |  | &#9989; |  |');
+INSERT INTO `tmp_docs` VALUES (603,'table','warehouse','');
+INSERT INTO `tmp_docs` VALUES (604,'table','warehouse','## Indexes');
+INSERT INTO `tmp_docs` VALUES (605,'table','warehouse','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (606,'table','warehouse','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (607,'table','warehouse','| PRIMARY | warehouse_id | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (608,'table','warehouse_bin','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (609,'table','warehouse_bin','# Table: warehouse_bin');
+INSERT INTO `tmp_docs` VALUES (610,'table','warehouse_bin','');
+INSERT INTO `tmp_docs` VALUES (611,'table','warehouse_bin','');
+INSERT INTO `tmp_docs` VALUES (612,'table','warehouse_bin','## Properties');
+INSERT INTO `tmp_docs` VALUES (613,'table','warehouse_bin','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (614,'table','warehouse_bin','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (615,'table','warehouse_bin','| Engine | InnoDB |');
+INSERT INTO `tmp_docs` VALUES (616,'table','warehouse_bin','| Collation | latin1_swedish_ci |');
+INSERT INTO `tmp_docs` VALUES (617,'table','warehouse_bin','| Row Count | 10 |');
+INSERT INTO `tmp_docs` VALUES (618,'table','warehouse_bin','| Average Row Length | 1638 |');
+INSERT INTO `tmp_docs` VALUES (619,'table','warehouse_bin','| Index Length | 0 |');
+INSERT INTO `tmp_docs` VALUES (620,'table','warehouse_bin','| Created | 2021-09-16 00:55:30 |');
+INSERT INTO `tmp_docs` VALUES (621,'table','warehouse_bin','| Updated | - |');
+INSERT INTO `tmp_docs` VALUES (622,'table','warehouse_bin','## Columns');
+INSERT INTO `tmp_docs` VALUES (623,'table','warehouse_bin','');
+INSERT INTO `tmp_docs` VALUES (624,'table','warehouse_bin','| Key  | Column | Type        | Default | Nullable | Comment |');
+INSERT INTO `tmp_docs` VALUES (625,'table','warehouse_bin','| ---- | ------ | ----------- | ------- | -------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (626,'table','warehouse_bin','| &#128273; &#128477; | warehouse_id | int(11) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (627,'table','warehouse_bin','| &#128273;  | bin_id | varchar(10) |  | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (628,'table','warehouse_bin','|   | size | varchar(10) | empty string | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (629,'table','warehouse_bin','');
+INSERT INTO `tmp_docs` VALUES (630,'table','warehouse_bin','## Foreign Keys');
+INSERT INTO `tmp_docs` VALUES (631,'table','warehouse_bin','| Name | Columns | Update Rule | Delete Rule |');
+INSERT INTO `tmp_docs` VALUES (632,'table','warehouse_bin','| ---- | ------- | ----------- | ----------- |');
+INSERT INTO `tmp_docs` VALUES (633,'table','warehouse_bin','| warehouse_bin_warehouse_warehouse_id_fk | warehouse_id --> warehouse.warehouse_id | CASCADE | CASCADE |');
+INSERT INTO `tmp_docs` VALUES (634,'table','warehouse_bin','');
+INSERT INTO `tmp_docs` VALUES (635,'table','warehouse_bin','## Indexes');
+INSERT INTO `tmp_docs` VALUES (636,'table','warehouse_bin','| Name | Columns | Unique | Full Text | Comment |');
+INSERT INTO `tmp_docs` VALUES (637,'table','warehouse_bin','| ---- | ------- | ------ | --------- | ------- |');
+INSERT INTO `tmp_docs` VALUES (638,'table','warehouse_bin','| PRIMARY | warehouse_id, bin_id | &#9989; | &#128683; |  |');
+INSERT INTO `tmp_docs` VALUES (639,'view','customer_payments','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (640,'view','customer_payments','# View: customer_payments');
+INSERT INTO `tmp_docs` VALUES (641,'view','customer_payments','');
+INSERT INTO `tmp_docs` VALUES (642,'view','customer_payments','');
+INSERT INTO `tmp_docs` VALUES (643,'view','customer_payments','## Properties');
+INSERT INTO `tmp_docs` VALUES (644,'view','customer_payments','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (645,'view','customer_payments','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (646,'view','customer_payments','| Updatable | YES |');
+INSERT INTO `tmp_docs` VALUES (647,'view','customer_payments','| Definer | root@% |');
+INSERT INTO `tmp_docs` VALUES (648,'view','customer_payments','| Character Set | utf8mb4 |');
+INSERT INTO `tmp_docs` VALUES (649,'view','customer_payments','| Collation | utf8mb4_general_ci |');
+INSERT INTO `tmp_docs` VALUES (653,'view','customer_payments','## Columns');
+INSERT INTO `tmp_docs` VALUES (654,'view','customer_payments','');
+INSERT INTO `tmp_docs` VALUES (655,'view','customer_payments','| Column | Type        | Nullable |');
+INSERT INTO `tmp_docs` VALUES (656,'view','customer_payments','| ------ | ----------- | -------- | ');
+INSERT INTO `tmp_docs` VALUES (657,'view','customer_payments','| customer_name | varchar(50) | &#128683; |');
+INSERT INTO `tmp_docs` VALUES (658,'view','customer_payments','| check_number | varchar(50) | &#128683; |');
+INSERT INTO `tmp_docs` VALUES (659,'view','customer_payments','| payment_date | date | &#128683; |');
+INSERT INTO `tmp_docs` VALUES (660,'view','customer_payments','| amount | decimal(10,2) | &#128683; |');
+INSERT INTO `tmp_docs` VALUES (664,'view','customer_payments','## Definition');
+INSERT INTO `tmp_docs` VALUES (665,'view','customer_payments','');
+INSERT INTO `tmp_docs` VALUES (666,'view','customer_payments','```sql');
+INSERT INTO `tmp_docs` VALUES (667,'view','customer_payments','select `sqldoc`.`customer`.`customer_name` AS `customer_name`,`sqldoc`.`payment`.`check_number` AS `check_number`,`sqldoc`.`payment`.`payment_date` AS `payment_date`,`sqldoc`.`payment`.`amount` AS `amount` from (`sqldoc`.`customer` join `sqldoc`.`payment` on((`sqldoc`.`customer`.`customer_number` = `sqldoc`.`payment`.`customer_number`)))');
+INSERT INTO `tmp_docs` VALUES (668,'table','customer_payments','```');
+INSERT INTO `tmp_docs` VALUES (669,'view','product_product_line','[index.md](index.md)');
+INSERT INTO `tmp_docs` VALUES (670,'view','product_product_line','# View: product_product_line');
+INSERT INTO `tmp_docs` VALUES (671,'view','product_product_line','');
+INSERT INTO `tmp_docs` VALUES (672,'view','product_product_line','');
+INSERT INTO `tmp_docs` VALUES (673,'view','product_product_line','## Properties');
+INSERT INTO `tmp_docs` VALUES (674,'view','product_product_line','| Property | Value |');
+INSERT INTO `tmp_docs` VALUES (675,'view','product_product_line','| ---- | ------- |');
+INSERT INTO `tmp_docs` VALUES (676,'view','product_product_line','| Updatable | YES |');
+INSERT INTO `tmp_docs` VALUES (677,'view','product_product_line','| Definer | root@% |');
+INSERT INTO `tmp_docs` VALUES (678,'view','product_product_line','| Character Set | utf8mb4 |');
+INSERT INTO `tmp_docs` VALUES (679,'view','product_product_line','| Collation | utf8mb4_general_ci |');
+INSERT INTO `tmp_docs` VALUES (683,'view','product_product_line','## Columns');
+INSERT INTO `tmp_docs` VALUES (684,'view','product_product_line','');
+INSERT INTO `tmp_docs` VALUES (685,'view','product_product_line','| Column | Type        | Nullable |');
+INSERT INTO `tmp_docs` VALUES (686,'view','product_product_line','| ------ | ----------- | -------- | ');
+INSERT INTO `tmp_docs` VALUES (687,'view','product_product_line','| sku | varchar(15) | &#128683; |');
+INSERT INTO `tmp_docs` VALUES (688,'view','product_product_line','| description | text | &#128683; |');
+INSERT INTO `tmp_docs` VALUES (689,'view','product_product_line','| product_line | varchar(50) | &#128683; |');
+INSERT INTO `tmp_docs` VALUES (690,'view','product_product_line','| text_description | varchar(4000) | &#128683; |');
+INSERT INTO `tmp_docs` VALUES (694,'view','product_product_line','## Definition');
+INSERT INTO `tmp_docs` VALUES (695,'view','product_product_line','');
+INSERT INTO `tmp_docs` VALUES (696,'view','product_product_line','```sql');
+INSERT INTO `tmp_docs` VALUES (697,'view','product_product_line','select `p`.`sku` AS `sku`,`p`.`description` AS `description`,`pl`.`product_line` AS `product_line`,`pl`.`text_description` AS `text_description` from (`sqldoc`.`product` `p` join `sqldoc`.`product_line` `pl` on((`p`.`product_line` = `pl`.`product_line`)))');
+INSERT INTO `tmp_docs` VALUES (698,'table','product_product_line','```');
+/*!40000 ALTER TABLE `tmp_docs` ENABLE KEYS */;
+
+--
 -- Table structure for table `warehouse`
 --
 
@@ -4622,6 +5382,97 @@ INSERT INTO `warehouse_bin` VALUES (3,'3','large');
 --
 -- Dumping routines for database 'sqldoc'
 --
+/*!50003 DROP FUNCTION IF EXISTS `CustomerLevel` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` FUNCTION `CustomerLevel`(credit decimal(10, 2)) RETURNS varchar(20) CHARSET latin1
+    DETERMINISTIC
+begin
+    declare customerLevel VARCHAR(20);
+
+    if credit > 50000 then
+        set customerLevel = 'PLATINUM';
+    elseif (credit >= 10000 and credit <= 50000) then
+        set customerLevel = 'GOLD';
+    elseif credit < 10000 then
+        set customerLevel = 'SILVER';
+    end if;
+    -- return the customer level
+    return (customerLevel);
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetCustomerShipping` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `GetCustomerShipping`(in pCustomerNUmber int, out pShipping varchar(50))
+    COMMENT 'Returns the shipping length of a particular customer.'
+BEGIN
+    DECLARE customerCountry VARCHAR(100);
+
+SELECT
+    country
+INTO customerCountry FROM
+    customer
+WHERE
+    customer_number = pCustomerNUmber;
+
+    CASE customerCountry
+		WHEN  'USA' THEN
+		   SET pShipping = '2-day Shipping';
+		WHEN 'Canada' THEN
+		   SET pShipping = '3-day Shipping';
+		ELSE
+		   SET pShipping = '5-day Shipping';
+	END CASE;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `GetTotalOrder` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `GetTotalOrder`()
+BEGIN
+	DECLARE totalOrder INT DEFAULT 0;
+
+    SELECT COUNT(*)
+    INTO totalOrder
+    FROM `order`;
+
+    SELECT totalOrder;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sqldoc_export` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -4634,45 +5485,75 @@ INSERT INTO `warehouse_bin` VALUES (3,'3','large');
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `sqldoc_export`()
 begin
+    table_block:
+    begin
+        declare table_cursor_finished INT default 0;
+        declare tname varchar(64);
 
-    declare table_cursor_finished INT default 0;
-    declare tname varchar(64);
+        declare table_cursor cursor for select table_name
+                                        from information_schema.tables
+                                        where table_schema = database()
+                                          and table_type = 'BASE TABLE'
+                                          and table_name not in ('tmp_docs', 'tmp_table');
 
-    declare table_cursor cursor for select table_name
-                                    from information_schema.tables
-                                    where table_schema = database()
-                                      and table_type = 'BASE TABLE'
-                                      and table_name not in ('tmp_docs', 'tmp_table');
-    declare continue handler for not found set table_cursor_finished = 1;
+        declare continue handler for not found set table_cursor_finished = 1;
 
-    select line
-    from tmp_docs
-    where type = 'toc'
-    and name = 'toc'
-    order by id
-    into outfile '/var/lib/mysql-files/index.md' lines terminated by '\n';
+        select line
+        from tmp_docs
+        where type = 'toc'
+          and name = 'toc'
+        order by id
+        into outfile '/var/lib/mysql-files/index.md' lines terminated by '\n';
 
-    open table_cursor;
+        open table_cursor;
 
-    tableloop:
-    loop
-        fetch table_cursor into tname;
-        if table_cursor_finished = 1 then leave tableloop; end if;
+        tableloop:
+        loop
+            fetch table_cursor into tname;
+            if table_cursor_finished = 1 then leave tableloop; end if;
 
-        set @out_text = concat(
-            'select line from tmp_docs where type = \'table\' and name = \'',
-            tname,
-            '\' order by id into outfile \'/var/lib/mysql-files/table_',
-            tname,
-            '.md\'',
-            ' lines terminated by \'\n\'');
+            set @out_text = concat('select line from tmp_docs where type = \'table\' and name = \'', tname,
+                                   '\' order by id into outfile \'/var/lib/mysql-files/table_', tname, '.md\'',
+                                   ' lines terminated by \'\n\'');
 
-        prepare s1 from @out_text;
-        execute s1;
-        drop prepare s1;
+            prepare s1 from @out_text;
+            execute s1;
+            drop prepare s1;
 
-    end loop tableloop;
+        end loop tableloop;
+        close table_cursor;
+    end table_block;
 
+    view_block:
+    begin
+
+        declare view_cursor_finished INT default 0;
+        declare vname varchar(64);
+
+        declare view_cursor cursor for select table_name
+                                       from information_schema.TABLES
+                                       where table_schema = database() and table_type = 'view';
+        declare continue handler for not found set view_cursor_finished = 1;
+
+        open view_cursor;
+
+        viewloop:
+        loop
+            fetch view_cursor into vname;
+            if view_cursor_finished = 1 then leave viewloop; end if;
+
+
+            set @out_text2 = concat('select line from tmp_docs where type = \'view\' and name = \'', vname,
+                                    '\' order by id into outfile \'/var/lib/mysql-files/view_', vname, '.md\'',
+                                    ' lines terminated by \'\n\'');
+
+            prepare s2 from @out_text2;
+            execute s2;
+            drop prepare s2;
+
+        end loop viewloop;
+        close view_cursor;
+    end view_block;
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4693,7 +5574,6 @@ CREATE DEFINER=`root`@`%` PROCEDURE `sqldoc_foreign_keys`(
     in tname varchar(200)
 )
 begin
-
     declare foreign_key_count int;
 
     set foreign_key_count = ( select count(*)
@@ -4702,36 +5582,29 @@ begin
                                 and table_schema = database()
                                 and table_name = tname );
 
+    if foreign_key_count > 0 then
+        call sqldoc_line('table', tname, '');
 
-    call sqldoc_line('table', tname, '');
+        call sqldoc_line('table', tname, '## Foreign Keys');
+        call sqldoc_line('table', tname, '| Name | Columns | Update Rule | Delete Rule |');
+        call sqldoc_line('table', tname, '| ---- | ------- | ----------- | ----------- |');
 
-    call sqldoc_line('table', tname, '## Foreign Keys');
-    call sqldoc_line('table', tname, '| Name | Columns | Update Rule | Delete Rule |');
-    call sqldoc_line('table', tname, '| ---- | ------- | ----------- | ----------- |');
+        insert into tmp_docs (type, name, line)
+        select 'table',
+               tname,
+               concat('| ', tc.constraint_name, ' | ', group_concat(
+                       concat(k.column_name, ' --> ', k.REFERENCED_TABLE_NAME, '.', k.REFERENCED_COLUMN_NAME) separator
+                       ', '), ' | ', rc.update_rule, ' | ', rc.delete_rule, ' |')
+        from information_schema.TABLE_CONSTRAINTS tc
+                 join information_schema.KEY_COLUMN_USAGE k on tc.CONSTRAINT_NAME = k.CONSTRAINT_NAME
+                 join information_schema.REFERENTIAL_CONSTRAINTS rc
+                      on tc.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA and tc.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
+        where tc.TABLE_SCHEMA = database()
+          and tc.TABLE_NAME = tname
+          and CONSTRAINT_TYPE = 'FOREIGN KEY'
+        group by tc.constraint_name, k.TABLE_NAME, rc.UPDATE_RULE, rc.DELETE_RULE;
 
-    insert into tmp_docs (type, name, line)
-    select 'table', tname,
-           concat(
-               '| ',
-               tc.constraint_name,
-               ' | ',
-                group_concat(concat(k.column_name, ' --> ', k.REFERENCED_TABLE_NAME, '.', k.REFERENCED_COLUMN_NAME) separator ', '),
-               ' | ',
-               rc.update_rule,
-               ' | ',
-               rc.delete_rule,
-               ' |'
-               )
-    from information_schema.TABLE_CONSTRAINTS tc
-             join information_schema.KEY_COLUMN_USAGE k on tc.CONSTRAINT_NAME = k.CONSTRAINT_NAME
-             join information_schema.REFERENTIAL_CONSTRAINTS rc
-                  on tc.CONSTRAINT_SCHEMA = rc.CONSTRAINT_SCHEMA and tc.CONSTRAINT_NAME = rc.CONSTRAINT_NAME
-    where tc.TABLE_SCHEMA = database()
-      and tc.TABLE_NAME = tname
-      and CONSTRAINT_TYPE = 'FOREIGN KEY'
-    group by tc.constraint_name, k.TABLE_NAME, rc.UPDATE_RULE, rc.DELETE_RULE;
-
-
+    end if;
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4847,10 +5720,11 @@ begin
 
     call sqldoc_toc();
     call sqldoc_tables(diagrams);
+    call sqldoc_views();
 
     if (export = true) then call sqldoc_export(); end if;
 
-    drop table if exists tmp_docs;
+    -- drop table if exists tmp_docs;
     drop table if exists tmp_table;
 end ;;
 DELIMITER ;
@@ -4974,6 +5848,7 @@ begin
                                     where table_schema = database()
                                       and table_type = 'BASE TABLE'
                                       and table_name not in ('tmp_docs', 'tmp_table');
+
     declare continue handler for not found set table_cursor_finished = 1;
 
     open table_cursor;
@@ -4996,6 +5871,9 @@ begin
         end if;
 
         call sqldoc_line('table', tname, '');
+
+        -- properties
+        call sqldoc_table_properties(tname);
 
         -- columns
         call sqldoc_line('table', tname, '## Columns');
@@ -5033,9 +5911,75 @@ begin
         -- indexes
         call sqldoc_indexes(tname);
 
+        -- triggers
+        call sqldoc_triggers(tname);
+
 
     end loop tableloop;
     close table_cursor;
+
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sqldoc_table_properties` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `sqldoc_table_properties`(
+    in tname varchar(64)
+)
+begin
+
+    call sqldoc_line('table', tname, '');
+
+    call sqldoc_line('table', tname, '## Properties');
+    call sqldoc_line('table', tname, '| Property | Value |');
+    call sqldoc_line('table', tname, '| ---- | ------- |');
+
+    insert into tmp_docs (type, name, line)
+    select 'table', tname, concat('| Engine | ', engine, ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname
+    union
+    select 'table', tname, concat('| Collation | ', TABLE_COLLATION, ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname
+    union
+    select 'table', tname, concat('| Row Count | ', table_rows, ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname
+    union
+    select 'table', tname, concat('| Average Row Length | ', AVG_ROW_LENGTH, ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname
+    union
+    select 'table', tname, concat('| Index Length | ', INDEX_LENGTH, ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname
+    union
+    select 'table', tname, concat('| Created | ', CREATE_TIME, ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname
+    union
+    select 'table', tname, concat('| Updated | ', ifnull(UPDATE_TIME,'-'), ' |') as line
+    from information_schema.TABLES
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = tname;
 
 end ;;
 DELIMITER ;
@@ -5054,23 +5998,245 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`%` PROCEDURE `sqldoc_toc`()
-BEGIN
+begin
 
-    call sqldoc_line('toc', 'toc', concat('# DATABASE', DATABASE()));
+    call sqldoc_line('toc', 'toc', concat('# DATABASE', database()));
     call sqldoc_line('toc', 'toc', '__Data Dictionary__');
     call sqldoc_line('toc', 'toc', '## Table of Contents');
     call sqldoc_line('toc', 'toc', '### Tables');
     call sqldoc_line('toc', 'toc', '| Name | Comment | Row Count|');
     call sqldoc_line('toc', 'toc', '| ---- | ------- | ---------: |');
 
-    INSERT INTO tmp_docs (type, name, line)
-    SELECT 'toc', 'toc', CONCAT('| [', table_name, '](table_', table_name, '.md) | ', table_comment, ' | ', table_rows, ' |')
-      FROM information_schema.tables
-     WHERE table_schema = DATABASE()
-       AND table_type = 'BASE TABLE'
-       AND table_name not in ('tmp_docs', 'tmp_table');
+    insert into tmp_docs (type, name, line)
+    select 'toc',
+           'toc',
+           concat('| [', table_name, '](table_', table_name, '.md) | ', table_comment, ' | ', table_rows, ' |')
+    from information_schema.tables
+    where table_schema = database()
+      and table_type = 'BASE TABLE'
+      and table_name not in ('tmp_docs', 'tmp_table');
 
-END ;;
+    -- views
+    call sqldoc_line('toc', 'toc', '### Views ');
+    call sqldoc_line('toc', 'toc', '| Name | Updatable | Definer |');
+    call sqldoc_line('toc', 'toc', '| ---- |:---------:| ------- |');
+
+    insert into tmp_docs (type, name, line)
+    select 'toc',
+           'toc',
+           concat('| [', t.TABLE_NAME, '](view_', t.table_name, '.md) | ',
+if(v.IS_UPDATABLE = 'YES', '&#9989;', '&#128683;'), ' | ', v.DEFINER, ' |')
+    from information_schema.TABLES t
+    join
+         information_schema.VIEWS v on t.TABLE_SCHEMA = v.TABLE_SCHEMA and t.TABLE_NAME = v.TABLE_NAME
+    where t.table_schema = database()
+      and table_type = 'VIEW';
+
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sqldoc_triggers` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `sqldoc_triggers`(
+    in tname varchar(64)
+)
+begin
+    declare v_trigger_cursor_finished int default 0;
+    declare v_trigger_name varchar(64);
+    declare v_event_manipulation, v_action_timing varchar(6);
+    declare v_action_statement longtext;
+    declare v_created datetime(2);
+    declare v_definer varchar(93);
+    declare v_character_set_client, v_collation_connection varchar(32);
+    declare trigger_count int;
+
+    declare trigger_cursor cursor for select TRIGGER_NAME,
+                                             ACTION_TIMING,
+                                             EVENT_MANIPULATION,
+                                             DEFINER,
+                                             CHARACTER_SET_CLIENT,
+                                             COLLATION_CONNECTION,
+                                             CREATED,
+                                             ACTION_STATEMENT
+                                      from information_schema.triggers
+                                      where EVENT_OBJECT_SCHEMA = database()
+                                        and EVENT_OBJECT_TABLE = tname;
+
+    declare continue handler for not found set v_trigger_cursor_finished = 1;
+
+    set trigger_count = ( select count(*)
+                          from information_schema.triggers
+                          where EVENT_OBJECT_SCHEMA = database() and EVENT_OBJECT_TABLE = tname
+    );
+
+    if trigger_count > 0 then
+
+    call sqldoc_line('table', tname, '');
+    call sqldoc_line('table', tname, '## Triggers');
+
+    open trigger_cursor;
+
+    triggerloop:
+    loop
+
+        fetch trigger_cursor into v_trigger_name, v_action_timing, v_event_manipulation, v_definer, v_character_set_client, v_collation_connection, v_created, v_action_statement;
+        if v_trigger_cursor_finished = 1 then leave triggerloop; end if;
+
+        call sqldoc_line('table', tname, concat('### ', v_trigger_name));
+
+        call sqldoc_line('table', tname, '| Timing | Event | Definer | Character Set | Collation | Created |');
+        call sqldoc_line('table', tname, '| ------ | ----- | ------- | ------------- | --------- | ------- |');
+
+        insert into tmp_docs (type, name, line)
+        select 'table',
+               tname,
+               concat('| ', v_action_timing, ' | ', v_event_manipulation, ' | ', v_definer, ' | ',
+                      v_character_set_client, ' | ', v_collation_connection, ' | ', v_created, ' |');
+
+        call sqldoc_line('table', tname, '');
+        call sqldoc_line('table', tname, '```sql');
+        call sqldoc_line('table', tname, replace(v_action_statement, '\n', '\r'));
+        call sqldoc_line('table', tname, '```');
+
+    end loop triggerloop;
+    close trigger_cursor;
+
+    end if;
+
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sqldoc_views` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `sqldoc_views`()
+begin
+
+    declare view_cursor_finished int default 0;
+    declare vname varchar(64);
+    declare v_body longtext;
+
+    declare view_cursor cursor for select t.table_name, v.VIEW_DEFINITION
+                                   from information_schema.tables t
+                                            join information_schema.VIEWS v
+                                                 on t.TABLE_SCHEMA = v.TABLE_SCHEMA and t.TABLE_NAME = v.TABLE_NAME
+                                   where table_type = 'VIEW'
+                                     and t.TABLE_SCHEMA = database();
+
+    declare continue handler for not found set view_cursor_finished = 1;
+
+    open view_cursor;
+
+    viewloop:
+    loop
+        fetch view_cursor into vname, v_body;
+        if view_cursor_finished = 1 then leave viewloop; end if;
+
+        call sqldoc_line('view', vname, '[index.md](index.md)');
+        call sqldoc_line('view', vname, concat('# View: ', vname));
+
+        call sqldoc_line('view', vname, '');
+
+        -- properties
+        call sqldoc_view_properties(vname);
+
+        -- columns
+        call sqldoc_line('view', vname, '## Columns');
+        call sqldoc_line('view', vname, '');
+
+        call sqldoc_line('view', vname, '| Column | Type        | Nullable |');
+        call sqldoc_line('view', vname, '| ------ | ----------- | -------- | ');
+
+        insert into tmp_docs (type, name, line)
+        select 'view'                                                         as type,
+               vname                                                          as name,
+               concat('| ', c.column_name, ' | ', c.column_type, ' | ',
+                      if(c.is_nullable = 'NO', '&#128683;', '&#9989;'), ' |') as line
+        from information_schema.COLUMNS c
+        where c.TABLE_SCHEMA = database()
+          and c.TABLE_NAME = vname
+        order by c.ORDINAL_POSITION;
+
+        call sqldoc_line('view', vname, '## Definition');
+
+        call sqldoc_line('view', vname, '');
+        call sqldoc_line('view', vname, '```sql');
+        call sqldoc_line('view', vname, replace(v_body, '\n', '\r'));
+        call sqldoc_line('table', vname, '```');
+
+    end loop viewloop;
+    close view_cursor;
+
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sqldoc_view_properties` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` PROCEDURE `sqldoc_view_properties`(
+    in vname varchar(64)
+)
+begin
+
+    call sqldoc_line('view', vname, '');
+
+    call sqldoc_line('view', vname, '## Properties');
+    call sqldoc_line('view', vname, '| Property | Value |');
+    call sqldoc_line('view', vname, '| ---- | ------- |');
+
+    insert into tmp_docs (type, name, line)
+    select 'view', vname, concat('| Updatable | ', IS_UPDATABLE, ' |') as line
+    from information_schema.VIEWS
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = vname
+    union
+    select 'view', vname, concat('| Definer | ', DEFINER, ' |') as line
+    from information_schema.VIEWS
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = vname
+    union
+    select 'view', vname, concat('| Character Set | ', CHARACTER_SET_CLIENT, ' |') as line
+    from information_schema.VIEWS
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = vname
+    union
+    select 'view', vname, concat('| Collation | ', COLLATION_CONNECTION, ' |') as line
+    from information_schema.VIEWS
+    where TABLE_SCHEMA = database()
+      and TABLE_NAME = vname;
+
+end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -5122,4 +6288,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-15 21:41:24
+-- Dump completed on 2021-09-25 15:35:48
