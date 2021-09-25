@@ -6,11 +6,11 @@ create procedure sqldoc_foreign_keys(
 begin
     declare foreign_key_count int;
 
-    set foreign_key_count = ( select count(*)
-                              from information_schema.TABLE_CONSTRAINTS
-                              where CONSTRAINT_TYPE = 'FOREIGN KEY'
-                                and table_schema = database()
-                                and table_name = tname );
+    set foreign_key_count = (select count(*)
+                             from information_schema.TABLE_CONSTRAINTS
+                             where CONSTRAINT_TYPE = 'FOREIGN KEY'
+                               and table_schema = database()
+                               and table_name = tname);
 
     if foreign_key_count > 0 then
         call sqldoc_line('table', tname, '');
