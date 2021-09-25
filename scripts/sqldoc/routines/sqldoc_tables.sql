@@ -39,7 +39,7 @@ begin
         call sqldoc_line('table', tname, '');
 
         -- properties
-        call sqldoc_properties(tname);
+        call sqldoc_table_properties(tname);
 
         -- columns
         call sqldoc_line('table', tname, '## Columns');

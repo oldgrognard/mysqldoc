@@ -1,7 +1,7 @@
-drop procedure if exists `sqldoc_properties`;
+drop procedure if exists `sqldoc_table_properties`;
 delimiter $$
-create procedure sqldoc_properties(
-    in tname varchar(200)
+create procedure sqldoc_table_properties(
+    in tname varchar(64)
 )
 begin
 

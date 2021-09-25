@@ -27,10 +27,11 @@ begin
 
     call sqldoc_toc();
     call sqldoc_tables(diagrams);
+    call sqldoc_views();
 
     if (export = true) then call sqldoc_export(); end if;
 
-    drop table if exists tmp_docs;
+    -- drop table if exists tmp_docs;
     drop table if exists tmp_table;
 end;
 $$

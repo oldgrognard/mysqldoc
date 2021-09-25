@@ -11,6 +11,7 @@ begin
     declare v_created datetime(2);
     declare v_definer varchar(93);
     declare v_character_set_client, v_collation_connection varchar(32);
+    declare trigger_count int;
 
     declare trigger_cursor cursor for select TRIGGER_NAME,
                                              ACTION_TIMING,
@@ -25,6 +26,13 @@ begin
                                         and EVENT_OBJECT_TABLE = tname;
 
     declare continue handler for not found set v_trigger_cursor_finished = 1;
+
+    set trigger_count = ( select count(*)
+                          from information_schema.triggers
+                          where EVENT_OBJECT_SCHEMA = database() and EVENT_OBJECT_TABLE = tname
+    );
+
+    if trigger_count > 0 then
 
     call sqldoc_line('table', tname, '');
     call sqldoc_line('table', tname, '## Triggers');
@@ -45,16 +53,18 @@ begin
         insert into tmp_docs (type, name, line)
         select 'table',
                tname,
-               concat('| ', v_action_timing, ' | ', v_event_manipulation, ' | ', v_definer,
-                      ' | ', v_character_set_client, ' | ', v_collation_connection, ' | ', v_created, ' |');
+               concat('| ', v_action_timing, ' | ', v_event_manipulation, ' | ', v_definer, ' | ',
+                      v_character_set_client, ' | ', v_collation_connection, ' | ', v_created, ' |');
 
         call sqldoc_line('table', tname, '');
         call sqldoc_line('table', tname, '```sql');
-        call sqldoc_line('table', tname, replace(v_action_statement,'\n','\r'));
+        call sqldoc_line('table', tname, replace(v_action_statement, '\n', '\r'));
         call sqldoc_line('table', tname, '```');
 
     end loop triggerloop;
     close trigger_cursor;
+
+    end if;
 
 end$$
 
