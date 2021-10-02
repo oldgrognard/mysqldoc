@@ -1,7 +1,7 @@
 version: "3.9"
 services:
     db:
-       container_name: sqldocdb
+       container_name: mysqldocdb
        image: mysql:5.7
        command: mysqld
        ports:
@@ -11,7 +11,7 @@ services:
         - ./dboutput:/var/lib/mysql-files
        environment: 
         - MYSQL_ROOT_PASSWORD=MyDogHas1Flea
-        - MYSQL_DATABASE=sqldoc
+        - MYSQL_DATABASE=mysqldoc
         - MYSQL_USER=mrankin
         - MYSQL_PASSWORD=1Chainmail
         - MYSQL_ROOT_HOST=%
