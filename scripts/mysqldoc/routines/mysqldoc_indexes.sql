@@ -1,6 +1,6 @@
-drop procedure if exists `sqldoc_indexes`;
+drop procedure if exists `mysqldoc_indexes`;
 delimiter $$
-create procedure sqldoc_indexes(
+create procedure mysqldoc_indexes(
     in tname varchar(200)
 )
 begin
@@ -13,11 +13,11 @@ begin
 
     if indexcount > 0 then
 
-        call sqldoc_line('table', tname, '');
+        call mysqldoc_line('table', tname, '');
 
-        call sqldoc_line('table', tname, '## Indexes');
-        call sqldoc_line('table', tname, '| Name | Columns | Unique | Full Text | Comment |');
-        call sqldoc_line('table', tname, '| ---- | ------- | ------ | --------- | ------- |');
+        call mysqldoc_line('table', tname, '## Indexes');
+        call mysqldoc_line('table', tname, '| Name | Columns | Unique | Full Text | Comment |');
+        call mysqldoc_line('table', tname, '| ---- | ------- | ------ | --------- | ------- |');
 
         insert into tmp_docs (type, name, line)
         select 'table',

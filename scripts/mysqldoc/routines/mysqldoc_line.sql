@@ -1,6 +1,6 @@
-drop procedure if exists `sqldoc_line`;
+drop procedure if exists `mysqldoc_line`;
 delimiter $$
-create procedure sqldoc_line(
+create procedure mysqldoc_line(
 in type varchar(100),
 in name varchar(200),
 in line varchar(4000)

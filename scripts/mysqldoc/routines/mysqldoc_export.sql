@@ -1,6 +1,6 @@
-drop procedure if exists `sqldoc_export`;
+drop procedure if exists `mysqldoc_export`;
 delimiter $$
-create procedure sqldoc_export()
+create procedure mysqldoc_export()
 begin
     table_block:
     begin

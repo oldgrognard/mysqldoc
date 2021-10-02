@@ -1,6 +1,6 @@
-drop procedure if exists `sqldoc_mermaid`;
+drop procedure if exists `mysqldoc_mermaid`;
 delimiter $$
-create procedure sqldoc_mermaid(
+create procedure mysqldoc_mermaid(
     in tname varchar(200)
 )
 begin
@@ -30,14 +30,14 @@ begin
                            table_name = tname
                         or REFERENCED_TABLE_NAME = tname );
 
-    call sqldoc_line('table', tname, '```mermaid');
-    call sqldoc_line('table', tname,
+    call mysqldoc_line('table', tname, '```mermaid');
+    call mysqldoc_line('table', tname,
                      '%%{init: {\'theme\': \'base\', \'themeVariables\': {\'darkMode\': false, \'mainBkg\': \'#cfc\',\'primaryBorderColor\': \'#696\',\'primaryTextColor\': \'#353\',\'lineColor\': \'#787\'}}}%%');
 
-    call sqldoc_line('table', tname, '   erDiagram');
+    call mysqldoc_line('table', tname, '   erDiagram');
     if keycount = 0 then
-        call sqldoc_line('table', tname, concat('   ', tname));
-        call sqldoc_line('table', tname, concat('   ', tname, '   {'));
+        call mysqldoc_line('table', tname, concat('   ', tname));
+        call mysqldoc_line('table', tname, concat('   ', tname, '   {'));
 
         insert into tmp_docs (type, name, line)
         select 'table', tname, concat('      ', DATA_TYPE, ' ', COLUMN_NAME)
@@ -46,7 +46,7 @@ begin
           and TABLE_NAME = tname
         order by ORDINAL_POSITION;
 
-        call sqldoc_line('table', tname, '   }');
+        call mysqldoc_line('table', tname, '   }');
     else
         insert into tmp_docs (type, name, line)
         select 'table', tname, concat(table_name, ' }|--|| ', REFERENCED_TABLE_NAME, ' : ""')
@@ -61,8 +61,8 @@ begin
             fetch mermaid_cursor into fk_table;
             if mermaid_cursor_done = 1 then leave mermaid_loop; end if;
 
-            call sqldoc_line('table', tname, fk_table);
-            call sqldoc_line('table', tname, concat(fk_table, ' {'));
+            call mysqldoc_line('table', tname, fk_table);
+            call mysqldoc_line('table', tname, concat(fk_table, ' {'));
 
             insert into tmp_docs (type, name, line)
             select 'table', tname, concat('      ', DATA_TYPE, ' ', COLUMN_NAME)
@@ -71,11 +71,11 @@ begin
               and TABLE_NAME = fk_table
             order by ORDINAL_POSITION;
 
-            call sqldoc_line('table', tname, '}');
+            call mysqldoc_line('table', tname, '}');
         end loop mermaid_loop;
         close mermaid_cursor;
     end if;
-    call sqldoc_line('table', tname, '```');
+    call mysqldoc_line('table', tname, '```');
 end
 $$
 

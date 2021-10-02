@@ -1,6 +1,6 @@
-drop procedure if exists `sqldoc_foreign_keys`;
+drop procedure if exists `mysqldoc_foreign_keys`;
 delimiter $$
-create procedure sqldoc_foreign_keys(
+create procedure mysqldoc_foreign_keys(
     in tname varchar(200)
 )
 begin
@@ -13,11 +13,11 @@ begin
                                and table_name = tname);
 
     if foreign_key_count > 0 then
-        call sqldoc_line('table', tname, '');
+        call mysqldoc_line('table', tname, '');
 
-        call sqldoc_line('table', tname, '## Foreign Keys');
-        call sqldoc_line('table', tname, '| Name | Columns | Update Rule | Delete Rule |');
-        call sqldoc_line('table', tname, '| ---- | ------- | ----------- | ----------- |');
+        call mysqldoc_line('table', tname, '## Foreign Keys');
+        call mysqldoc_line('table', tname, '| Name | Columns | Update Rule | Delete Rule |');
+        call mysqldoc_line('table', tname, '| ---- | ------- | ----------- | ----------- |');
 
         insert into tmp_docs (type, name, line)
         select 'table',

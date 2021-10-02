@@ -1,6 +1,6 @@
-drop procedure if exists `sqldoc_tables`;
+drop procedure if exists `mysqldoc_tables`;
 delimiter $$
-create procedure sqldoc_tables(
+create procedure mysqldoc_tables(
     in diagrams boolean
 )
 begin
@@ -24,29 +24,29 @@ begin
         fetch table_cursor into tname, tcomment;
         if table_cursor_finished = 1 then leave tableloop; end if;
 
-        call sqldoc_line('table', tname, '[index.md](index.md)');
-        call sqldoc_line('table', tname, concat('# Table: ', tname));
+        call mysqldoc_line('table', tname, '[index.md](index.md)');
+        call mysqldoc_line('table', tname, concat('# Table: ', tname));
 
-        if tcomment <> '' then call sqldoc_line('table', tname, tcomment); end if;
+        if tcomment <> '' then call mysqldoc_line('table', tname, tcomment); end if;
 
         if diagrams = 1 then
             delete from tmp_table;
             insert into tmp_table (id, table_name) values (1, tname);
             -- diagram
-            call sqldoc_mermaid(tname);
+            call mysqldoc_mermaid(tname);
         end if;
 
-        call sqldoc_line('table', tname, '');
+        call mysqldoc_line('table', tname, '');
 
         -- properties
-        call sqldoc_table_properties(tname);
+        call mysqldoc_table_properties(tname);
 
         -- columns
-        call sqldoc_line('table', tname, '## Columns');
-        call sqldoc_line('table', tname, '');
+        call mysqldoc_line('table', tname, '## Columns');
+        call mysqldoc_line('table', tname, '');
 
-        call sqldoc_line('table', tname, '| Key  | Column | Type        | Default | Nullable | Comment |');
-        call sqldoc_line('table', tname, '| ---- | ------ | ----------- | ------- | -------- | ------- |');
+        call mysqldoc_line('table', tname, '| Key  | Column | Type        | Default | Nullable | Comment |');
+        call mysqldoc_line('table', tname, '| ---- | ------ | ----------- | ------- | -------- | ------- |');
 
         insert into tmp_docs (type, name, line)
         select 'table'                                                                                 as type,
@@ -72,13 +72,13 @@ begin
         order by c.ORDINAL_POSITION;
 
         -- foreign keys
-        call sqldoc_foreign_keys(tname);
+        call mysqldoc_foreign_keys(tname);
 
         -- indexes
-        call sqldoc_indexes(tname);
+        call mysqldoc_indexes(tname);
 
         -- triggers
-        call sqldoc_triggers(tname);
+        call mysqldoc_triggers(tname);
 
 
     end loop tableloop;

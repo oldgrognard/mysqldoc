@@ -1,15 +1,15 @@
-drop procedure if exists `sqldoc_table_properties`;
+drop procedure if exists `mysqldoc_table_properties`;
 delimiter $$
-create procedure sqldoc_table_properties(
+create procedure mysqldoc_table_properties(
     in tname varchar(64)
 )
 begin
 
-    call sqldoc_line('table', tname, '');
+    call mysqldoc_line('table', tname, '');
 
-    call sqldoc_line('table', tname, '## Properties');
-    call sqldoc_line('table', tname, '| Property | Value |');
-    call sqldoc_line('table', tname, '| ---- | ------- |');
+    call mysqldoc_line('table', tname, '## Properties');
+    call mysqldoc_line('table', tname, '| Property | Value |');
+    call mysqldoc_line('table', tname, '| ---- | ------- |');
 
     insert into tmp_docs (type, name, line)
     select 'table', tname, concat('| Engine | ', engine, ' |') as line

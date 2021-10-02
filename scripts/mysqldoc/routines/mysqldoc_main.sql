@@ -1,6 +1,6 @@
-drop procedure if exists `sqldoc_main`;
+drop procedure if exists `mysqldoc_main`;
 delimiter $$
-create procedure sqldoc_main(
+create procedure mysqldoc_main(
     in export boolean,
     in diagrams boolean
 )
@@ -25,11 +25,11 @@ begin
         table_name varchar(64) not null default ''
     );
 
-    call sqldoc_toc();
-    call sqldoc_tables(diagrams);
-    call sqldoc_views();
+    call mysqldoc_toc();
+    call mysqldoc_tables(diagrams);
+    call mysqldoc_views();
 
-    if (export = true) then call sqldoc_export(); end if;
+    if (export = true) then call mysqldoc_export(); end if;
 
     -- drop table if exists tmp_docs;
     drop table if exists tmp_table;

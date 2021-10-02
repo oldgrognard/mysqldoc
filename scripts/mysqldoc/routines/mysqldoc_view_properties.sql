@@ -1,15 +1,15 @@
-drop procedure if exists `sqldoc_view_properties`;
+drop procedure if exists `mysqldoc_view_properties`;
 delimiter $$
-create procedure sqldoc_view_properties(
+create procedure mysqldoc_view_properties(
     in vname varchar(64)
 )
 begin
 
-    call sqldoc_line('view', vname, '');
+    call mysqldoc_line('view', vname, '');
 
-    call sqldoc_line('view', vname, '## Properties');
-    call sqldoc_line('view', vname, '| Property | Value |');
-    call sqldoc_line('view', vname, '| ---- | ------- |');
+    call mysqldoc_line('view', vname, '## Properties');
+    call mysqldoc_line('view', vname, '| Property | Value |');
+    call mysqldoc_line('view', vname, '| ---- | ------- |');
 
     insert into tmp_docs (type, name, line)
     select 'view', vname, concat('| Updatable | ', IS_UPDATABLE, ' |') as line

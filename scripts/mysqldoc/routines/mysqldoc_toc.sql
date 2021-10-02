@@ -1,14 +1,14 @@
-drop procedure if exists `sqldoc_toc`;
+drop procedure if exists `mysqldoc_toc`;
 delimiter $$
-create procedure sqldoc_toc()
+create procedure mysqldoc_toc()
 begin
 
-    call sqldoc_line('toc', 'toc', concat('# DATABASE', database()));
-    call sqldoc_line('toc', 'toc', '__Data Dictionary__');
-    call sqldoc_line('toc', 'toc', '## Table of Contents');
-    call sqldoc_line('toc', 'toc', '### Tables');
-    call sqldoc_line('toc', 'toc', '| Name | Comment | Row Count|');
-    call sqldoc_line('toc', 'toc', '| ---- | ------- | ---------: |');
+    call mysqldoc_line('toc', 'toc', concat('# DATABASE: ', database()));
+    call mysqldoc_line('toc', 'toc', '__Data Dictionary__');
+    call mysqldoc_line('toc', 'toc', '## Table of Contents');
+    call mysqldoc_line('toc', 'toc', '### Tables');
+    call mysqldoc_line('toc', 'toc', '| Name | Comment | Row Count|');
+    call mysqldoc_line('toc', 'toc', '| ---- | ------- | ---------: |');
 
     insert into tmp_docs (type, name, line)
     select 'toc',
@@ -20,9 +20,9 @@ begin
       and table_name not in ('tmp_docs', 'tmp_table');
 
     -- views
-    call sqldoc_line('toc', 'toc', '### Views ');
-    call sqldoc_line('toc', 'toc', '| Name | Updatable | Definer |');
-    call sqldoc_line('toc', 'toc', '| ---- |:---------:| ------- |');
+    call mysqldoc_line('toc', 'toc', '### Views ');
+    call mysqldoc_line('toc', 'toc', '| Name | Updatable | Definer |');
+    call mysqldoc_line('toc', 'toc', '| ---- |:---------:| ------- |');
 
     insert into tmp_docs (type, name, line)
     select 'toc',

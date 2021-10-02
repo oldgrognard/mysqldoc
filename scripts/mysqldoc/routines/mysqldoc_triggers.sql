@@ -1,6 +1,6 @@
-drop procedure if exists `sqldoc_triggers`;
+drop procedure if exists `mysqldoc_triggers`;
 delimiter $$
-create procedure sqldoc_triggers(
+create procedure mysqldoc_triggers(
     in tname varchar(64)
 )
 begin
@@ -34,8 +34,8 @@ begin
 
     if trigger_count > 0 then
 
-    call sqldoc_line('table', tname, '');
-    call sqldoc_line('table', tname, '## Triggers');
+    call mysqldoc_line('table', tname, '');
+    call mysqldoc_line('table', tname, '## Triggers');
 
     open trigger_cursor;
 
@@ -45,10 +45,10 @@ begin
         fetch trigger_cursor into v_trigger_name, v_action_timing, v_event_manipulation, v_definer, v_character_set_client, v_collation_connection, v_created, v_action_statement;
         if v_trigger_cursor_finished = 1 then leave triggerloop; end if;
 
-        call sqldoc_line('table', tname, concat('### ', v_trigger_name));
+        call mysqldoc_line('table', tname, concat('### ', v_trigger_name));
 
-        call sqldoc_line('table', tname, '| Timing | Event | Definer | Character Set | Collation | Created |');
-        call sqldoc_line('table', tname, '| ------ | ----- | ------- | ------------- | --------- | ------- |');
+        call mysqldoc_line('table', tname, '| Timing | Event | Definer | Character Set | Collation | Created |');
+        call mysqldoc_line('table', tname, '| ------ | ----- | ------- | ------------- | --------- | ------- |');
 
         insert into tmp_docs (type, name, line)
         select 'table',
@@ -56,10 +56,10 @@ begin
                concat('| ', v_action_timing, ' | ', v_event_manipulation, ' | ', v_definer, ' | ',
                       v_character_set_client, ' | ', v_collation_connection, ' | ', v_created, ' |');
 
-        call sqldoc_line('table', tname, '');
-        call sqldoc_line('table', tname, '```sql');
-        call sqldoc_line('table', tname, replace(v_action_statement, '\n', '\r'));
-        call sqldoc_line('table', tname, '```');
+        call mysqldoc_line('table', tname, '');
+        call mysqldoc_line('table', tname, '```sql');
+        call mysqldoc_line('table', tname, replace(v_action_statement, '\n', '\r'));
+        call mysqldoc_line('table', tname, '```');
 
     end loop triggerloop;
     close trigger_cursor;

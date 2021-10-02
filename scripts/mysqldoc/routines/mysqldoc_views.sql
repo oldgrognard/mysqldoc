@@ -1,6 +1,6 @@
-drop procedure if exists `sqldoc_views`;
+drop procedure if exists `mysqldoc_views`;
 delimiter $$
-create procedure sqldoc_views()
+create procedure mysqldoc_views()
 begin
 
     declare view_cursor_finished int default 0;
@@ -23,20 +23,20 @@ begin
         fetch view_cursor into vname, v_body;
         if view_cursor_finished = 1 then leave viewloop; end if;
 
-        call sqldoc_line('view', vname, '[index.md](index.md)');
-        call sqldoc_line('view', vname, concat('# View: ', vname));
+        call mysqldoc_line('view', vname, '[index.md](index.md)');
+        call mysqldoc_line('view', vname, concat('# View: ', vname));
 
-        call sqldoc_line('view', vname, '');
+        call mysqldoc_line('view', vname, '');
 
         -- properties
-        call sqldoc_view_properties(vname);
+        call mysqldoc_view_properties(vname);
 
         -- columns
-        call sqldoc_line('view', vname, '## Columns');
-        call sqldoc_line('view', vname, '');
+        call mysqldoc_line('view', vname, '## Columns');
+        call mysqldoc_line('view', vname, '');
 
-        call sqldoc_line('view', vname, '| Column | Type        | Nullable |');
-        call sqldoc_line('view', vname, '| ------ | ----------- | -------- | ');
+        call mysqldoc_line('view', vname, '| Column | Type        | Nullable |');
+        call mysqldoc_line('view', vname, '| ------ | ----------- | -------- | ');
 
         insert into tmp_docs (type, name, line)
         select 'view'                                                         as type,
@@ -48,12 +48,12 @@ begin
           and c.TABLE_NAME = vname
         order by c.ORDINAL_POSITION;
 
-        call sqldoc_line('view', vname, '## Definition');
+        call mysqldoc_line('view', vname, '## Definition');
 
-        call sqldoc_line('view', vname, '');
-        call sqldoc_line('view', vname, '```sql');
-        call sqldoc_line('view', vname, replace(v_body, '\n', '\r'));
-        call sqldoc_line('table', vname, '```');
+        call mysqldoc_line('view', vname, '');
+        call mysqldoc_line('view', vname, '```sql');
+        call mysqldoc_line('view', vname, replace(v_body, '\n', '\r'));
+        call mysqldoc_line('table', vname, '```');
 
     end loop viewloop;
     close view_cursor;
