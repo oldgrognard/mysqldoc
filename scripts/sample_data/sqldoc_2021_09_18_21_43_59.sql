@@ -5035,7 +5035,7 @@ begin
 
     set keycount = ( select count(*)
                      from information_schema.KEY_COLUMN_USAGE
-                     where table_schema = 'sqldoc' and TABLE_NAME = tname and REFERENCED_TABLE_NAME is not null and
+                     where table_schema = database() and TABLE_NAME = tname and REFERENCED_TABLE_NAME is not null and
                            table_name = tname
                         or REFERENCED_TABLE_NAME = tname );
 
