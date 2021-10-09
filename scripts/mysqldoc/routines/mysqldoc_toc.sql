@@ -2,6 +2,8 @@ drop procedure if exists `mysqldoc_toc`;
 delimiter $$
 create procedure mysqldoc_toc()
 begin
+    declare view_count int;
+    declare proc_count int(21);
 
     call mysqldoc_line('toc', 'toc', concat('# DATABASE: ', database()));
     call mysqldoc_line('toc', 'toc', '__Data Dictionary__');
@@ -10,30 +12,53 @@ begin
     call mysqldoc_line('toc', 'toc', '| Name | Comment | Row Count|');
     call mysqldoc_line('toc', 'toc', '| ---- | ------- | ---------: |');
 
-    insert into tmp_docs (type, name, line)
+    insert into mysqldoc_temp_docs (type, name, line)
     select 'toc',
            'toc',
            concat('| [', table_name, '](table_', table_name, '.md) | ', table_comment, ' | ', table_rows, ' |')
     from information_schema.tables
     where table_schema = database()
       and table_type = 'BASE TABLE'
-      and table_name not in ('tmp_docs', 'tmp_table');
+      and table_name not in ('mysqldoc_temp_docs', 'mysqldoc_temp_table');
 
     -- views
-    call mysqldoc_line('toc', 'toc', '### Views ');
-    call mysqldoc_line('toc', 'toc', '| Name | Updatable | Definer |');
-    call mysqldoc_line('toc', 'toc', '| ---- |:---------:| ------- |');
+    set view_count = ( select count(*) as num
+                       from information_schema.tables t
+                                join information_schema.VIEWS v
+                                     on t.TABLE_SCHEMA = v.TABLE_SCHEMA and t.TABLE_NAME = v.TABLE_NAME
+                       where table_type = 'VIEW'
+                         and t.TABLE_SCHEMA = database() );
 
-    insert into tmp_docs (type, name, line)
-    select 'toc',
-           'toc',
-           concat('| [', t.TABLE_NAME, '](view_', t.table_name, '.md) | ',
-if(v.IS_UPDATABLE = 'YES', '&#9989;', '&#128683;'), ' | ', v.DEFINER, ' |')
-    from information_schema.TABLES t
-    join
-         information_schema.VIEWS v on t.TABLE_SCHEMA = v.TABLE_SCHEMA and t.TABLE_NAME = v.TABLE_NAME
-    where t.table_schema = database()
-      and table_type = 'VIEW';
+    if view_count > 0 then
+
+        call mysqldoc_line('toc', 'toc', '### Views ');
+        call mysqldoc_line('toc', 'toc', '| Name | Updatable | Definer |');
+        call mysqldoc_line('toc', 'toc', '| ---- |:---------:| ------- |');
+
+        insert into mysqldoc_temp_docs (type, name, line)
+        select 'toc',
+               'toc',
+               concat('| [', t.TABLE_NAME, '](view_', t.table_name, '.md) | ',
+                      if(v.IS_UPDATABLE = 'YES', '&#9989;', '&#128683;'), ' | ', v.DEFINER, ' |')
+        from information_schema.TABLES t
+                 join information_schema.VIEWS v on t.TABLE_SCHEMA = v.TABLE_SCHEMA and t.TABLE_NAME = v.TABLE_NAME
+        where t.table_schema = database()
+          and table_type = 'VIEW';
+    end if;
+
+    -- stored procedures
+    set proc_count = ( select count(*)
+                            from information_schema.routines r
+                            where routine_schema = database()
+                              and routine_type = 'PROCEDURE'
+                              and routine_name not like 'mysqldoc_%' );
+
+#     if proc_count > 0 then
+#         call mysqldoc_line('toc', 'toc', '### Stored Procedures');
+#         call mysqldoc_line('toc', 'toc', '| Name | Definer |');
+#         call mysqldoc_line('toc', 'toc', '| ---- | ------- |');
+#
+#     end if;
 
 end$$
 

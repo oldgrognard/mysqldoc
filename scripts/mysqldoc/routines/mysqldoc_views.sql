@@ -38,7 +38,7 @@ begin
         call mysqldoc_line('view', vname, '| Column | Type        | Nullable |');
         call mysqldoc_line('view', vname, '| ------ | ----------- | -------- | ');
 
-        insert into tmp_docs (type, name, line)
+        insert into mysqldoc_temp_docs (type, name, line)
         select 'view'                                                         as type,
                vname                                                          as name,
                concat('| ', c.column_name, ' | ', c.column_type, ' | ',

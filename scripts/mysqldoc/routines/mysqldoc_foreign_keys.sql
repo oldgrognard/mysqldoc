@@ -19,7 +19,7 @@ begin
         call mysqldoc_line('table', tname, '| Name | Columns | Update Rule | Delete Rule |');
         call mysqldoc_line('table', tname, '| ---- | ------- | ----------- | ----------- |');
 
-        insert into tmp_docs (type, name, line)
+        insert into mysqldoc_temp_docs (type, name, line)
         select 'table',
                tname,
                concat('| ', tc.constraint_name, ' | ', group_concat(

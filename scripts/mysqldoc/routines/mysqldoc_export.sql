@@ -11,12 +11,12 @@ begin
                                         from information_schema.tables
                                         where table_schema = database()
                                           and table_type = 'BASE TABLE'
-                                          and table_name not in ('tmp_docs', 'tmp_table');
+                                          and table_name not in ('mysqldoc_temp_docs', 'mysqldoc_temp_table');
 
         declare continue handler for not found set table_cursor_finished = 1;
 
         select line
-        from tmp_docs
+        from mysqldoc_temp_docs
         where type = 'toc'
           and name = 'toc'
         order by id
@@ -29,7 +29,7 @@ begin
             fetch table_cursor into tname;
             if table_cursor_finished = 1 then leave tableloop; end if;
 
-            set @out_text = concat('select line from tmp_docs where type = \'table\' and name = \'', tname,
+            set @out_text = concat('select line from mysqldoc_temp_docs where type = \'table\' and name = \'', tname,
                                    '\' order by id into outfile \'/var/lib/mysql-files/table_', tname, '.md\'',
                                    ' lines terminated by \'\n\'');
 
@@ -60,7 +60,7 @@ begin
             if view_cursor_finished = 1 then leave viewloop; end if;
 
 
-            set @out_text2 = concat('select line from tmp_docs where type = \'view\' and name = \'', vname,
+            set @out_text2 = concat('select line from mysqldoc_temp_docs where type = \'view\' and name = \'', vname,
                                     '\' order by id into outfile \'/var/lib/mysql-files/view_', vname, '.md\'',
                                     ' lines terminated by \'\n\'');
 

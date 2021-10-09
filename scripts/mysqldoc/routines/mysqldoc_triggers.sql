@@ -50,7 +50,7 @@ begin
         call mysqldoc_line('table', tname, '| Timing | Event | Definer | Character Set | Collation | Created |');
         call mysqldoc_line('table', tname, '| ------ | ----- | ------- | ------------- | --------- | ------- |');
 
-        insert into tmp_docs (type, name, line)
+        insert into mysqldoc_temp_docs (type, name, line)
         select 'table',
                tname,
                concat('| ', v_action_timing, ' | ', v_event_manipulation, ' | ', v_definer, ' | ',

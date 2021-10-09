@@ -11,7 +11,7 @@ begin
     call mysqldoc_line('view', vname, '| Property | Value |');
     call mysqldoc_line('view', vname, '| ---- | ------- |');
 
-    insert into tmp_docs (type, name, line)
+    insert into mysqldoc_temp_docs (type, name, line)
     select 'view', vname, concat('| Updatable | ', IS_UPDATABLE, ' |') as line
     from information_schema.VIEWS
     where TABLE_SCHEMA = database()

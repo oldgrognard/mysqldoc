@@ -6,7 +6,7 @@ in name varchar(200),
 in line varchar(4000)
 )
 begin
-    insert into tmp_docs (type, name, line) values (type, name, line);
+    insert into mysqldoc_temp_docs (type, name, line) values (type, name, line);
 end $$
 
 delimiter ;

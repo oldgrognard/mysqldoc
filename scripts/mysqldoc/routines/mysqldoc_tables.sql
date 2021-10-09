@@ -13,7 +13,7 @@ begin
                                     from information_schema.tables
                                     where table_schema = database()
                                       and table_type = 'BASE TABLE'
-                                      and table_name not in ('tmp_docs', 'tmp_table');
+                                      and table_name not in ('mysqldoc_temp_docs', 'mysqldoc_temp_table');
 
     declare continue handler for not found set table_cursor_finished = 1;
 
@@ -30,8 +30,8 @@ begin
         if tcomment <> '' then call mysqldoc_line('table', tname, tcomment); end if;
 
         if diagrams = 1 then
-            delete from tmp_table;
-            insert into tmp_table (id, table_name) values (1, tname);
+            delete from mysqldoc_temp_table;
+            insert into mysqldoc_temp_table (id, table_name) values (1, tname);
             -- diagram
             call mysqldoc_mermaid(tname);
         end if;
@@ -48,7 +48,7 @@ begin
         call mysqldoc_line('table', tname, '| Key  | Column | Type        | Default | Nullable | Comment |');
         call mysqldoc_line('table', tname, '| ---- | ------ | ----------- | ------- | -------- | ------- |');
 
-        insert into tmp_docs (type, name, line)
+        insert into mysqldoc_temp_docs (type, name, line)
         select 'table'                                                                                 as type,
                tname                                                                                   as name,
                concat('| ', ifnull(( select if(kc.ORDINAL_POSITION is null, '', '&#128273;')

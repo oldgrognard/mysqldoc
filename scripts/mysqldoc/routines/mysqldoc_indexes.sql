@@ -19,7 +19,7 @@ begin
         call mysqldoc_line('table', tname, '| Name | Columns | Unique | Full Text | Comment |');
         call mysqldoc_line('table', tname, '| ---- | ------- | ------ | --------- | ------- |');
 
-        insert into tmp_docs (type, name, line)
+        insert into mysqldoc_temp_docs (type, name, line)
         select 'table',
                tname,
                concat('| ', index_name, ' | ', group_concat(distinct column_name order by seq_in_index separator ', '),

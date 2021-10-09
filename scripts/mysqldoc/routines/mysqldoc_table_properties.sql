@@ -11,7 +11,7 @@ begin
     call mysqldoc_line('table', tname, '| Property | Value |');
     call mysqldoc_line('table', tname, '| ---- | ------- |');
 
-    insert into tmp_docs (type, name, line)
+    insert into mysqldoc_temp_docs (type, name, line)
     select 'table', tname, concat('| Engine | ', engine, ' |') as line
     from information_schema.TABLES
     where TABLE_SCHEMA = database()
