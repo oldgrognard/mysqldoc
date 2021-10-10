@@ -26,7 +26,7 @@ begin
                                              COLLATION_CONNECTION,
                                              DATABASE_COLLATION
                                       from information_schema.routines
-                                      where routine_schema = 'mysqldoc'
+                                      where routine_schema = database()
                                         and routine_type = 'PROCEDURE'
                                         and routine_name not like 'mysqldoc_%';
 

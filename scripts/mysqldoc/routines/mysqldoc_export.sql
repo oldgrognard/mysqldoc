@@ -86,7 +86,7 @@ begin
 
         declare procedure_cursor cursor for select ROUTINE_NAME
                                             from information_schema.routines
-                                            where routine_schema = 'mysqldoc'
+                                            where routine_schema = database()
                                               and routine_type = 'PROCEDURE'
                                               and routine_name not like 'mysqldoc_%';
         declare continue handler for not found set _procedure_cursor_finished = 1;
@@ -99,19 +99,54 @@ begin
             if _procedure_cursor_finished = 1 then leave procedureloop; end if;
 
 
-            set @out_text3 =
+            set @procedure_out_text =
                     concat('select line from mysqldoc_temp_docs where type = \'procedure\' and name = \'', _pname,
-                           '\' order by id into outfile \'', path, 'proc_', _pname, '.md\'',
+                           '\' order by id into outfile \'', path, 'procedure_', _pname, '.md\'',
                            ' lines terminated by \'\n\'');
 
-            prepare s3 from @out_text3;
-            execute s3;
-            drop prepare s3;
+            prepare procedure_query from @procedure_out_text;
+            execute procedure_query;
+            drop prepare procedure_query;
 
         end loop procedureloop;
         close procedure_cursor;
 
     end procedure_block;
+
+    function_block:
+    begin
+
+        declare _function_cursor_finished INT default 0;
+        declare _fname varchar(64);
+
+        declare function_cursor cursor for select ROUTINE_NAME
+                                            from information_schema.routines
+                                            where routine_schema = database()
+                                              and routine_type = 'FUNCTION'
+                                              and routine_name not like 'mysqldoc_%';
+        declare continue handler for not found set _function_cursor_finished = 1;
+
+        open function_cursor;
+
+        functionloop:
+        loop
+            fetch function_cursor into _fname;
+            if _function_cursor_finished = 1 then leave functionloop; end if;
+
+
+            set @function_out_text =
+                    concat('select line from mysqldoc_temp_docs where type = \'function\' and name = \'', _fname,
+                           '\' order by id into outfile \'', path, 'function_', _fname, '.md\'',
+                           ' lines terminated by \'\n\'');
+
+            prepare function_query from @function_out_text;
+            execute function_query;
+            drop prepare function_query;
+
+        end loop functionloop;
+        close function_cursor;
+
+    end function_block;
 end
 $$;
 

@@ -30,6 +30,7 @@ begin
     call mysqldoc_tables(diagrams);
     call mysqldoc_views();
     call mysqldoc_procedures();
+    call mysqldoc_functions();
 
     if (export = true) then call mysqldoc_export(path); end if;
 

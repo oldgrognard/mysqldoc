@@ -56,7 +56,7 @@ begin
 
         insert into mysqldoc_temp_docs (type, name, line)
         select 'toc', 'toc', concat(
-            '| [', ROUTINE_NAME, '](proc_', ROUTINE_NAME, '.md)',
+            '| [', ROUTINE_NAME, '](procedure_', ROUTINE_NAME, '.md)',
             ' | ', mysqldoc_yn(IS_DETERMINISTIC),
             ' | ', SQL_DATA_ACCESS,
             ' | ', DEFINER,
@@ -69,6 +69,34 @@ begin
           and routine_name not like 'mysqldoc_%'
         order by r.routine_name;
 
+
+    end if;
+
+    -- functions
+        set @func_count = (select count(*) from information_schema.routines r
+    where routine_schema = database()
+      and routine_type = 'FUNCTION'
+      and routine_name not like 'mysqldoc_%');
+
+    if @func_count > 0 then
+        call mysqldoc_line('toc', 'toc', '### Functions');
+        call mysqldoc_line('toc', 'toc', '| Name | Deterministic | Data Access | Definer | Return Type |');
+        call mysqldoc_line('toc', 'toc', '| ---- | ------------- | ----------- | ------- | ----------- |');
+
+        insert into mysqldoc_temp_docs (type, name, line)
+        select 'toc', 'toc', concat(
+            '| [', ROUTINE_NAME, '](function_', ROUTINE_NAME, '.md)',
+            ' | ', mysqldoc_yn(IS_DETERMINISTIC),
+            ' | ', SQL_DATA_ACCESS,
+            ' | ', DEFINER,
+            ' | ', DTD_IDENTIFIER,
+            ' |'
+            )
+        from information_schema.routines r
+        where routine_schema = database()
+          and routine_type = 'FUNCTION'
+          and routine_name not like 'mysqldoc_%'
+        order by r.routine_name;
 
     end if;
 
