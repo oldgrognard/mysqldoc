@@ -42,7 +42,7 @@ begin
         select 'view'                                                         as type,
                vname                                                          as name,
                concat('| ', c.column_name, ' | ', c.column_type, ' | ',
-                      if(c.is_nullable = 'NO', '&#128683;', '&#9989;'), ' |') as line
+                      if(c.is_nullable = 'YES', '&#x2705;', '&#x274C;'), ' |') as line
         from information_schema.COLUMNS c
         where c.TABLE_SCHEMA = database()
           and c.TABLE_NAME = vname

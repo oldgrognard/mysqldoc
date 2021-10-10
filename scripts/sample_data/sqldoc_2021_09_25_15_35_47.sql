@@ -4674,13 +4674,13 @@ INSERT INTO `supplier` VALUES ('WELLY','Welly Diecast Productions','');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 
 --
--- Table structure for table `tmp_docs`
+-- Table structure for table `mysqldoc_temp_docs`
 --
 
-DROP TABLE IF EXISTS `tmp_docs`;
+DROP TABLE IF EXISTS `mysqldoc_temp_docs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tmp_docs` (
+CREATE TABLE `mysqldoc_temp_docs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(100) NOT NULL DEFAULT 'toc',
   `name` varchar(200) NOT NULL DEFAULT 'toc',
@@ -5494,7 +5494,7 @@ begin
                                         from information_schema.tables
                                         where table_schema = database()
                                           and table_type = 'BASE TABLE'
-                                          and table_name not in ('tmp_docs', 'tmp_table');
+                                          and table_name not in ('tmp_docs', 'mysqldoc_temp_table');
 
         declare continue handler for not found set table_cursor_finished = 1;
 
@@ -5710,9 +5710,9 @@ begin
         constraint tmp_docs_pk primary key (id)
     );
 
-    drop table if exists tmp_table;
+    drop table if exists mysqldoc_temp_table;
 
-    create table tmp_table
+    create table mysqldoc_temp_table
     (
         id         int         not null default 1,
         table_name varchar(64) not null default ''
@@ -5725,7 +5725,7 @@ begin
     if (export = true) then call sqldoc_export(); end if;
 
     -- drop table if exists tmp_docs;
-    drop table if exists tmp_table;
+    drop table if exists mysqldoc_temp_table;
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -5750,18 +5750,18 @@ begin
     declare mermaid_cursor_done int default 0;
     declare fk_table varchar(64);
     declare mermaid_cursor cursor for select table_name as fk_table
-                                      from tmp_table
+                                      from mysqldoc_temp_table
                                       where id = 1
                                       union
                                       select REFERENCED_TABLE_NAME as fk_table
                                       from information_schema.KEY_COLUMN_USAGE k
-                                               join tmp_table tt on k.TABLE_NAME = tt.table_name
+                                               join mysqldoc_temp_table tt on k.TABLE_NAME = tt.table_name
                                       where CONSTRAINT_SCHEMA = database()
                                         and REFERENCED_TABLE_NAME is not null
                                       union
                                       select k.TABLE_NAME as fk_table
                                       from information_schema.KEY_COLUMN_USAGE k
-                                               join tmp_table tt2 on k.REFERENCED_TABLE_NAME = tt2.table_name
+                                               join mysqldoc_temp_table tt2 on k.REFERENCED_TABLE_NAME = tt2.table_name
                                       where CONSTRAINT_SCHEMA = database()
                                         and REFERENCED_TABLE_NAME is not null;
     declare continue handler for not found set mermaid_cursor_done = true;
@@ -5847,7 +5847,7 @@ begin
                                     from information_schema.tables
                                     where table_schema = database()
                                       and table_type = 'BASE TABLE'
-                                      and table_name not in ('tmp_docs', 'tmp_table');
+                                      and table_name not in ('tmp_docs', 'mysqldoc_temp_table');
 
     declare continue handler for not found set table_cursor_finished = 1;
 
@@ -5864,8 +5864,8 @@ begin
         if tcomment <> '' then call sqldoc_line('table', tname, tcomment); end if;
 
         if diagrams = 1 then
-            delete from tmp_table;
-            insert into tmp_table (id, table_name) values (1, tname);
+            delete from mysqldoc_temp_table;
+            insert into mysqldoc_temp_table (id, table_name) values (1, tname);
             -- diagram
             call sqldoc_mermaid(tname);
         end if;
@@ -6014,7 +6014,7 @@ begin
     from information_schema.tables
     where table_schema = database()
       and table_type = 'BASE TABLE'
-      and table_name not in ('tmp_docs', 'tmp_table');
+      and table_name not in ('tmp_docs', 'mysqldoc_temp_table');
 
     -- views
     call sqldoc_line('toc', 'toc', '### Views ');

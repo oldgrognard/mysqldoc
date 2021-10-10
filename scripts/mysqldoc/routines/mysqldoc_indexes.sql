@@ -23,8 +23,8 @@ begin
         select 'table',
                tname,
                concat('| ', index_name, ' | ', group_concat(distinct column_name order by seq_in_index separator ', '),
-                      ' | ', if(NON_UNIQUE = 1, '&#128683;', '&#9989;'), ' | ',
-                      if(INDEX_TYPE = 'FULLTEXT', '&#9989;', '&#128683;'), ' | ', index_comment, ' |')
+                      ' | ', mysqldoc_yn(!NON_UNIQUE), ' | ',
+                      mysqldoc_yn(INDEX_TYPE), ' | ', index_comment, ' |')
         from information_schema.STATISTICS
         where TABLE_SCHEMA = database()
           and TABLE_NAME = tname

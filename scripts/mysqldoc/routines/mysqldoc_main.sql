@@ -27,6 +27,7 @@ begin
     call mysqldoc_toc();
     call mysqldoc_tables(diagrams);
     call mysqldoc_views();
+    call mysqldoc_procedures();
 
     if (export = true) then call mysqldoc_export(); end if;
 

@@ -27,7 +27,7 @@ begin
         call mysqldoc_line('table', tname, '[index.md](index.md)');
         call mysqldoc_line('table', tname, concat('# Table: ', tname));
 
-        if tcomment <> '' then call mysqldoc_line('table', tname, tcomment); end if;
+        if tcomment <> '' then call mysqldoc_line('table', tname, concat('>', tcomment)); end if;
 
         if diagrams = 1 then
             delete from mysqldoc_temp_table;
@@ -65,7 +65,7 @@ begin
                                  and kc.referenced_table_schema <> 'null'
                                  and kc.CONSTRAINT_NAME <> 'PRIMARY' ), ''), ' | ', c.column_name, ' | ', c.column_type,
                       ' | ', if(c.column_default = '', 'empty string', ifnull(c.column_default, '')), ' | ',
-                      if(c.is_nullable = 'NO', '&#128683;', '&#9989;'), ' | ', c.column_comment, ' |') as line
+                      mysqldoc_yn(c.is_nullable), ' | ', c.column_comment, ' |') as line
         from information_schema.COLUMNS c
         where c.TABLE_SCHEMA = database()
           and c.TABLE_NAME = tname

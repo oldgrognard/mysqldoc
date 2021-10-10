@@ -3,7 +3,6 @@ delimiter $$
 create procedure mysqldoc_toc()
 begin
     declare view_count int;
-    declare proc_count int(21);
 
     call mysqldoc_line('toc', 'toc', concat('# DATABASE: ', database()));
     call mysqldoc_line('toc', 'toc', '__Data Dictionary__');
@@ -39,7 +38,7 @@ begin
         select 'toc',
                'toc',
                concat('| [', t.TABLE_NAME, '](view_', t.table_name, '.md) | ',
-                      if(v.IS_UPDATABLE = 'YES', '&#9989;', '&#128683;'), ' | ', v.DEFINER, ' |')
+                      mysqldoc_yn(v.IS_UPDATABLE), ' | ', v.DEFINER, ' |')
         from information_schema.TABLES t
                  join information_schema.VIEWS v on t.TABLE_SCHEMA = v.TABLE_SCHEMA and t.TABLE_NAME = v.TABLE_NAME
         where t.table_schema = database()
@@ -47,18 +46,33 @@ begin
     end if;
 
     -- stored procedures
-    set proc_count = ( select count(*)
-                            from information_schema.routines r
-                            where routine_schema = database()
-                              and routine_type = 'PROCEDURE'
-                              and routine_name not like 'mysqldoc_%' );
+    set @proc_count = (select count(*) from information_schema.routines r
+    where routine_schema = database()
+      and routine_type = 'PROCEDURE'
+      and routine_name not like 'mysqldoc_%');
 
-#     if proc_count > 0 then
-#         call mysqldoc_line('toc', 'toc', '### Stored Procedures');
-#         call mysqldoc_line('toc', 'toc', '| Name | Definer |');
-#         call mysqldoc_line('toc', 'toc', '| ---- | ------- |');
-#
-#     end if;
+    if @proc_count > 0 then
+        call mysqldoc_line('toc', 'toc', '### Stored Procedures');
+        call mysqldoc_line('toc', 'toc', '| Name | Deterministic | Data Access | Definer | Comment |');
+        call mysqldoc_line('toc', 'toc', '| ---- | ------------- | ----------- | ------- | ------- |');
+
+        insert into mysqldoc_temp_docs (type, name, line)
+        select 'toc', 'toc', concat(
+            '| [', ROUTINE_NAME, '](proc_', ROUTINE_NAME, '.md)',
+            ' | ', mysqldoc_yn(IS_DETERMINISTIC),
+            ' | ', SQL_DATA_ACCESS,
+            ' | ', DEFINER,
+            ' | ', ROUTINE_COMMENT,
+            ' |'
+            )
+        from information_schema.routines r
+        where routine_schema = database()
+          and routine_type = 'PROCEDURE'
+          and routine_name not like 'mysqldoc_%'
+        order by r.routine_name;
+
+
+    end if;
 
 end$$
 

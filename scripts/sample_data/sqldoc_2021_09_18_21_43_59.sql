@@ -4783,11 +4783,11 @@ begin
                                     from information_schema.tables
                                     where table_schema = database()
                                       and table_type = 'BASE TABLE'
-                                      and table_name not in ('tmp_docs', 'tmp_table');
+                                      and table_name not in ('mysqldoc_temp_docs', 'mysqldoc_temp_table');
     declare continue handler for not found set table_cursor_finished = 1;
 
     select line
-    from tmp_docs
+    from mysqldoc_temp_docs
     where type = 'toc'
     and name = 'toc'
     order by id
@@ -4801,7 +4801,7 @@ begin
         if table_cursor_finished = 1 then leave tableloop; end if;
 
         set @out_text = concat(
-            'select line from tmp_docs where type = \'table\' and name = \'',
+            'select line from mysqldoc_temp_docs where type = \'table\' and name = \'',
             tname,
             '\' order by id into outfile \'/var/lib/mysql-files/table_',
             tname,
@@ -4850,7 +4850,7 @@ begin
     call sqldoc_line('table', tname, '| Name | Columns | Update Rule | Delete Rule |');
     call sqldoc_line('table', tname, '| ---- | ------- | ----------- | ----------- |');
 
-    insert into tmp_docs (type, name, line)
+    insert into mysqldoc_temp_docs (type, name, line)
     select 'table', tname,
            concat(
                '| ',
@@ -4908,7 +4908,7 @@ begin
         call sqldoc_line('table', tname, '| Name | Columns | Unique | Full Text | Comment |');
         call sqldoc_line('table', tname, '| ---- | ------- | ------ | --------- | ------- |');
 
-        insert into tmp_docs (type, name, line)
+        insert into mysqldoc_temp_docs (type, name, line)
         select 'table',
                tname,
                concat('| ', index_name, ' | ', group_concat(distinct column_name order by seq_in_index separator ', '),
@@ -4944,7 +4944,7 @@ in name varchar(200),
 in line varchar(4000)
 )
 begin
-    insert into tmp_docs (type, name, line) values (type, name, line);
+    insert into mysqldoc_temp_docs (type, name, line) values (type, name, line);
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -4967,20 +4967,20 @@ CREATE DEFINER=`root`@`%` PROCEDURE `sqldoc_main`(
 )
 begin
 
-    drop table if exists tmp_docs;
+    drop table if exists mysqldoc_temp_docs;
 
-    create table tmp_docs
+    create table mysqldoc_temp_docs
     (
         id   int auto_increment,
         type varchar(100) not null         default 'toc',
         name varchar(200) not null         default 'toc',
         line varchar(4000) charset utf8mb4 default '' null,
-        constraint tmp_docs_pk primary key (id)
+        constraint mysqldoc_temp_docs_pk primary key (id)
     );
 
-    drop table if exists tmp_table;
+    drop table if exists mysqldoc_temp_table;
 
-    create table tmp_table
+    create table mysqldoc_temp_table
     (
         id         int         not null default 1,
         table_name varchar(64) not null default ''
@@ -4991,8 +4991,8 @@ begin
 
     if (export = true) then call sqldoc_export(); end if;
 
-    drop table if exists tmp_docs;
-    drop table if exists tmp_table;
+    drop table if exists mysqldoc_temp_docs;
+    drop table if exists mysqldoc_temp_table;
 end ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -5017,18 +5017,18 @@ begin
     declare mermaid_cursor_done int default 0;
     declare fk_table varchar(64);
     declare mermaid_cursor cursor for select table_name as fk_table
-                                      from tmp_table
+                                      from mysqldoc_temp_table
                                       where id = 1
                                       union
                                       select REFERENCED_TABLE_NAME as fk_table
                                       from information_schema.KEY_COLUMN_USAGE k
-                                               join tmp_table tt on k.TABLE_NAME = tt.table_name
+                                               join mysqldoc_temp_table tt on k.TABLE_NAME = tt.table_name
                                       where CONSTRAINT_SCHEMA = database()
                                         and REFERENCED_TABLE_NAME is not null
                                       union
                                       select k.TABLE_NAME as fk_table
                                       from information_schema.KEY_COLUMN_USAGE k
-                                               join tmp_table tt2 on k.REFERENCED_TABLE_NAME = tt2.table_name
+                                               join mysqldoc_temp_table tt2 on k.REFERENCED_TABLE_NAME = tt2.table_name
                                       where CONSTRAINT_SCHEMA = database()
                                         and REFERENCED_TABLE_NAME is not null;
     declare continue handler for not found set mermaid_cursor_done = true;
@@ -5048,7 +5048,7 @@ begin
         call sqldoc_line('table', tname, concat('   ', tname));
         call sqldoc_line('table', tname, concat('   ', tname, '   {'));
 
-        insert into tmp_docs (type, name, line)
+        insert into mysqldoc_temp_docs (type, name, line)
         select 'table', tname, concat('      ', DATA_TYPE, ' ', COLUMN_NAME)
         from information_schema.COLUMNS
         where TABLE_SCHEMA = database()
@@ -5057,7 +5057,7 @@ begin
 
         call sqldoc_line('table', tname, '   }');
     else
-        insert into tmp_docs (type, name, line)
+        insert into mysqldoc_temp_docs (type, name, line)
         select 'table', tname, concat(table_name, ' }|--|| ', REFERENCED_TABLE_NAME, ' : ""')
         from information_schema.KEY_COLUMN_USAGE
         where table_schema = database()
@@ -5073,7 +5073,7 @@ begin
             call sqldoc_line('table', tname, fk_table);
             call sqldoc_line('table', tname, concat(fk_table, ' {'));
 
-            insert into tmp_docs (type, name, line)
+            insert into mysqldoc_temp_docs (type, name, line)
             select 'table', tname, concat('      ', DATA_TYPE, ' ', COLUMN_NAME)
             from information_schema.COLUMNS
             where TABLE_SCHEMA = database()
@@ -5112,7 +5112,7 @@ begin
     call sqldoc_line('table', tname, '| Property | Value |');
     call sqldoc_line('table', tname, '| ---- | ------- |');
 
-    insert into tmp_docs (type, name, line)
+    insert into mysqldoc_temp_docs (type, name, line)
     select 'table', tname, concat('| Engine | ', engine, ' |') as line
     from information_schema.TABLES
     where TABLE_SCHEMA = database()
@@ -5177,7 +5177,7 @@ begin
                                     from information_schema.tables
                                     where table_schema = database()
                                       and table_type = 'BASE TABLE'
-                                      and table_name not in ('tmp_docs', 'tmp_table');
+                                      and table_name not in ('mysqldoc_temp_docs', 'mysqldoc_temp_table');
 
     declare continue handler for not found set table_cursor_finished = 1;
 
@@ -5194,8 +5194,8 @@ begin
         if tcomment <> '' then call sqldoc_line('table', tname, tcomment); end if;
 
         if diagrams = 1 then
-            delete from tmp_table;
-            insert into tmp_table (id, table_name) values (1, tname);
+            delete from mysqldoc_temp_table;
+            insert into mysqldoc_temp_table (id, table_name) values (1, tname);
             -- diagram
             call sqldoc_mermaid(tname);
         end if;
@@ -5212,7 +5212,7 @@ begin
         call sqldoc_line('table', tname, '| Key  | Column | Type        | Default | Nullable | Comment |');
         call sqldoc_line('table', tname, '| ---- | ------ | ----------- | ------- | -------- | ------- |');
 
-        insert into tmp_docs (type, name, line)
+        insert into mysqldoc_temp_docs (type, name, line)
         select 'table'                                                                                 as type,
                tname                                                                                   as name,
                concat('| ', ifnull(( select if(kc.ORDINAL_POSITION is null, '', '&#128273;')
@@ -5271,12 +5271,12 @@ BEGIN
     call sqldoc_line('toc', 'toc', '| Name | Comment | Row Count|');
     call sqldoc_line('toc', 'toc', '| ---- | ------- | ---------: |');
 
-    INSERT INTO tmp_docs (type, name, line)
+    INSERT INTO mysqldoc_temp_docs (type, name, line)
     SELECT 'toc', 'toc', CONCAT('| [', table_name, '](table_', table_name, '.md) | ', table_comment, ' | ', table_rows, ' |')
       FROM information_schema.tables
      WHERE table_schema = DATABASE()
        AND table_type = 'BASE TABLE'
-       AND table_name not in ('tmp_docs', 'tmp_table');
+       AND table_name not in ('mysqldoc_temp_docs', 'mysqldoc_temp_table');
 
 END ;;
 DELIMITER ;

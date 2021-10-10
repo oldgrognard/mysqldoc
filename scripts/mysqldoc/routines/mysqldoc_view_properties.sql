@@ -12,7 +12,7 @@ begin
     call mysqldoc_line('view', vname, '| ---- | ------- |');
 
     insert into mysqldoc_temp_docs (type, name, line)
-    select 'view', vname, concat('| Updatable | ', IS_UPDATABLE, ' |') as line
+    select 'view', vname, concat('| Updatable | ', if(IS_UPDATABLE='YES', '&#x2705;', '&#x274C;'), ' |') as line
     from information_schema.VIEWS
     where TABLE_SCHEMA = database()
       and TABLE_NAME = vname
