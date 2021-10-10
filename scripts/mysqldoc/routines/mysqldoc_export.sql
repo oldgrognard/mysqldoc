@@ -1,14 +1,17 @@
 drop procedure if exists `mysqldoc_export`;
 delimiter $$
-create procedure mysqldoc_export()
+create procedure mysqldoc_export(
+    in path varchar(500)
+)
 begin
+    set @toc_out_text = concat(
+            'select line from mysqldoc_temp_docs where type = \'toc\' and name = \'toc\' order by id into outfile \'',
+            path, 'index.md\' lines terminated by \'\n\'');
 
-    select line
-    from mysqldoc_temp_docs
-    where type = 'toc'
-      and name = 'toc'
-    order by id
-    into outfile '/var/lib/mysql-files/index.md' lines terminated by '\n';
+    prepare toc_query from @toc_out_text;
+    execute toc_query;
+    drop prepare toc_query;
+
 
     table_block:
     begin
@@ -30,13 +33,14 @@ begin
             fetch table_cursor into _tname;
             if _table_cursor_finished = 1 then leave tableloop; end if;
 
-            set @out_text = concat('select line from mysqldoc_temp_docs where type = \'table\' and name = \'', _tname,
-                                   '\' order by id into outfile \'/var/lib/mysql-files/table_', _tname, '.md\'',
-                                   ' lines terminated by \'\n\'');
+            set @table_out_text =
+                    concat('select line from mysqldoc_temp_docs where type = \'table\' and name = \'', _tname,
+                           '\' order by id into outfile \'', path, 'table_', _tname, '.md\'',
+                           ' lines terminated by \'\n\'');
 
-            prepare s1 from @out_text;
-            execute s1;
-            drop prepare s1;
+            prepare table_query from @table_out_text;
+            execute table_query;
+            drop prepare table_query;
 
         end loop tableloop;
         close table_cursor;
@@ -61,13 +65,14 @@ begin
             if _view_cursor_finished = 1 then leave viewloop; end if;
 
 
-            set @out_text2 = concat('select line from mysqldoc_temp_docs where type = \'view\' and name = \'', _vname,
-                                    '\' order by id into outfile \'/var/lib/mysql-files/view_', _vname, '.md\'',
-                                    ' lines terminated by \'\n\'');
+            set @view_out_text =
+                    concat('select line from mysqldoc_temp_docs where type = \'view\' and name = \'', _vname,
+                           '\' order by id into outfile \'', path, 'view_', _vname, '.md\'',
+                           ' lines terminated by \'\n\'');
 
-            prepare s2 from @out_text2;
-            execute s2;
-            drop prepare s2;
+            prepare view_query from @view_out_text;
+            execute view_query;
+            drop prepare view_query;
 
         end loop viewloop;
         close view_cursor;
@@ -96,7 +101,7 @@ begin
 
             set @out_text3 =
                     concat('select line from mysqldoc_temp_docs where type = \'procedure\' and name = \'', _pname,
-                           '\' order by id into outfile \'/var/lib/mysql-files/proc_', _pname, '.md\'',
+                           '\' order by id into outfile \'', path, 'proc_', _pname, '.md\'',
                            ' lines terminated by \'\n\'');
 
             prepare s3 from @out_text3;

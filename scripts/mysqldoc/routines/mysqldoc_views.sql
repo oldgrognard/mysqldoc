@@ -4,8 +4,8 @@ create procedure mysqldoc_views()
 begin
 
     declare view_cursor_finished int default 0;
-    declare vname varchar(64);
-    declare v_body longtext;
+    declare _vname varchar(64);
+    declare _body longtext;
 
     declare view_cursor cursor for select t.table_name, v.VIEW_DEFINITION
                                    from information_schema.tables t
@@ -20,40 +20,40 @@ begin
 
     viewloop:
     loop
-        fetch view_cursor into vname, v_body;
+        fetch view_cursor into _vname, _body;
         if view_cursor_finished = 1 then leave viewloop; end if;
 
-        call mysqldoc_line('view', vname, '[index.md](index.md)');
-        call mysqldoc_line('view', vname, concat('# View: ', vname));
+        call mysqldoc_line('view', _vname, '[index.md](index.md)');
+        call mysqldoc_line('view', _vname, concat('# View: ', _vname));
 
-        call mysqldoc_line('view', vname, '');
+        call mysqldoc_line('view', _vname, '');
 
         -- properties
-        call mysqldoc_view_properties(vname);
+        call mysqldoc_view_properties(_vname);
 
         -- columns
-        call mysqldoc_line('view', vname, '## Columns');
-        call mysqldoc_line('view', vname, '');
+        call mysqldoc_line('view', _vname, '## Columns');
+        call mysqldoc_line('view', _vname, '');
 
-        call mysqldoc_line('view', vname, '| Column | Type        | Nullable |');
-        call mysqldoc_line('view', vname, '| ------ | ----------- | -------- | ');
+        call mysqldoc_line('view', _vname, '| Column | Type        | Nullable |');
+        call mysqldoc_line('view', _vname, '| ------ | ----------- | -------- | ');
 
         insert into mysqldoc_temp_docs (type, name, line)
-        select 'view'                                                         as type,
-               vname                                                          as name,
+        select 'view',
+               _vname,
                concat('| ', c.column_name, ' | ', c.column_type, ' | ',
-                      if(c.is_nullable = 'YES', '&#x2705;', '&#x274C;'), ' |') as line
+                      if(c.is_nullable = 'YES', '&#x2705;', '&#x274C;'), ' |')
         from information_schema.COLUMNS c
         where c.TABLE_SCHEMA = database()
-          and c.TABLE_NAME = vname
+          and c.TABLE_NAME = _vname
         order by c.ORDINAL_POSITION;
 
-        call mysqldoc_line('view', vname, '## Definition');
+        call mysqldoc_line('view', _vname, '## Definition');
 
-        call mysqldoc_line('view', vname, '');
-        call mysqldoc_line('view', vname, '```sql');
-        call mysqldoc_line('view', vname, replace(v_body, '\n', '\r'));
-        call mysqldoc_line('table', vname, '```');
+        call mysqldoc_line('view', _vname, '');
+        call mysqldoc_line('view', _vname, '```sql');
+        call mysqldoc_line('view', _vname, replace(_body, '\n', '\r'));
+        call mysqldoc_line('table', _vname, '```');
 
     end loop viewloop;
     close view_cursor;

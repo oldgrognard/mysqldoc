@@ -2,9 +2,11 @@ drop procedure if exists `mysqldoc_main`;
 delimiter $$
 create procedure mysqldoc_main(
     in export boolean,
-    in diagrams boolean
+    in diagrams boolean,
+    in path varchar(500)
 )
 begin
+    set path = ifnull(path, '/var/lib/mysql-files/');
 
     drop table if exists mysqldoc_temp_docs;
     drop table if exists mysqldoc_temp_table;
@@ -29,7 +31,7 @@ begin
     call mysqldoc_views();
     call mysqldoc_procedures();
 
-    if (export = true) then call mysqldoc_export(); end if;
+    if (export = true) then call mysqldoc_export(path); end if;
 
 end;
 $$

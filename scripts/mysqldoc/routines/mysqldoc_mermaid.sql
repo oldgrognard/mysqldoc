@@ -4,7 +4,6 @@ create procedure mysqldoc_mermaid(
     in tname varchar(200)
 )
 begin
-    declare keycount boolean;
     declare mermaid_cursor_done int default 0;
     declare fk_table varchar(64);
     declare mermaid_cursor cursor for select table_name as fk_table
@@ -24,7 +23,7 @@ begin
                                         and REFERENCED_TABLE_NAME is not null;
     declare continue handler for not found set mermaid_cursor_done = true;
 
-    set keycount = ( select count(*)
+    set @key_count = ( select count(*)
                      from information_schema.KEY_COLUMN_USAGE
                      where table_schema = database() and TABLE_NAME = tname and REFERENCED_TABLE_NAME is not null and
                            table_name = tname
@@ -35,7 +34,7 @@ begin
                      '%%{init: {\'theme\': \'base\', \'themeVariables\': {\'darkMode\': false, \'mainBkg\': \'#cfc\',\'primaryBorderColor\': \'#696\',\'primaryTextColor\': \'#353\',\'lineColor\': \'#787\'}}}%%');
 
     call mysqldoc_line('table', tname, '   erDiagram');
-    if keycount = 0 then
+    if @key_count = 0 then
         call mysqldoc_line('table', tname, concat('   ', tname));
         call mysqldoc_line('table', tname, concat('   ', tname, '   {'));
 

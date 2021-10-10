@@ -5,13 +5,11 @@ create procedure mysqldoc_indexes(
 )
 begin
 
-    declare indexcount int;
-
-    set indexcount = ( select count(*)
+    set @index_count = ( select count(*)
                        from information_schema.STATISTICS
                        where table_schema = database() and table_name = tname );
 
-    if indexcount > 0 then
+    if @index_count > 0 then
 
         call mysqldoc_line('table', tname, '');
 

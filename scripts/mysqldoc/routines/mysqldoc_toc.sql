@@ -2,8 +2,6 @@ drop procedure if exists `mysqldoc_toc`;
 delimiter $$
 create procedure mysqldoc_toc()
 begin
-    declare view_count int;
-
     call mysqldoc_line('toc', 'toc', concat('# DATABASE: ', database()));
     call mysqldoc_line('toc', 'toc', '__Data Dictionary__');
     call mysqldoc_line('toc', 'toc', '## Table of Contents');
@@ -21,14 +19,14 @@ begin
       and table_name not in ('mysqldoc_temp_docs', 'mysqldoc_temp_table');
 
     -- views
-    set view_count = ( select count(*) as num
+    set @view_count = ( select count(*) as num
                        from information_schema.tables t
                                 join information_schema.VIEWS v
                                      on t.TABLE_SCHEMA = v.TABLE_SCHEMA and t.TABLE_NAME = v.TABLE_NAME
                        where table_type = 'VIEW'
                          and t.TABLE_SCHEMA = database() );
 
-    if view_count > 0 then
+    if @view_count > 0 then
 
         call mysqldoc_line('toc', 'toc', '### Views ');
         call mysqldoc_line('toc', 'toc', '| Name | Updatable | Definer |');
