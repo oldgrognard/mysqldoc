@@ -78,7 +78,7 @@ begin
             call mysqldoc_line('function', _fname, '| Name | Mode | Data Type');
             call mysqldoc_line('function', _fname, '| ---- | ---- | ---------');
 
-            -- insert into mysqldoc_temp_docs (type, name, line)
+            insert into mysqldoc_temp_docs (type, name, line)
             select 'function', _fname, concat('| ', PARAMETER_NAME, ' | ', PARAMETER_MODE, ' | ', DTD_IDENTIFIER, ' |')
             from information_schema.PARAMETERS
             where SPECIFIC_SCHEMA = database()

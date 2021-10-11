@@ -6,8 +6,18 @@ begin
     declare view_cursor_finished int default 0;
     declare _vname varchar(64);
     declare _body longtext;
+    declare _is_updatable varchar(3);
+    declare _definer varchar(93);
+    declare _security_type varchar(7);
+    declare _character_set_client, _collation_connection varchar(32);
 
-    declare view_cursor cursor for select t.table_name, v.VIEW_DEFINITION
+    declare view_cursor cursor for select t.TABLE_NAME,
+                                          VIEW_DEFINITION,
+                                          IS_UPDATABLE,
+                                          DEFINER,
+                                          SECURITY_TYPE,
+                                          CHARACTER_SET_CLIENT,
+                                          COLLATION_CONNECTION
                                    from information_schema.tables t
                                             join information_schema.VIEWS v
                                                  on t.TABLE_SCHEMA = v.TABLE_SCHEMA and t.TABLE_NAME = v.TABLE_NAME
@@ -20,7 +30,7 @@ begin
 
     viewloop:
     loop
-        fetch view_cursor into _vname, _body;
+        fetch view_cursor into _vname, _body, _is_updatable, _definer, _security_type, _character_set_client, _collation_connection;
         if view_cursor_finished = 1 then leave viewloop; end if;
 
         call mysqldoc_line('view', _vname, '[index.md](index.md)');
@@ -29,7 +39,14 @@ begin
         call mysqldoc_line('view', _vname, '');
 
         -- properties
-        call mysqldoc_view_properties(_vname);
+        call mysqldoc_line('view', _vname, '## Properties');
+        call mysqldoc_line('view', _vname, '| Property | Value |');
+        call mysqldoc_line('view', _vname, '| ---- | ------- |');
+        call mysqldoc_line('view', _vname, concat('| Updatable | ', _is_updatable, ' |'));
+        call mysqldoc_line('view', _vname, concat('| Definer | ', _definer, ' |'));
+        call mysqldoc_line('view', _vname, concat('| Security Type | ', _security_type, ' |'));
+        call mysqldoc_line('view', _vname, concat('| Client Character Set | ', _character_set_client, ' |'));
+        call mysqldoc_line('view', _vname, concat('| Connection Collation | ', _collation_connection, ' |'));
 
         -- columns
         call mysqldoc_line('view', _vname, '## Columns');
