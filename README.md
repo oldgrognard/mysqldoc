@@ -4,7 +4,7 @@ Some stored procedures to document your database in markdown.
 
 ## Installation
 
-Still a work in progress
+Run the mysqldoc_main.sql file in your database.  It should appear as a single stored procedure of the same name in your database.
 
 ## Usage
 ``` sql
@@ -19,7 +19,4 @@ the server hosting MySQL.  There is no provision for sending output to the clien
 
 ### Destination directory
 MySQL will not overwrite existing files.  If you need to generate the documentation
-more than once, you'll need to make sure generated files do not already exist.
-
-### Setting up MySQL
-MySql can write files to disk, which is w
+more than once, you'll need to make sure generated files do not already exist.  I keep a little terminal script handy to move all of my generated files into a different directory once generated.
