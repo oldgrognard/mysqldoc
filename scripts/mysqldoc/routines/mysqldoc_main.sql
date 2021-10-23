@@ -16,7 +16,7 @@ begin
         id   int auto_increment,
         type varchar(100) not null         default 'toc',
         name varchar(200) not null         default 'toc',
-        line varchar(4000) charset utf8mb4 default '' null,
+        line longtext charset utf8mb4 null,
         constraint mysqldoc_temp_docs_pk primary key (id)
     );
 
@@ -596,8 +596,7 @@ begin
             insert into mysqldoc_temp_docs (type, name, line) values ('procedure', _pname, '| ---- | ------- |');
 
             insert into mysqldoc_temp_docs (type, name, line)
-            values ('procedure', _pname, concat('| Deterministic | ', if(_is_deterministic = 'YES', '&#x2705;', '&#x274C;'),
-                                                ''' |'));
+            values ('procedure', _pname, concat('| Deterministic | ', if(_is_deterministic = 'YES', '&#x2705;', '&#x274C;'),' |'));
             insert into mysqldoc_temp_docs (type, name, line)
             values ('procedure', _pname, concat('| Data Access | ', _sql_data_access, ' |'));
             insert into mysqldoc_temp_docs (type, name, line)
@@ -644,7 +643,7 @@ begin
             insert into mysqldoc_temp_docs (type, name, line) values ('procedure', _pname, '## Body');
             insert into mysqldoc_temp_docs (type, name, line) values ('procedure', _pname, '```sql');
             insert into mysqldoc_temp_docs (type, name, line)
-            values ('procedure', _pname, replace(_routine_definition, '\n', '\r'));
+            values ('procedure', _pname, replace(replace(_routine_definition, '\n', '\r'), '\t', '    '));
             insert into mysqldoc_temp_docs (type, name, line) values ('procedure', _pname, '```');
 
         end loop routineloop;
